@@ -56,14 +56,63 @@
     </div>
     <div class="analytics">
       <h3 style="font-weight: 300; margin-bottom: 2rem;">Analytics</h3>
+      <svg class="graph-pie" width="200" height="200" />
+      <svg class="graph-pie2 ml-4" width="200" height="200" />
     </div>
   </div>
 </template>
 
 <script>
+import * as d3 from "d3";
+
 export default {
   name: "maintenance-portal",
   components: {},
+  methods: {
+    drawPieChart(data, target) {
+      var svg = d3.select(target),
+        width = svg.attr("width"),
+        height = svg.attr("height"),
+        radius = Math.min(width, height) / 2,
+        g = svg
+          .append("g")
+          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+      var color = d3.scaleOrdinal([
+        "#003f5c",
+        "#58508d",
+        "#bc5090",
+        "#ffa600",
+        "#ff6361",
+      ]);
+
+      // Generate the pie
+      var pie = d3.pie();
+
+      // Generate the arcs
+      var arc = d3.arc().innerRadius(0).outerRadius(radius);
+
+      //Generate groups
+      var arcs = g
+        .selectAll("arc")
+        .data(pie(data))
+        .enter()
+        .append("g")
+        .attr("class", "arc");
+
+      //Draw arc paths
+      arcs
+        .append("path")
+        .attr("fill", function (d, i) {
+          return color(i);
+        })
+        .attr("d", arc);
+    },
+  },
+  mounted() {
+    this.drawPieChart([4, 5, 6, 7, 2], ".graph-pie");
+    this.drawPieChart([5, 32, 7, 2], ".graph-pie2");
+  },
   data() {
     return {
       complaints: [
@@ -95,7 +144,7 @@ export default {
           status: "Not Verified",
         },
         {
-          id: "GJVD355",
+          id: "GJVD358",
           roadid: "SK78",
           location: "Raja Mandir, MG Road",
           district: "Vadodara",
@@ -104,7 +153,7 @@ export default {
           status: "Not Verified",
         },
         {
-          id: "GJVD356",
+          id: "GJVD359",
           roadid: "SK78",
           location: "Raja Mandir, MG Road",
           district: "Vadodara",
@@ -113,7 +162,7 @@ export default {
           status: "Not Verified",
         },
         {
-          id: "GJVD357",
+          id: "GJVD360",
           roadid: "SK78",
           location: "Raja Mandir, MG Road",
           district: "Vadodara",
