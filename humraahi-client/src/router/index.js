@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import MaintenancePortal from '@/views/MaintenancePortal.vue'
 import RoadArchive from '@/views/RoadArchive.vue'
 
@@ -9,8 +8,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    redirect: {name: 'roads'}
   },
   {
     path: '/maintenance',

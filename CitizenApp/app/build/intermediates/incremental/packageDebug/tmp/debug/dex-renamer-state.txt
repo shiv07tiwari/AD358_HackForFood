@@ -1,0 +1,4 @@
+#Sat Aug 01 15:16:21 IST 2020
+base.0=/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
