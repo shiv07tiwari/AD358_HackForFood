@@ -1,5 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg app-navbar">
+    <router-link :to="{name: 'home'}" class="navbar-brand" href="#">
+      <img src="@/assets/brand-white.png" style="height: 1.6rem; margin-top:-7px;"/>
+    </router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -33,6 +36,7 @@ export default {
 .app-navbar {
     background-color: #276EF1;
     color: white;
+    padding: .5rem 5rem;
 
     .nav-link {
         color: white;
