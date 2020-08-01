@@ -1,13 +1,13 @@
 <template>
-  <div class="app-home">
-
+  <div class="app-road-archive">
+    Road Archive
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'Home',
+  name: 'road-archive',
   components: {
     
   }
@@ -16,7 +16,7 @@ export default {
 
 <style lang="scss">
 
-  .app-home {
+  .app-road-archive {
 
     
 

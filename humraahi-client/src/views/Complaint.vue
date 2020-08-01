@@ -1,5 +1,5 @@
 <template>
-  <div class="app-home">
+  <div class="app-complaint">
 
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'Home',
+  name: 'complaint',
   components: {
     
   }
@@ -16,7 +16,7 @@ export default {
 
 <style lang="scss">
 
-  .app-home {
+  .app-road-archive {
 
     
 

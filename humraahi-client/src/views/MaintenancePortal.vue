@@ -1,13 +1,13 @@
 <template>
-  <div class="app-home">
-
+  <div class="app-maintenance-portal">
+    Maintenance Portal
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'Home',
+  name: 'maintenance-portal',
   components: {
     
   }
@@ -16,7 +16,7 @@ export default {
 
 <style lang="scss">
 
-  .app-home {
+  .app-maintenance-portal {
 
     
 
