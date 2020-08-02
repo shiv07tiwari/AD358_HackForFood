@@ -17,11 +17,6 @@ import com.example.wheresthepothole.objects.Pothole
 import com.google.android.material.navigation.NavigationView
 import retrofit2.Call
 import retrofit2.Response
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import java.io.Serializable
 
 
 class ProfileActivity : AppCompatActivity(){

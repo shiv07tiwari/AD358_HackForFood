@@ -51,7 +51,7 @@ def home():
     return "Hello user "
 @app.route('/')
 def default():
-    return "MAA CHUDA"
+    return "Default Route"
 
 def addUserPothole(user_id,_id) :
     Dict = {"user_id":user_id,"pothole_id":_id,"resolved":"0"}
