@@ -101,14 +101,14 @@ def get_repair_cost(data, cost_model, sc_X, sc_y, time_model, sc):
     return ret_data
 
 
-data = pd.read_csv('./final-road-data.csv')
-road_life_model = pickle.load(open('./road_life_prediction_model.sav', 'rb'))
-road_cost_model = pickle.load(open('./road_cost_prediction.sav', 'rb'))
+# data = pd.read_csv('./final-road-data.csv')
+# road_life_model = pickle.load(open('./road_life_prediction_model.sav', 'rb'))
+# road_cost_model = pickle.load(open('./road_cost_prediction.sav', 'rb'))
 
-road_life_scaler = pickle.load(open('./road_life_scaler.pkl', 'rb'))
-road_cost_scaler_X = pickle.load(open('./road_cost_scaler_X.pkl', 'rb'))
-road_cost_scaler_y = pickle.load(open('./road_cost_scaler_y.pkl', 'rb'))
+# road_life_scaler = pickle.load(open('./road_life_scaler.pkl', 'rb'))
+# road_cost_scaler_X = pickle.load(open('./road_cost_scaler_X.pkl', 'rb'))
+# road_cost_scaler_y = pickle.load(open('./road_cost_scaler_y.pkl', 'rb'))
 
-# print(get_prioritized(data)['priority'])
-print(get_repair_cost(data, road_cost_model, road_cost_scaler_X, road_cost_scaler_y,
-                      road_life_model, road_life_scaler))
+# # print(get_prioritized(data)['priority'])
+# print(get_repair_cost(data, road_cost_model, road_cost_scaler_X, road_cost_scaler_y,
+#                       road_life_model, road_life_scaler))
