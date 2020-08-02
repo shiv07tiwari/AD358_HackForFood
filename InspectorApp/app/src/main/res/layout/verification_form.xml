@@ -20,9 +20,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:padding="10dp"
         android:textSize="18sp"
-        android:textColor="@color/humraahi"
+        android:background="@color/background_tranparent"
+        android:textColor="@color/dark_gray"
         android:text="Verification Form">
     </TextView>
     <LinearLayout
@@ -53,8 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:background="@color/background_tranparent"
-            android:textColor="@color/dark_gray"
+            android:textColor="@color/white"
+            android:background="@color/dark_gray"
             android:padding="3dp"
             android:text="Audit">
         </TextView>
@@ -76,8 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="@color/dark_gray"
-            android:background="@color/background_tranparent"
+            android:textColor="@color/white"
+            android:background="@color/dark_gray"
             android:padding="3dp"
             android:text="Road Name"/>
         <EditText
@@ -104,8 +105,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/dark_gray"
-                android:background="@color/background_tranparent"
+                android:textColor="@color/white"
+                android:background="@color/dark_gray"
                 android:padding="3dp"
                 android:text="Inspection Codes">
             </TextView>
@@ -128,8 +129,8 @@
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:textColor="@color/dark_gray"
-                android:background="@color/background_tranparent"
+                android:textColor="@color/white"
+                android:background="@color/dark_gray"
                 android:padding="3dp"
                 android:text="Remidial Codes">
             </TextView>
@@ -150,10 +151,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/dark_gray"
+                android:textColor="@color/white"
+                android:background="@color/dark_gray"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@color/background_tranparent"
                 android:padding="3dp"
                 android:text="Activities">
             </TextView>
@@ -174,8 +175,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="@color/dark_gray"
-            android:background="@color/background_tranparent"
+            android:textColor="@color/white"
+            android:background="@color/dark_gray"
             android:padding="3dp"
             android:text="Local Name (or Number)"/>
         <EditText
@@ -200,8 +201,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/dark_gray"
-                android:background="@color/background_tranparent"
+                android:textColor="@color/white"
+                android:background="@color/dark_gray"
                 android:padding="3dp"
                 android:text="Priority">
             </TextView>
@@ -237,8 +238,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:background="@color/background_tranparent"
-                android:textColor="@color/dark_gray"
+                android:textColor="@color/white"
+                android:background="@color/dark_gray"
                 android:padding="3dp"
                 android:text="Risk">
             </TextView>
@@ -278,8 +279,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="@color/dark_gray"
-            android:background="@color/background_tranparent"
+            android:textColor="@color/white"
+            android:background="@color/dark_gray"
             android:padding="3dp"
             android:text="Desciption">
         </TextView>
@@ -306,8 +307,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/dark_gray"
-                android:background="@color/background_tranparent"
+                android:textColor="@color/white"
+                android:background="@color/dark_gray"
                 android:padding="3dp"
                 android:text="Stream Culvert (Check if applies)">
             </TextView>
@@ -339,8 +340,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/dark_gray"
-                android:background="@color/background_tranparent"
+                android:textColor="@color/white"
+                android:background="@color/dark_gray"
                 android:padding="3dp"
                 android:text="Posted Signage">
             </TextView>
@@ -420,8 +421,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/dark_gray"
-                android:background="@color/background_tranparent"
+                android:textColor="@color/white"
+                android:background="@color/dark_gray"
                 android:padding="3dp"
                 android:text="Road design">
             </TextView>
