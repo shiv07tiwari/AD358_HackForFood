@@ -8,7 +8,7 @@
       height="480"
     ></iframe>
 
-    <div class="complaints-table">
+    <div class="roads-table">
       <h3 style="font-weight: 300; margin-bottom: 2rem;">Roads</h3>
       <div style="margin-bottom: 2rem;">
         <form class="form-inline">
@@ -29,25 +29,31 @@
           <button type="submit" class="btn btn-primary ml-2">Filter Roads</button>
         </form>
       </div>
-      <table class="table table-bordered" style="border: 1px solid gray;">
+      <table class="table table-bordered header-fixed" style="border: 1px solid gray;">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Road ID</th>
-            <th scope="col">Road Name</th>
-            <th scope="col">District</th>
-            <th scope="col">Defect Type</th>
-            <th scope="col">Constructed On</th>
-            <th scope="col">Status</th>
+            <th scope="col">Road Zone</th>
+            <th scope="col">Road Type</th>
+            <th scope="col">Districts</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
+            <th scope="col">Length</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="complaint in complaints" :key="complaint.id">
-            <td>{{complaint.roadid}}</td>
-            <router-link tag="td" :to="{name: 'road', params: {id: complaint.roadid}}" style="cursor: pointer; text-decoration: underline;">{{ complaint.location }}</router-link>
-            <td>{{complaint.district}}</td>
-            <td>{{complaint.type}}</td>
-            <td>{{complaint.reported}}</td>
-            <td>{{complaint.status}}</td>
+          <tr v-for="road in roads" :key="road.id">
+            <router-link
+              tag="td"
+              :to="{name: 'road', params: {id: road.id}}"
+              style="cursor: pointer; text-decoration: underline;"
+            >{{ road.id }}</router-link>
+            <td>{{road.zone}}</td>
+            <td>{{road.sub_category}}</td>
+            <td>{{road.district}}</td>
+            <td>{{road.start.substring(1, 10)}}</td>
+            <td>{{road.end.substring(1, 10)}}</td>
+            <td>{{road.length_of_road}}km</td>
           </tr>
         </tbody>
       </table>
@@ -59,6 +65,8 @@
 </template>
 
 <script>
+import roads from "./roads";
+
 export default {
   name: "road-archive",
   components: {},
@@ -66,62 +74,7 @@ export default {
   mounted() {},
   data() {
     return {
-      complaints: [
-        {
-          id: "GJVD355",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD356",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD357",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD358",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD359",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD360",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-      ],
+      roads: roads,
     };
   },
 };
@@ -131,7 +84,7 @@ export default {
 .app-road-archive {
   padding: 3rem 5rem;
 
-  .complaints-table {
+  .roads-table {
     margin-top: 2rem;
   }
 
