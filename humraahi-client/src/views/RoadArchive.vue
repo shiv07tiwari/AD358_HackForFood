@@ -61,6 +61,9 @@
     <div class="analytics">
       <!-- <h3 style="font-weight: 300; margin-bottom: 3rem;">Analytics</h3> -->
     </div>
+    <div>
+      <router-link :to="{name: 'add-road'}" tag="button" class="btn btn-success">Add Road</router-link>
+    </div>
   </div>
 </template>
 
