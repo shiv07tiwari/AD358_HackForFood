@@ -251,7 +251,7 @@ export default {
     setTimeout(() => {
       // this.road = roads.find((road) => road.id == this.$route.params.id);
       this.loaded = true;
-    }, 100);
+    }, 300);
 
     for (let i = 0; i < 3 + Math.ceil(Math.random() * 10); i++) {
       this.dummy.tenders.push({

@@ -59,7 +59,7 @@
       </table>
     </div>
     <div class="analytics">
-      <h3 style="font-weight: 300; margin-bottom: 3rem;">Analytics</h3>
+      <!-- <h3 style="font-weight: 300; margin-bottom: 3rem;">Analytics</h3> -->
     </div>
   </div>
 </template>
