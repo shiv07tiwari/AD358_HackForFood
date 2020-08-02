@@ -410,7 +410,7 @@ def db_comp():
     
     if(body['op'] == 'all_join_kp'):
         road_data = pd.read_csv('../data/final-road-data.csv')
-        data = json.dumps(tuple(comp_data.join(road_data.set_index('road_id'), on = 'road_id').reset_index(drop = True).to_dict('index')), default=json_util.default)
+        data = json.dumps(tuple(comp_data.join(road_data.set_index('road_id'), on = 'road_id').reset_index(drop = True).to_dict('index').values()), default=json_util.default)
         return data
 
     # by id
@@ -490,6 +490,11 @@ def db_tender():
         tend_data.loc[tend_data.index.max() + 1] = body['args']
         tend_data.to_csv('../data/rt_data.csv', index = False)
         return json.dumps("success")
+    
+    if(body['op'] == 'add_kp'):
+        tend_data = tend_data.append(body['args'][0], ignore_index = True)
+        tend_data.to_csv('../data/rt_data.csv', index = False)
+        return json.dumps("success")
 
 @app.route('/road', methods = ['POST'])
 def db_road():
@@ -522,6 +527,11 @@ def db_road():
     # add road
     if(body['op'] == 'add'):
         road_data.loc[road_data.index.max() + 1] = body['args']
+        road_data.to_csv('../data/final-road-data.csv', index = False)
+        return json.dumps("success")
+    
+    if(body['op'] == 'add_kp'):
+        road_data = road_data.append(body['args'][0], ignore_index = True)
         road_data.to_csv('../data/final-road-data.csv', index = False)
         return json.dumps("success")
     
