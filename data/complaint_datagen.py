@@ -5,7 +5,7 @@ import numpy as np
 #complaint_id, road_id, defect_type, is_verified, is_resolved, assigned_insp_id, 
 #insp_rep_id, status, reported_month, reported_year, resolved_month, resolved_year
 
-road_id = [1,2,3,4,5]
+road_id = range(1,50)
 defect_type = ['crack', 'pothole', 'lights', 'sign_board', 'others']
 is_verified = ['true', 'false']
 assigned_insp_id = [1,2,3,4]
@@ -22,8 +22,7 @@ data = []
 for i in range(1,200):
     row = []
     row.append(i)
-    road = random.choice(road_id)
-    row.append(road)
+    row.append(random.choice(road_id))
     row.append(random.choice(defect_type))
     is_v = np.random.choice(is_verified)
     row.append(is_v)
