@@ -27,8 +27,8 @@ public class LoginActivity extends AppCompatActivity {
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(LoginActivity.this, InspectorHomeActivity.class);
-//                startActivity(i);
+                Intent i = new Intent(LoginActivity.this, InspectorHomeActivity.class);
+                startActivity(i);
 
             }
         });

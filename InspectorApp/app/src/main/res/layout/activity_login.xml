@@ -9,12 +9,9 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:layout_width="380dp"
-        android:layout_marginTop="80dp"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
         android:src="@drawable/logo_big"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_margin="1dp"
         android:layout_height="200dp"/>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name_text_input"
