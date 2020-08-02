@@ -35,7 +35,7 @@
             <th scope="col">Road ID</th>
             <th scope="col">Road Name</th>
             <th scope="col">Road Type</th>
-            <th scope="col">District</th>
+            <th scope="col">Districts</th>
             <th scope="col">Start</th>
             <th scope="col">End</th>
             <th scope="col">Length (km)</th>
