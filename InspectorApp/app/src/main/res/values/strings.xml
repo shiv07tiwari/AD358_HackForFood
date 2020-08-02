@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">Humraahi</string>
+    <string name="AuditOption1">Construction</string>
+    <string name="AuditOption2">Maintainance</string>
+    <string name="AuditOption3">Installation</string>
+    <string name="InspectionCode1">Tension cracks visibly</string>
+    <string name="InspectionCode2">Cutslope failures</string>
+    <string name="InspectionCode3">Fillslope failures</string>
+    <string name="InspectionCode4">Potholes</string>
+    <string name="InspectionCode5">Damage from cattle</string>
+    <string name="InspectionCode6">Slides or mass land movements</string>
+    <string name="InspectionCode7">Shoulder slumps</string>
+    <string name="InspectionCode8">Frost boils</string>
+    <string name="InspectionCode9">Washouts</string>
+    <string name="RemidialCode1">Install or repair</string>
+    <string name="RemidialCode2">Licensee inspections required as per Plan</string>
+    <string name="RemidialCode3">Certify structures</string>
+    <string name="RemidialCode4">Correct to specifications</string>
+    <string name="Activity1">Bridge</string>
+    <string name="Activity2">Culvert</string>
+    <string name="Activity3">Crossditch</string>
+    <string name="Activity4">Waterbar</string>
+    <string name="Activity5">Beaver</string>
+    <string name="Activity6">Ditching</string>
+    <string name="Activity7">Subgrade</string>
+    <string name="Activity8">Grading</string>
+    <string name="Activity9">Brushing</string>
+    <string name="Activity10">Gravelling</string>
+    <string name="Activity11">Sign</string>
 </resources>

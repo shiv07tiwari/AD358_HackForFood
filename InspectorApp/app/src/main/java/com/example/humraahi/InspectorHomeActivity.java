@@ -1,6 +1,9 @@
 package com.example.humraahi;
 
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.humraahi.DataModels.ScheduleDetails;
 import com.example.humraahi.DataModels.ScheduleList;
@@ -47,7 +50,9 @@ public class InspectorHomeActivity extends AppCompatActivity {
     protected void setTasks(RecyclerView recyclerView, ScheduleList schedules){
 
 
+
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
         recyclerView.setLayoutManager(layoutManager);
 
 

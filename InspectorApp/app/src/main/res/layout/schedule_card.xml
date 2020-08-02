@@ -133,6 +133,7 @@
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:text="Start"
+                    android:id="@+id/start_task"
                     android:background="@color/humraahi"
                     android:textColor="@color/white">
 

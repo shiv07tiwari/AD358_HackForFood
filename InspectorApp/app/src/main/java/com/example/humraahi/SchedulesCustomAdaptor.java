@@ -3,6 +3,8 @@ package com.example.humraahi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.humraahi.DataModels.ScheduleList;
@@ -26,6 +28,12 @@ public class SchedulesCustomAdaptor extends RecyclerView.Adapter<SchedulesCustom
 
         public MyViewHolder(View itemView) {
             super(itemView);
+
+
+            LinearLayout.LayoutParams params = new
+                    LinearLayout.LayoutParams(850, ViewGroup.LayoutParams.WRAP_CONTENT);
+            itemView.setLayoutParams(params);
+
             this.textViewProjectId =  itemView.findViewById(R.id.project_id);
             this.textViewLocation =  itemView.findViewById(R.id.location);
             this.textViewAssignedDate = itemView.findViewById(R.id.assigned_date);
