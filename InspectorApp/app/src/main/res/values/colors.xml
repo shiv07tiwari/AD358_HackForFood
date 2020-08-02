@@ -80,7 +80,7 @@
     <color name="pale_turquoise">#AFEEEE</color>
     <color name="greenYellow">#ADFF2F</color>
     <color name="light_blue">#ADD8E6</color>
-    <color name="dark_gray">#A9A9A9</color>
+    <color name="dark_gray">#444444</color>
     <color name="brown">#A52A2A</color>
     <color name="sienna">#A0522D</color>
     <color name="yellow_green">#9ACD32</color>
@@ -145,4 +145,5 @@
     <color name="black">#000000</color>
     <color name="or_yellow">#ffd037</color>
     <color name="humraahi">#276EF1</color>
+    <color name="background_tranparent">#33276EF1</color>
 </resources>
