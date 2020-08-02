@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
@@ -22,7 +23,6 @@
         android:layout_margin="10dp"
         android:textSize="18sp"
         android:text="Verification Form">
-
     </TextView>
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:layout_width="0dp"
             android:layout_weight="4"
             android:layout_height="wrap_content"
-            android:prompt="Select Audit Option"
+            android:id="@+id/spinner1"
             android:entries="@array/audit_options">
         </Spinner>
         </LinearLayout>
@@ -88,7 +88,6 @@
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="wrap_content"
-                android:prompt="Select Inspection Code"
                 android:entries="@array/inspection_codes">
             </Spinner>
         </LinearLayout>
@@ -110,7 +109,6 @@
                 android:layout_weight="4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:prompt="Select Remidial Code"
                 android:entries="@array/remidial_codes">
             </Spinner>
         </LinearLayout>
@@ -132,7 +130,6 @@
                 android:layout_weight="4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:prompt="Select Activity"
                 android:entries="@array/activites">
             </Spinner>
         </LinearLayout>
@@ -159,34 +156,6 @@
                 android:textSize="16sp"
                 android:text="Priority">
             </TextView>
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip4"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Low" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip7"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Medium" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip8"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="High" />
-            </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
     </LinearLayout>

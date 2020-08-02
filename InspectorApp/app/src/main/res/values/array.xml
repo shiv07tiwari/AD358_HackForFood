@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="audit_options">
+    <string-array name="audit_options">
         <item>@string/AuditOption1</item>
         <item>@string/AuditOption2</item>
         <item>@string/AuditOption3</item>
-    </array>
-    <array name="inspection_codes">
+    </string-array>
+    <string-array name="inspection_codes">
         <item>@string/InspectionCode1</item>
         <item>@string/InspectionCode2</item>
         <item>@string/InspectionCode3</item>
@@ -15,14 +15,14 @@
         <item>@string/InspectionCode7</item>
         <item>@string/InspectionCode8</item>
         <item>@string/InspectionCode9</item>
-    </array>
-    <array name="remidial_codes">
+    </string-array>
+    <string-array name="remidial_codes">
         <item>@string/RemidialCode1</item>
         <item>@string/RemidialCode2</item>
         <item>@string/RemidialCode3</item>
         <item>@string/RemidialCode4</item>
-    </array>
-    <array name="activites">
+    </string-array>
+    <string-array name="activites">
         <item>@string/Activity1</item>
         <item>@string/Activity2</item>
         <item>@string/Activity3</item>
@@ -34,5 +34,5 @@
         <item>@string/Activity9</item>
         <item>@string/Activity10</item>
         <item>@string/Activity11</item>
-    </array>
+    </string-array>
 </resources>

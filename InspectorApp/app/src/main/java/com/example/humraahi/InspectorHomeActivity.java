@@ -40,10 +40,15 @@ public class InspectorHomeActivity extends AppCompatActivity {
         scheduleList = new ScheduleList();
         for (int i = 0; i < 6; i++) {
 
-            scheduleList.addSchedule(new ScheduleDetails("Hello", "02-07-2020", "10-07-2020", "Inspection", i));
+            scheduleList.addSchedule(new ScheduleDetails("Mahatma Gandhi Road, Delhi", "02-07-2020", "10-07-2020", "Inspection", i+31));
         }
 
         setTasks(recyclerViewPendingTasks, scheduleList);
+        scheduleList = new ScheduleList();
+        for (int i = 0; i < 6; i++) {
+
+            scheduleList.addSchedule(new ScheduleDetails("Civil Lines, Delhi", "02-07-2020", "10-07-2020", "Inspection", i+20));
+        }
         setTasks(recyclerViewCompletedTasks, scheduleList);
     }
 
@@ -56,7 +61,7 @@ public class InspectorHomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        adapter = new SchedulesCustomAdaptor(schedules);
+        adapter = new SchedulesCustomAdaptor(schedules, this);
         recyclerView.setAdapter(adapter);
 
 
