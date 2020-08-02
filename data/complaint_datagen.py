@@ -16,7 +16,7 @@ resolved_on_year = [2019,2020]
 
 headers = ['complaint_id', 'road_id', 'defect_type', 'is_verified', 'is_resolved', 
             'assigned_insp_id', 'insp_rep_id', 'reported_month', 
-            'reported_year', 'resolved_month', 'resolved_year']
+            'reported_year', 'resolved_month', 'resolved_year', 'lat', 'lng']
 data = []
 
 for i in range(1,200):
@@ -45,6 +45,8 @@ for i in range(1,200):
     row.append(rp_y)
     row.append(re_m)
     row.append(re_y)
+    row.append(random.uniform(22.5,24.0))
+    row.append(random.uniform(71.5,73.0))
     data.append(row)
 
 data = np.array(data)
