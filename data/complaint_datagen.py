@@ -31,7 +31,7 @@ for i in range(1,200):
     else:
         row.append('false')
     row.append(random.choice(assigned_insp_id))
-    row.append('')
+    row.append(-1)
     rp_m = random.choice(reported_month)
     rp_y = random.choice(reported_year)
     re_m = random.choice([1,2,3,4])

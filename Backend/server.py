@@ -441,6 +441,11 @@ def db_comp():
         comp_data.loc[comp_data.index.max() + 1] = body['args']
         comp_data.to_csv('../data/comp_data.csv', index = False)
         return json.dumps("success")
+    
+    if(body['op'] == 'add_kp'):
+        comp_data = comp_data.append(body['args'][0], ignore_index = True)
+        comp_data.to_csv('../data/comp_data.csv', index = False)
+        return json.dumps("success")
 
 @app.route('/tender', methods = ['POST'])
 def db_tender():
