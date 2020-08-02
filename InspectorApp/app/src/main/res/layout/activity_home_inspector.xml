@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_smoke">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/humraahi"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Humraahi"
+        app:navigationIcon="@drawable/logo">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/upcoming_layout"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_margin="1dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upcoming Pending Task"
+                android:textSize="18sp"
+                android:padding="5dp"
+                android:id="@+id/upcoming_task_label">
+            </TextView>
+
+            <include layout="@layout/schedule_card"
+                android:id="@+id/upcoming"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/upcoming_layout"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/pending_tasks">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pending Tasks"
+            android:textSize="18sp"
+            android:padding="5dp"
+            android:id="@+id/assigned_task_label">
+        </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/schedule_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/assigned_task_label"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:scrollbars="horizontal">
+        </androidx.recyclerview.widget.RecyclerView>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/pending_tasks"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="5dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Completed_Tasks"
+                    android:textSize="18sp"
+                    android:padding="5dp"
+                    android:id="@+id/completed_task_label">
+                </TextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/completed_schedule_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/completed_task_label"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:scrollbars="horizontal">
+                </androidx.recyclerview.widget.RecyclerView>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

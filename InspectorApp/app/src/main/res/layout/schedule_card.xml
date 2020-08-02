@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/schedule_card_layout">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardElevation="4dp"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardPreventCornerOverlap="false"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/top"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/project_id"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:text="Project Id"
+            android:textColor="@color/humraahi"
+            android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Tag"
+                android:textAlignment="center"
+                android:textColor="@color/dark_red"
+                android:id="@+id/tag"
+                android:layout_weight="2"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/bell"
+                />
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/location_layout"
+                android:layout_below="@+id/top"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location: "
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp">
+
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="Hello"
+                    android:id="@+id/location"
+                    android:textColor="@color/gray">
+
+                </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/assigned_date_layout"
+                android:layout_below="@+id/location_layout"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Assigned On: "
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp">
+
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="Hello"
+                    android:id="@+id/assigned_date"
+                    android:textColor="@color/gray">
+
+                </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deadline_date_layout"
+                android:layout_below="@+id/assigned_date_layout"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Deadline: "
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp">
+
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="Hello"
+                    android:id="@+id/deadline"
+                    android:textColor="@color/gray">
+
+                </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttons"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:text="Start"
+                    android:background="@color/humraahi"
+                    android:textColor="@color/white">
+
+                </Button>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
