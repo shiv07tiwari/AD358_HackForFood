@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg app-navbar">
+  <nav class="navbar navbar-expand-lg app-navbar sticky-top">
     <router-link :to="{name: 'home'}" class="navbar-brand" href="#">
       <img src="@/assets/brand-white.png" style="height: 1.6rem; margin-top:-7px;"/>
     </router-link>
