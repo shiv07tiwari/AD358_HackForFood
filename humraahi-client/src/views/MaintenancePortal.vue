@@ -29,31 +29,27 @@
           <button type="submit" class="btn btn-primary ml-2">Filter Complaints</button>
         </form>
       </div>
-      <table class="table table-bordered" style="border: 1px solid gray;">
+      <table class="table table-bordered header-fixed" style="border: 1px solid gray;">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Complaint ID</th>
-            <th scope="col">Location</th>
             <th scope="col">Road ID</th>
             <th scope="col">District</th>
             <th scope="col">Defect Type</th>
             <th scope="col">Reported On</th>
+            <th scope="col">Remark</th>
             <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="complaint in complaints" :key="complaint.id">
-            <router-link
-              tag="td"
-              :to="{name: 'complaint', params: {id: complaint.id}}"
-              style="cursor: pointer; text-decoration: underline;"
-            >{{ complaint.id }}</router-link>
-            <td>{{complaint.location}}</td>
-            <td>{{complaint.roadid}}</td>
-            <td>{{complaint.district}}</td>
-            <td>{{complaint.type}}</td>
-            <td>{{complaint.reported}}</td>
-            <td>{{complaint.status}}</td>
+          <tr v-for="complaint in active" :key="complaint.complaint_id">
+            <td>{{ complaint.complaint_id }}</td>
+            <td>{{ complaint.road_id }}</td>
+            <td>{{ districts[complaint.district] }}</td>
+            <td>{{ complaint.defect_type }}</td>
+            <td>{{ complaint.reported_month }}/{{ complaint.reported_year }}</td>
+            <td>{{ complaint.remark }}</td>
+            <td>{{ complaint.is_verified ? "Verified" : "Pending Verification" }}</td>
           </tr>
         </tbody>
       </table>
@@ -71,6 +67,9 @@
 </template>
 
 <script>
+
+import {district} from './enums';
+
 import Chart from "chart.js";
 
 export default {
@@ -78,6 +77,17 @@ export default {
   components: {},
   methods: {},
   mounted() {
+    this.axios
+      .post("complaint", { op: "all_join_kp" })
+      .then(({ data }) => {
+        console.log(data);
+        this.complaints = data;
+        this.active = data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
     new Chart(this.$refs.piechart, {
       type: "pie",
       data: {
@@ -108,62 +118,9 @@ export default {
   },
   data() {
     return {
-      complaints: [
-        {
-          id: "GJVD355",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD356",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Light",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD357",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Signboards",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD358",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD359",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Divider",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD360",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-      ],
+      complaints: [],
+      active: [],
+      districts: district
     };
   },
 };

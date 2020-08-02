@@ -2,7 +2,7 @@ export const categories = {
     "ne": "National Expressway",
     "nh": "National Highway",
     "rr": "Ring Road",
-    "nr": "Normal Roads",
+    "nr": "Normal Road",
 };
 
 export const zones = {

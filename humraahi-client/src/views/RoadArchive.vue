@@ -33,27 +33,27 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">Road ID</th>
-            <th scope="col">Road Zone</th>
+            <th scope="col">Road Name</th>
             <th scope="col">Road Type</th>
-            <th scope="col">Districts</th>
+            <th scope="col">District</th>
             <th scope="col">Start</th>
             <th scope="col">End</th>
-            <th scope="col">Length</th>
+            <th scope="col">Length (km)</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="road in roads" :key="road.id">
+          <tr v-for="road in active" :key="road.id">
             <router-link
               tag="td"
-              :to="{name: 'road', params: {id: road.id}}"
+              :to="{name: 'road', params: {id: road.road_id}}"
               style="cursor: pointer; text-decoration: underline;"
-            >{{ road.id }}</router-link>
-            <td>{{road.zone}}</td>
-            <td>{{road.sub_category}}</td>
-            <td>{{road.district}}</td>
-            <td>{{road.start.substring(1, 10)}}</td>
-            <td>{{road.end.substring(1, 10)}}</td>
-            <td>{{road.length_of_road}}km</td>
+            >{{ road.road_id }}</router-link>
+            <td>{{road.name}}</td>
+            <td>{{categories[road.category]}}</td>
+            <td>{{ districts[road.district]}}</td>
+            <td>{{road.start}}</td>
+            <td>{{road.end}}</td>
+            <td>{{road.length.toFixed(2)}}</td>
           </tr>
         </tbody>
       </table>
@@ -68,16 +68,30 @@
 </template>
 
 <script>
-import roads from "./roads";
+
+import { district, categories } from './enums';
 
 export default {
   name: "road-archive",
   components: {},
   methods: {},
-  mounted() {},
+  mounted() {
+    this.axios
+      .post("road", { op: "all_kp" })
+      .then(({data}) => {
+        this.roads = data; 
+        this.active = data;
+      })
+      .catch((err) => {
+        console.err(err);
+      });
+  },
   data() {
     return {
-      roads: roads,
+      roads: [],
+      active: [],
+      districts: district,
+      categories: categories
     };
   },
 };

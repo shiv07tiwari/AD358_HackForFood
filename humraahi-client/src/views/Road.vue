@@ -248,10 +248,15 @@ export default {
     };
   },
   mounted() {
-    setTimeout(() => {
-      // this.road = roads.find((road) => road.id == this.$route.params.id);
-      this.loaded = true;
-    }, 300);
+    this.axios
+      .post("road", { op: "byid_kp", args: this.$route.params.id })
+      .then((data) => {
+        console.log(data);
+        this.loaded = true;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
 
     for (let i = 0; i < 3 + Math.ceil(Math.random() * 10); i++) {
       this.dummy.tenders.push({
@@ -276,7 +281,6 @@ export default {
         status: "Not Verified",
       });
     }
-
   },
 };
 </script>
