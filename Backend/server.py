@@ -395,11 +395,31 @@ def db_comp():
     comp_data = pd.read_csv('../data/comp_data.csv')
     # get all
     
+    if(body['op'] == 'all_kp'):
+        data = json.dumps(tuple(comp_data.reset_index(drop = True).to_dict('index').values()))
+        return data
+
     if(body['op'] == 'all'):
         data = json.dumps(tuple(comp_data.values.tolist()), default=json_util.default)
         return data
 
+    if(body['op'] == 'all_join'):
+        road_data = pd.read_csv('../data/final-road-data.csv')
+        data = json.dumps(tuple(comp_data.join(road_data.set_index('road_id'), on = 'road_id').values.tolist()), default=json_util.default)
+        return data
+    
+    if(body['op'] == 'all_join_kp'):
+        road_data = pd.read_csv('../data/final-road-data.csv')
+        data = json.dumps(tuple(comp_data.join(road_data.set_index('road_id'), on = 'road_id').reset_index(drop = True).to_dict('index')), default=json_util.default)
+        return data
+
     # by id
+    if(body['op'] == 'byid_kp'):
+        
+        row = comp_data[comp_data['complaint_id'] == body['args']].reset_index(drop = True).to_dict('index').values()
+        data = json.dumps(tuple(row), default=json_util.default)
+        return data
+
     if(body['op'] == 'byid'):
         
         row = comp_data[comp_data['complaint_id'] == body['args']].values
@@ -407,6 +427,10 @@ def db_comp():
         return data
 
     # all by road id
+
+    if(body['op'] == 'roads_kp'):
+        rows = tuple(comp_data[comp_data['road_id'] == body['args']].reset_index(drop = True).to_dict('index').values())
+        return json.dumps(rows)
 
     if(body['op'] == 'roads'):
         rows = tuple(comp_data[comp_data['road_id'] == body['args']].values.tolist())
@@ -429,11 +453,21 @@ def db_tender():
         data = json.dumps(tuple(tend_data.values.tolist()), default=json_util.default)
         return data
 
+    if(body['op'] == 'all_kp'):
+        data = json.dumps(tuple(tend_data.reset_index(drop = True).to_dict('index').values()), default=json_util.default)
+        return data
+
     # by id
     if(body['op'] == 'byid'):
         
         row = tend_data[tend_data['tender_id'] == body['args']].values
         data = json.dumps(tuple(row[0]), default=json_util.default)
+        return data
+
+    if(body['op'] == 'byid_kp'):
+        
+        row = tend_data[tend_data['tender_id'] == body['args']].reset_index(drop = True).to_dict('index').values()
+        data = json.dumps(tuple(row), default=json_util.default)
         return data
 
     # all by road id
@@ -442,12 +476,66 @@ def db_tender():
         rows = tuple(tend_data[tend_data['road_id'] == body['args']].values.tolist())
         return json.dumps(rows)
 
+    if(body['op'] == 'roads_kp'):
+        rows = tuple(tend_data[tend_data['road_id'] == body['args']].reset_index(drop = True).to_dict('index').values())
+        return json.dumps(rows)
+
     # add tender
     if(body['op'] == 'add'):
         tend_data.loc[tend_data.index.max() + 1] = body['args']
         tend_data.to_csv('../data/rt_data.csv', index = False)
         return json.dumps("success")
 
+@app.route('/road', methods = ['POST'])
+def db_road():
+    body = request.get_json()
+    
+    road_data = pd.read_csv('../data/final-road-data.csv')
+    # get all
+    
+    if(body['op'] == 'all'):
+        data = json.dumps(tuple(road_data.values.tolist()), default=json_util.default)
+        return data
+
+    if(body['op'] == 'all_kp'):
+        data = json.dumps(tuple(road_data.reset_index(drop = True).to_dict('index').values()), default=json_util.default)
+        return data
+
+    # by id
+    if(body['op'] == 'byid'):
+        
+        row = road_data[road_data['road_id'] == body['args']].values
+        data = json.dumps(tuple(row[0]), default=json_util.default)
+        return data
+
+    if(body['op'] == 'byid_kp'):
+        
+        row = road_data[road_data['road_id'] == body['args']].reset_index(drop = True).to_dict('index').values()
+        data = json.dumps(tuple(row), default=json_util.default)
+        return data
+
+    # add road
+    if(body['op'] == 'add'):
+        road_data.loc[road_data.index.max() + 1] = body['args']
+        road_data.to_csv('../data/final-road-data.csv', index = False)
+        return json.dumps("success")
+    
+    # edit road
+    if(body['op'] == 'edit'):
+        print(body['args'])
+        road_data.loc[road_data['road_id'] == body['args'][0]] = body['args']
+        road_data.to_csv('../data/final-road-data.csv', index = False)
+        return json.dumps("success")
+
+@app.route('/analyze', methods = ['POST'])
+def analyze():
+    body = request.get_json()
+    
+    comp_data = pd.read_csv('../data/comp_data.csv')
+    road_data = pd.read_csv('../data/final-road-data.csv')
+
+    # get road repair priority 
+    
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
