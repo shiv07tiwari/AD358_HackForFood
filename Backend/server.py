@@ -410,8 +410,13 @@ def db_comp():
 
     if(body['op'] == 'roads'):
         rows = tuple(comp_data[comp_data['road_id'] == body['args']].values.tolist())
-        
         return json.dumps(rows)
+
+    # add complaint
+    if(body['op'] == 'add'):
+        comp_data.loc[comp_data.index.max() + 1] = body['args']
+        comp_data.to_csv('../data/comp_data.csv', index = False)
+        return json.dumps("success")
 
 @app.route('/tender', methods = ['POST'])
 def db_tender():
@@ -436,6 +441,13 @@ def db_tender():
     if(body['op'] == 'roads'):
         rows = tuple(tend_data[tend_data['road_id'] == body['args']].values.tolist())
         return json.dumps(rows)
+
+    # add tender
+    if(body['op'] == 'add'):
+        tend_data.loc[tend_data.index.max() + 1] = body['args']
+        tend_data.to_csv('../data/rt_data.csv', index = False)
+        return json.dumps("success")
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
