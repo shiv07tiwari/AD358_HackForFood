@@ -1,26 +1,15 @@
 <template>
-  <div class="app-home">
-
-  </div>
+  <div class="app-home"></div>
 </template>
 
 <script>
-
 export default {
-  name: 'Home',
-  components: {
-    
-  }
-}
+  name: "Home",
+  components: {},
+};
 </script>
 
 <style lang="scss">
-
-  .app-home {
-
-    
-
-  }
-
-
+.app-home {
+}
 </style>
