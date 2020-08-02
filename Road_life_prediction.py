@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
 
 # target
 # iri = np.random.uniform(low=1.5, high=5.99, size=10000)
@@ -30,6 +31,9 @@ X = np.concatenate([norm_age, esal, cracking, potholes, rutting, long_crack], ax
 model = LinearRegression()
 model.fit(X, iri)
 
+pred_train = model.predict(X)
+print(mean_squared_error(iri, pred_train))
+
 # Testing
 test_age = np.array([i for i in range(1, 16)])
 exp_test_age = np.power(test_age, 1.78)
@@ -51,3 +55,10 @@ b = 0.3
 rsl = (1/b)*np.log(a/1) - 5
 print(rsl)
 
+
+# AFE vs IRI
+test_X = np.concatenate([test_norm_age, np.zeros((15, 5))], axis=1)
+pred = model.predict(test_X)
+
+plt.plot(test_age, pred)
+plt.show()
