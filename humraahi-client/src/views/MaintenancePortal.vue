@@ -60,16 +60,52 @@
     </div>
     <div class="analytics">
       <h3 style="font-weight: 300; margin-bottom: 3rem;">Analytics</h3>
+      <div style="width: 500px;">
+        <div style="display: flex;">
+          <canvas id="piechart" ref="piechart"></canvas>
+          <canvas id="barchart" ref="barchart"></canvas>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Chart from "chart.js";
+
 export default {
   name: "maintenance-portal",
   components: {},
   methods: {},
-  mounted() {},
+  mounted() {
+    new Chart(this.$refs.piechart, {
+      type: "pie",
+      data: {
+        labels: ["Pothole", "Sign Boards", "Light", "Other"],
+        datasets: [
+          {
+            label: "2018 Sales",
+            data: [23, 5, 12, 20],
+            backgroundColor: ["#003f5c", "#58508d", "#ff6361", "#ffa600"],
+          },
+        ],
+      },
+    });
+
+    new Chart(this.$refs.barchart, {
+      type: "bar",
+      data: {
+        labels: ["May", "June", "July", "August"],
+        datasets: [
+          {
+            label: "Defects by month",
+            data: [76, 90, 80, 5],
+            backgroundColor: ["#003f5c", "#58508d", "#ff6361", "#ffa600"],
+          },
+        ],
+      },
+    });
+  },
   data() {
     return {
       complaints: [
@@ -87,7 +123,7 @@ export default {
           roadid: "SK78",
           location: "Raja Mandir, MG Road",
           district: "Vadodara",
-          type: "Pothole",
+          type: "Light",
           reported: "23/3/2020",
           status: "Not Verified",
         },
@@ -96,7 +132,7 @@ export default {
           roadid: "SK78",
           location: "Raja Mandir, MG Road",
           district: "Vadodara",
-          type: "Pothole",
+          type: "Signboards",
           reported: "23/3/2020",
           status: "Not Verified",
         },
@@ -114,7 +150,7 @@ export default {
           roadid: "SK78",
           location: "Raja Mandir, MG Road",
           district: "Vadodara",
-          type: "Pothole",
+          type: "Divider",
           reported: "23/3/2020",
           status: "Not Verified",
         },

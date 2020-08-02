@@ -48,32 +48,17 @@
                 <div class="card-body" style="padding: 2rem; font-size: 1.3rem;">
                   <div class="mt-2">
                     Location:
-                    <span class="ml-2">{{complaint.location ? complaint.location : dummy.location}}</span>
-                  </div>
-                  <div class="mt-2">
-                    End:
-                    <span class="ml-2">{{complaint.end ? complaint.end : dummy.end}}</span>
-                  </div>
-                  <div class="mt-2">
-                    Exit Loops:
-                    <span
-                      v-for="exit in complaint.exits"
-                      :key="exit"
-                      class="ml-2"
-                    >{{exit}}</span>
-                    <span v-if="!complaint.exits">Unavailable</span>
-                  </div>
-                  <div class="mt-2">
-                    Length:
                     <span
                       class="ml-2"
-                    >{{complaint.length ? complaint.length : dummy.length}}km</span>
+                    >{{complaint.location ? complaint.location : dummy.location}}</span>
                   </div>
                   <div class="mt-2">
-                    Category:
-                    <span
-                      class="ml-2"
-                    >{{complaint.category ? complaint.category : dummy.category}}</span>
+                    Type:
+                    <span class="ml-2">Pothole</span>
+                  </div>
+                  <div class="mt-2">
+                    Reported On:
+                    <span class="ml-2">23/04/2020</span>
                   </div>
                 </div>
               </div>
@@ -131,33 +116,34 @@ export default {
       complaint: {},
       dummy: {
         id: this.$faker().random.uuid().substring(0, 5),
-        location: this.$faker().address.city()
+        location: this.$faker().address.city(),
       },
     };
   },
   mounted() {
-
-    
-
     setTimeout(() => {
       this.loaded = true;
 
       console.log(this.$refs);
-    
+
       this.map = new window.google.maps.Map(this.$refs["map"], {
-        center: {lat: -25, lng: 131},
-        zoom: 10,
-        width: 100
+        center: { lat: 23, lng: 72.5 },
+        zoom: 18,
+        width: 100,
+      });
+
+       new window.google.maps.Marker({
+        position: { lat: 23, lng: 72.5 },
+        map: this.map,
+        title: "Pothole",
       });
 
     }, 300);
-    
   },
 };
 </script>
 
 <style lang="scss">
-
 #map {
   height: 300px;
 }
