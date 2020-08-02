@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:textSize="18sp"
+        android:textColor="@color/humraahi"
         android:text="Verification Form">
     </TextView>
     <LinearLayout
@@ -34,60 +35,85 @@
     android:id="@+id/ScrollView01"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
     android:scrollbars="vertical">
     <LinearLayout
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_marginBottom="20dp"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:background="@color/background_tranparent"
+            android:textColor="@color/dark_gray"
+            android:padding="3dp"
             android:text="Audit">
         </TextView>
         <Spinner
-            android:layout_width="0dp"
-            android:layout_weight="4"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spinner1"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:entries="@array/audit_options">
         </Spinner>
         </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/dark_gray"
+            android:background="@color/background_tranparent"
+            android:padding="3dp"
+            android:text="Road Name"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Road Name"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Enter Road Name Here"
             android:textColor="@color/gray"
             android:textSize="16sp"
             android:padding="2dp"
             android:background="@color/white_smoke"
-            android:layout_margin="2dp">
+            android:layout_margin="2dp"
+            android:lines="2">
 
         </EditText>
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
+                android:textColor="@color/dark_gray"
+                android:background="@color/background_tranparent"
+                android:padding="3dp"
                 android:text="Inspection Codes">
             </TextView>
             <Spinner
-                android:layout_width="0dp"
-                android:layout_weight="4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:entries="@array/inspection_codes">
             </Spinner>
         </LinearLayout>
@@ -95,18 +121,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/dark_gray"
+                android:background="@color/background_tranparent"
+                android:padding="3dp"
                 android:text="Remidial Codes">
             </TextView>
 
             <Spinner
-                android:layout_width="0dp"
-                android:layout_weight="4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:entries="@array/remidial_codes">
@@ -116,46 +145,458 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
+                android:textColor="@color/dark_gray"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/background_tranparent"
+                android:padding="3dp"
                 android:text="Activities">
             </TextView>
 
             <Spinner
-                android:layout_width="0dp"
-                android:layout_weight="4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:entries="@array/activites">
             </Spinner>
         </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/dark_gray"
+            android:background="@color/background_tranparent"
+            android:padding="3dp"
+            android:text="Local Name (or Number)"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Local Name"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Enter Here"
             android:textColor="@color/gray"
             android:textSize="16sp"
             android:padding="2dp"
             android:background="@color/white_smoke"
-            android:layout_margin="2dp">
-
+            android:lines="2">
         </EditText>
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
+                android:textColor="@color/dark_gray"
+                android:background="@color/background_tranparent"
+                android:padding="3dp"
                 android:text="Priority">
             </TextView>
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/priority">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Low"/>
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Middle"/>
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High"/>
+
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:background="@color/background_tranparent"
+                android:textColor="@color/dark_gray"
+                android:padding="3dp"
+                android:text="Risk">
+            </TextView>
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/risk">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No Safety/Environment Hazard"/>
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Minor Safety/Environment Hazard"/>
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Moderate Safety/Environment Hazard"/>
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High Safety/Environment Hazard"/>
+
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/dark_gray"
+            android:background="@color/background_tranparent"
+            android:padding="3dp"
+            android:text="Desciption">
+        </TextView>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Add Description Here"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:padding="2dp"
+            android:background="@color/white_smoke"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:lines="2">
+
+        </EditText>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/dark_gray"
+                android:background="@color/background_tranparent"
+                android:padding="3dp"
+                android:text="Stream Culvert (Check if applies)">
+            </TextView>
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stream">
+
+            </CheckBox>
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hanging Outlet">
+
+            </CheckBox>
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Less than 20%">
+            </CheckBox>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/dark_gray"
+                android:background="@color/background_tranparent"
+                android:padding="3dp"
+                android:text="Posted Signage">
+            </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Stop Signs">
+                </TextView>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes">
+                </CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No">
+                </CheckBox>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Kilometre marker boards">
+                </TextView>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes">
+                </CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No">
+                </CheckBox>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Radio protocol signs">
+                </TextView>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes">
+                </CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No">
+                </CheckBox>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/dark_gray"
+                android:background="@color/background_tranparent"
+                android:padding="3dp"
+                android:text="Road design">
+            </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Anticipated turnout constructed">
+                </TextView>
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="Add Number Here"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"
+                    android:padding="2dp"
+                    android:background="@color/white_smoke"
+                    android:layout_margin="2dp"
+                    android:lines="2">
+
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Rail crossing present">
+                </TextView>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes">
+                </CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No">
+                </CheckBox>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Bind corners, Hill crests">
+                </TextView>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes">
+                </CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No">
+                </CheckBox>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Narrow road sections ">
+                </TextView>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes">
+                </CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No">
+                </CheckBox>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Overhead power lines ">
+                </TextView>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes">
+                </CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No">
+                </CheckBox>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Road Grades">
+                </TextView>
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="Add Here"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"
+                    android:padding="2dp"
+                    android:background="@color/white_smoke"
+                    android:layout_margin="2dp"
+                    android:lines="2">
+
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Anticipated Vehicle Usage ">
+                </TextView>
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Vehicle_usage">
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Low"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Middle"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="High"/>
+
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
