@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
         <item android:id="@+id/trip_id"
             android:title="Trip" />
+        <item android:id="@+id/report_id"
+            android:title="Report a Defect" />
         <item android:id="@+id/invite_id"
             android:title="Invite" />
         <item android:id="@+id/contri_id"

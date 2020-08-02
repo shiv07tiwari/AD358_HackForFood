@@ -1,8 +1,6 @@
 package com.example.wheresthepothole.networking
 
-import com.example.wheresthepothole.objects.Counter
-import com.example.wheresthepothole.objects.DataReading
-import com.example.wheresthepothole.objects.Pothole
+import com.example.wheresthepothole.objects.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -15,4 +13,7 @@ interface NetworkService {
                          @Query("type") type:String) : Call<ArrayList<Pothole>>
     @GET("/counter")
     fun getHomeCounters(@Path("city") city : String) : Call<Counter>
+
+    @POST("/complaint")
+    fun createComp(@Body comp:NewComp) : Call<String>
 }

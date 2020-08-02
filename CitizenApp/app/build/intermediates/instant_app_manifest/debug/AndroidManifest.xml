@@ -8,7 +8,6 @@
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="28" />
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -52,15 +51,8 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.example.wheresthepothole.CompActivity" />
 
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -88,7 +80,6 @@
         <activity android:name="com.example.wheresthepothole.ProfileActivity" />
         <activity android:name="com.example.wheresthepothole.RewardActivity" />
         <activity android:name="com.example.wheresthepothole.CarActivity" />
-
         <!-- Needs to be explicitly declared on P+ -->
         <uses-library
             android:name="org.apache.http.legacy"

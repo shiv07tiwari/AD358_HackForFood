@@ -16,6 +16,7 @@ resolved_on_year = [2019,2020]
 
 headers = ['complaint_id', 'road_id', 'defect_type', 'is_verified', 'is_resolved', 
             'assigned_insp_id', 'insp_rep_id', 'reported_month', 
+            'reported_year', 'resolved_month', 'resolved_year']
             'reported_year', 'resolved_month', 'resolved_year', 'lat', 'lng', 'remark']
 data = []
 
