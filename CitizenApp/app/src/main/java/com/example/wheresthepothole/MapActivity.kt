@@ -227,48 +227,13 @@ open class MapActivity : AppCompatActivity(), SensorEventListener, OnMapReadyCal
                 stopHandler()
             } else {
                 isTripOn = true
-
-//                recyclerView = findViewById<RecyclerView>(R.id.car_list_id).apply {
-//
-//                    layoutManager = viewManager
-//
-//                    adapter = viewAdapter
-//
-//                }
-//
-//                var inflater: LayoutInflater = mContext.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//
-//                var customView:View = inflater.inflate(R.layout.activity_popup,null)
-//
-//
-//
-//                mPopupWindow = PopupWindow(
-//                    customView,
-//                    LayoutParams.WRAP_CONTENT,
-//                    LayoutParams.WRAP_CONTENT
-//                )
-//
-//
-//                if(Build.VERSION.SDK_INT>=21){
-//                    mPopupWindow.setElevation(5.0f)
-//                }
-//
-//                mPopupWindow.showAtLocation(mRelativeLayout, Gravity.CENTER,0,0)
-
                 rippleBackground.startRippleAnimation()
                 startLocationService()
                 enableSensors()
                 startHandler()
             }
         }
-
-
-
-
     }
-
-
-
     fun startHandler() {
         handler.postDelayed(repeat_runnable, 2000)
     }
@@ -322,9 +287,6 @@ open class MapActivity : AppCompatActivity(), SensorEventListener, OnMapReadyCal
 
             try{
                 for(startPoint in pointArr) {
-
-                    //Log.e("test",startPoint.latitude+" "+startPoint.longitude)
-
                     mMap.addMarker(
                         MarkerOptions()
                             .position(LatLng(startPoint.latitude.toDouble(),startPoint.longitude.toDouble()))

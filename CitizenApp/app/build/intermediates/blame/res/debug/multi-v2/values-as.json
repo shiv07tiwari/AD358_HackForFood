@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-as/values-as.xml",
+            "outputFile": "/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-as/values-as.xml",
             "map": [
                 {
                     "source": "/home/shivansh_tiwari/.gradle/caches/transforms-2/files-2.1/bd7ffce8bc7e102b617ae65808d5ed1c/play-services-base-17.0.0/res/values-as/values.xml",

@@ -73,8 +73,6 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
         if (isTripOn) {
             isTripOn = false
             btn_start.text = "Start"
-//            text_intro.text = "Start the trip to store the data"
-//            TripDesc.text = "Trip is Off"
             disableSensors()
             stopLocationService()
             countDownTimer.onFinish()
@@ -84,8 +82,6 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
         tripTimer = 0
         isTripOn = true
         btn_start.text = "Trip On"
-//        TripDesc.text = "Trip is On"
-//        text_intro.text = "Stop the trip to send the data"
         countDownTimer = object : CountDownTimer(50000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 txt_trip_duration.text = "Trip time : "+tripTimer+" seconds"
@@ -208,17 +204,16 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
 
                 var gyroData = ArrayList<String>()
 
-                gyroData?.add(x.toString())
-                gyroData?.add(y.toString())
-                gyroData?.add(z.toString())
-                gyroData?.add(latitude.toString())
-                gyroData?.add(longitude.toString())
-                gyroData?.add(addresses.get(0).featureName.toString())
-                gyroData?.add(addresses.get(0).locality.toString())
-                gyroData?.add(addresses.get(0).adminArea.toString())
-                gyroData?.add(addresses.get(0).postalCode)
-                gyroData?.add(addresses.get(0).countryName.toString())
-//                gyroData?.add(addresses.get(0).getAddressLine(0).toString())
+                gyroData.add(x.toString())
+                gyroData.add(y.toString())
+                gyroData.add(z.toString())
+                gyroData.add(latitude.toString())
+                gyroData.add(longitude.toString())
+                gyroData.add(addresses.get(0).featureName.toString())
+                gyroData.add(addresses.get(0).locality.toString())
+                gyroData.add(addresses.get(0).adminArea.toString())
+                gyroData.add(addresses.get(0).postalCode)
+                gyroData.add(addresses.get(0).countryName.toString())
 
                 Log.e("log","Gyroscope data: "+ gyroData)
             }
@@ -246,7 +241,6 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == REQUEST_PERMISSION_LOCATION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //We have to add startlocationUpdate() method later instead of Toast
                 Toast.makeText(this,"Permission granted",Toast.LENGTH_SHORT).show()
             }
         }

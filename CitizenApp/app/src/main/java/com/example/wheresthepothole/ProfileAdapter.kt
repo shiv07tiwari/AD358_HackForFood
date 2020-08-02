@@ -11,14 +11,9 @@ import org.w3c.dom.Text
 
 class ProfileAdapter(private val myDataset: MutableList<String>) :
     RecyclerView.Adapter<ProfileAdapter.MyViewHolder>() {
-
-
-
      inner class MyViewHolder(cardView: CardView) : RecyclerView.ViewHolder(cardView){
-
         var textView : TextView = cardView.findViewById(R.id.my_text_view)
          var timeText : TextView = cardView.findViewById(R.id.txt_time)
-
      }
 
 
@@ -26,14 +21,10 @@ class ProfileAdapter(private val myDataset: MutableList<String>) :
                                     viewType: Int): MyViewHolder {
         val cardView = LayoutInflater.from(parent.context)
             .inflate(R.layout.activity_report_details, parent, false) as CardView
-
-
-
         return MyViewHolder(cardView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
         val t = myDataset[position].split("split")
         holder.textView.text = t[0]
         holder.timeText.text = t[1]

@@ -6,9 +6,9 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="15"
-8-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml
+8-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="28" />
-9-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml
+9-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml
 10
 11    <!--
 12         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -16,20 +16,20 @@
 14         location permissions for the 'MyLocation' functionality.
 15    -->
 16    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-16-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:10:5-79
-16-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:10:22-76
+16-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:10:5-79
+16-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:10:22-76
 17    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-17-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:11:5-81
-17-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:11:22-78
+17-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:11:5-81
+17-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:11:22-78
 18    <uses-permission android:name="android.permission.INTERNET" />
-18-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:12:5-67
-18-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:12:22-64
+18-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:12:5-67
+18-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:12:22-64
 19    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-19-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:13:5-79
-19-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:13:22-76
+19-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:13:5-79
+19-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:13:22-76
 20    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-20-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:14:5-81
-20-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:14:22-78
+20-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:14:5-81
+20-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:14:22-78
 21
 22    <uses-feature
 22-->[com.google.android.gms:play-services-maps:17.0.0] /home/shivansh_tiwari/.gradle/caches/transforms-2/files-2.1/b6f40824f159f6ef54587d73ab962690/play-services-maps-17.0.0/AndroidManifest.xml:26:5-28:35
@@ -73,23 +73,23 @@
 42-->[org.osmdroid:osmdroid-android:6.1.1] /home/shivansh_tiwari/.gradle/caches/transforms-2/files-2.1/a9bad88a2a98456a2bddf9a6455a3a1f/osmdroid-android-6.1.1/AndroidManifest.xml:27:9-33
 43
 44    <application
-44-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:16:5-60:19
+44-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:16:5-60:19
 45        android:allowBackup="true"
-45-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:17:9-35
+45-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:17:9-35
 46        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 46-->[androidx.core:core:1.0.2] /home/shivansh_tiwari/.gradle/caches/transforms-2/files-2.1/c7e28cf33a8972d116e817b742b7a10c/core-1.0.2/AndroidManifest.xml:22:18-86
 47        android:debuggable="true"
 48        android:icon="@mipmap/ic_launcher"
-48-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:18:9-43
+48-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:18:9-43
 49        android:label="@string/app_name"
-49-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:19:9-41
+49-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:19:9-41
 50        android:roundIcon="@mipmap/ic_launcher_round"
-50-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:20:9-54
+50-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:20:9-54
 51        android:supportsRtl="true"
-51-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:21:9-35
+51-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:21:9-35
 52        android:testOnly="true"
 53        android:theme="@style/AppTheme" >
-53-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:22:9-40
+53-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:22:9-40
 54
 55        <!--
 56             The API key for Google Maps-based APIs is defined as a string resource.
@@ -100,61 +100,61 @@
 61             You can define the keys for the debug and release targets in src/debug/ and src/release/.
 62        -->
 63        <meta-data
-63-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:32:9-34:55
+63-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:32:9-34:55
 64            android:name="com.google.android.geo.API_KEY"
-64-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:33:13-58
+64-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:33:13-58
 65            android:value="@string/google_maps_key" />
-65-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:34:13-52
+65-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:34:13-52
 66
 67        <activity
-67-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:36:9-38:68
+67-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:36:9-38:68
 68            android:name="com.example.wheresthepothole.MapsActivity"
-68-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:37:13-41
+68-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:37:13-41
 69            android:label="@string/title_activity_maps" />
-69-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:38:13-56
+69-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:38:13-56
 70        <activity
-70-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:39:9-47:20
+70-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:39:9-47:20
 71            android:name="com.example.wheresthepothole.MapActivity"
-71-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:40:13-40
+71-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:40:13-40
 72            android:label="@string/title_activity_map"
-72-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:41:13-55
+72-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:41:13-55
 73            android:parentActivityName="com.example.wheresthepothole.MainActivity"
-73-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:42:13-55
+73-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:42:13-55
 74            android:theme="@style/AppTheme.NoActionBar" >
-74-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:43:13-56
+74-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:43:13-56
 75            <meta-data
-75-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:44:13-46:77
+75-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:44:13-46:77
 76                android:name="android.support.PARENT_ACTIVITY"
-76-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:45:17-63
+76-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:45:17-63
 77                android:value="com.example.wheresthepothole.MainActivity" />
-77-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:46:17-74
+77-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:46:17-74
 78        </activity>
 79        <activity android:name="com.example.wheresthepothole.MainActivity" >
-79-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:48:9-54:20
-79-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:48:19-47
+79-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:48:9-54:20
+79-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:48:19-47
 80            <intent-filter>
-80-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:49:13-53:29
+80-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:49:13-53:29
 81                <action android:name="android.intent.action.MAIN" />
-81-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:50:17-69
-81-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:50:25-66
+81-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:50:17-69
+81-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:50:25-66
 82
 83                <category android:name="android.intent.category.LAUNCHER" />
-83-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:52:17-77
-83-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:52:27-74
+83-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:52:17-77
+83-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:52:27-74
 84            </intent-filter>
 85        </activity>
 86        <activity android:name="com.example.wheresthepothole.SensorActivity" />
-86-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:55:9-52
-86-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:55:19-49
+86-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:55:9-52
+86-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:55:19-49
 87        <activity android:name="com.example.wheresthepothole.ProfileActivity" />
-87-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:56:9-53
-87-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:56:19-50
+87-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:56:9-53
+87-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:56:19-50
 88        <activity android:name="com.example.wheresthepothole.RewardActivity" />
-88-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:57:9-52
-88-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:57:19-49
+88-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:57:9-52
+88-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:57:19-49
 89        <activity android:name="com.example.wheresthepothole.CarActivity" />
-89-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:58:9-49
-89-->/home/shivansh_tiwari/Desktop/SIH_CODE/Spothole/app/src/main/AndroidManifest.xml:58:19-46
+89-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:58:9-49
+89-->/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/AndroidManifest.xml:58:19-46
 90
 91        <!-- Needs to be explicitly declared on P+ -->
 92        <uses-library
