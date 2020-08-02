@@ -43,7 +43,11 @@
         </thead>
         <tbody>
           <tr v-for="complaint in complaints" :key="complaint.id">
-            <td>{{complaint.id}}</td>
+            <router-link
+              tag="td"
+              :to="{name: 'complaint', params: {id: complaint.id}}"
+              style="cursor: pointer; text-decoration: underline;"
+            >{{ complaint.id }}</router-link>
             <td>{{complaint.location}}</td>
             <td>{{complaint.roadid}}</td>
             <td>{{complaint.district}}</td>
@@ -61,16 +65,11 @@
 </template>
 
 <script>
-
 export default {
   name: "maintenance-portal",
   components: {},
-  methods: {
-
-  },
-  mounted() {
-
-  },
+  methods: {},
+  mounted() {},
   data() {
     return {
       complaints: [

@@ -2,7 +2,11 @@
   <div class="app-road-archive">
     <h1 style="font-weight: 300; margin-bottom: 2rem;">Road Archive Portal</h1>
 
-    <iframe src="https://www.google.com/maps/d/embed?mid=1rd6B6h9ZcbZo2Q8kwcYqaAt-ROuy1UP3" width="1740" height="480"></iframe>
+    <iframe
+      src="https://www.google.com/maps/d/embed?mid=1rd6B6h9ZcbZo2Q8kwcYqaAt-ROuy1UP3"
+      width="1740"
+      height="480"
+    ></iframe>
 
     <div class="complaints-table">
       <h3 style="font-weight: 300; margin-bottom: 2rem;">Roads</h3>
@@ -39,7 +43,7 @@
         <tbody>
           <tr v-for="complaint in complaints" :key="complaint.id">
             <td>{{complaint.roadid}}</td>
-            <td>{{complaint.location}}</td>
+            <router-link tag="td" :to="{name: 'road', params: {id: complaint.roadid}}" style="cursor: pointer; text-decoration: underline;">{{ complaint.location }}</router-link>
             <td>{{complaint.district}}</td>
             <td>{{complaint.type}}</td>
             <td>{{complaint.reported}}</td>
@@ -55,16 +59,11 @@
 </template>
 
 <script>
-
 export default {
   name: "road-archive",
   components: {},
-  methods: {
-
-  },
-  mounted() {
-
-  },
+  methods: {},
+  mounted() {},
   data() {
     return {
       complaints: [
