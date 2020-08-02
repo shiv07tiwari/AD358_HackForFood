@@ -9,6 +9,7 @@ from datetime import date
 import numpy as np
 from flask_cors import CORS, cross_origin
 from spothole import isPotHole
+import pandas as pd
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -386,6 +387,55 @@ def repairs():
         beta = list(REPAIR_REQUEST.find())
     res = json.dumps(beta, default=json_util.default)
     return res
+
+@app.route('/complaint', methods = ['POST'])
+def db_comp():
+    body = request.get_json()
+    
+    comp_data = pd.read_csv('../data/comp_data.csv')
+    # get all
+    
+    if(body['op'] == 'all'):
+        data = json.dumps(tuple(comp_data.values.tolist()), default=json_util.default)
+        return data
+
+    # by id
+    if(body['op'] == 'byid'):
+        
+        row = comp_data[comp_data['complaint_id'] == body['args']].values
+        data = json.dumps(tuple(row[0]), default=json_util.default)
+        return data
+
+    # all by road id
+
+    if(body['op'] == 'roads'):
+        rows = tuple(comp_data[comp_data['road_id'] == body['args']].values.tolist())
+        
+        return json.dumps(rows)
+
+@app.route('/tender', methods = ['POST'])
+def db_tender():
+    body = request.get_json()
+    
+    tend_data = pd.read_csv('../data/rt_data.csv')
+    # get all
+    
+    if(body['op'] == 'all'):
+        data = json.dumps(tuple(tend_data.values.tolist()), default=json_util.default)
+        return data
+
+    # by id
+    if(body['op'] == 'byid'):
+        
+        row = tend_data[tend_data['tender_id'] == body['args']].values
+        data = json.dumps(tuple(row[0]), default=json_util.default)
+        return data
+
+    # all by road id
+
+    if(body['op'] == 'roads'):
+        rows = tuple(tend_data[tend_data['road_id'] == body['args']].values.tolist())
+        return json.dumps(rows)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
