@@ -40,7 +40,7 @@
                     data-target="#collapseOne"
                     aria-expanded="true"
                     aria-controls="collapseOne"
-                  >Construction & Location Details</button>
+                  >Location Details</button>
                 </h5>
               </div>
 
@@ -51,9 +51,9 @@
                 data-parent="#accordion"
               >
                 <div class="card-body" style="padding: 2rem; font-size: 1.3rem;">
-                  <h4 class="mb-4">Location Details</h4>
                   <div>
-                    Start Point: <span class="ml-2">{{ road.start }}</span>
+                    Start Point:
+                    <span class="ml-2">{{ road.start }}</span>
                     <span class="ml-3">End Point: {{ road.end }}</span>
                   </div>
                   <div class="mt-2">
@@ -68,10 +68,41 @@
                     Category:
                     <span class="ml-2">{{road.category}}</span>
                   </div>
-                  <h4 class="mt-4 mb-4">Construction Details</h4>
                 </div>
               </div>
             </div>
+            <div class="card">
+              <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                  <button
+                    class="btn btn-link accordian-btn"
+                    data-toggle="collapse"
+                    data-target="#collapseFour"
+                    aria-expanded="true"
+                    aria-controls="collapseFour"
+                  >Construction Details</button>
+                </h5>
+              </div>
+
+              <div
+                id="collapseFour"
+                class="collapse"
+                aria-labelledby="headingFour"
+                data-parent="#accordion"
+              >
+                <div class="card-body" style="padding: 2rem; font-size: 1.3rem;">
+                  <div>
+                    Construction Cost:
+                    <span class="ml-2">{{road.cost}} cr.</span>
+                  </div>
+                  <div class="mt-2">
+                    Construction Completed:
+                    <span class="ml-2">{{road.completed}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="card">
               <div class="card-header" id="headingTwo">
                 <h5 class="mb-0">
@@ -121,6 +152,68 @@
           </div>
         </div>
       </div>
+      <div class="complaints">
+        <h3 style="font-weight: 300; margin-bottom: 2rem;">Active Complaints</h3>
+        <table class="table table-bordered" style="border: 1px solid gray;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Complaint ID</th>
+              <th scope="col">Location</th>
+              <th scope="col">Road ID</th>
+              <th scope="col">District</th>
+              <th scope="col">Defect Type</th>
+              <th scope="col">Reported On</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="complaint in road.complaints" :key="complaint.id">
+              <router-link
+                tag="td"
+                :to="{name: 'complaint', params: {id: complaint.id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.id }}</router-link>
+              <td>{{complaint.location}}</td>
+              <td>{{complaint.roadid}}</td>
+              <td>{{complaint.district}}</td>
+              <td>{{complaint.type}}</td>
+              <td>{{complaint.reported}}</td>
+              <td>{{complaint.status}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tenders mt-4">
+        <h3 style="font-weight: 300; margin-bottom: 2rem;">Previous Repairs and Tenders</h3>
+        <table class="table table-bordered" style="border: 1px solid gray;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Complaint ID</th>
+              <th scope="col">Location</th>
+              <th scope="col">Road ID</th>
+              <th scope="col">District</th>
+              <th scope="col">Defect Type</th>
+              <th scope="col">Reported On</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="complaint in road.complaints" :key="complaint.id">
+              <router-link
+                tag="td"
+                :to="{name: 'complaint', params: {id: complaint.id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.id }}</router-link>
+              <td>{{complaint.location}}</td>
+              <td>{{complaint.roadid}}</td>
+              <td>{{complaint.district}}</td>
+              <td>{{complaint.type}}</td>
+              <td>{{complaint.reported}}</td>
+              <td>{{complaint.status}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </template>
   </div>
 </template>
@@ -140,7 +233,38 @@ export default {
         end: "Vemali, Vadodara",
         exits: ["Nadiad", "Anand"],
         length: 93.1,
-        category: "National Expressway"
+        category: "National Expressway",
+        cost: 345,
+        completed: "23/06/2020",
+        complaints: [
+          {
+            id: "GJVD355",
+            roadid: "NE1",
+            location: "Raja Mandir, MG Road",
+            district: "Vadodara",
+            type: "Pothole",
+            reported: "23/3/2020",
+            status: "Not Verified",
+          },
+          {
+            id: "GJVD356",
+            roadid: "NE1",
+            location: "Raja Mandir, MG Road",
+            district: "Vadodara",
+            type: "Pothole",
+            reported: "23/3/2020",
+            status: "Not Verified",
+          },
+          {
+            id: "GJVD359",
+            roadid: "NE1",
+            location: "Raja Mandir, MG Road",
+            district: "Vadodara",
+            type: "Pothole",
+            reported: "23/3/2020",
+            status: "Not Verified",
+          },
+        ],
       },
     };
   },
@@ -167,6 +291,10 @@ export default {
         padding: 5px 1rem;
       }
     }
+  }
+
+  .complaints {
+    margin-top: 4rem;
   }
 
   .accordian-btn {
