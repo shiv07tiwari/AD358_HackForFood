@@ -44,4 +44,42 @@ export default {
 .fade-leave-active {
   opacity: 0;
 }
+
+.header-fixed {
+  width: 100%;
+}
+
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+  display: block;
+}
+
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+  content: " ";
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+.header-fixed > tbody {
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.roads-table {
+  .header-fixed > thead > tr > th {
+    width: 14.2857142857%;
+    float: left;
+  }
+
+  .header-fixed > tbody > tr > td {
+    width: 14.27%;
+    float: left;
+  }
+}
 </style>

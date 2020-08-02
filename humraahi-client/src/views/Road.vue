@@ -12,17 +12,13 @@
     </template>
     <template v-else>
       <div class="header">
-        <h1 style="font-weight: 300; text-align:center;">Road ID: {{road.id}}</h1>
-        <h3 style="font-weight: 300; text-align:center;">{{road.name}}</h3>
+        <h1 style="font-weight: 300; text-align:center;">Road ID: {{road.id ? road.id : dummy.id}}</h1>
+        <h3 style="font-weight: 300; text-align:center;">{{dummy.name}} Road</h3>
       </div>
       <div class="details">
         <div class="mapphotos" style="flex: 35% 0 0">
           <div class="map">
-            <iframe
-              src="https://www.google.com/maps/d/u/0/embed?mid=12cBAhgQUhwfqIuE3mBGX-7mMcpWz8UFt"
-              width="550"
-              height="360"
-            ></iframe>
+            <iframe :src="road.mapUrl ? road.mapUrl : dummy.mapUrl" width="550" height="360"></iframe>
           </div>
           <div class="images mt-4">
             <h5 style="font-weight: 300; margin-bottom: 1rem;">Images:</h5>
@@ -51,22 +47,26 @@
                 data-parent="#accordion"
               >
                 <div class="card-body" style="padding: 2rem; font-size: 1.3rem;">
-                  <div>
-                    Start Point:
-                    <span class="ml-2">{{ road.start }}</span>
-                    <span class="ml-3">End Point: {{ road.end }}</span>
+                  <div class="mt-2">
+                    Start:
+                    <span class="ml-2">{{road.start ? road.start : dummy.start}}</span>
+                  </div>
+                  <div class="mt-2">
+                    End:
+                    <span class="ml-2">{{road.end ? road.end : dummy.end}}</span>
                   </div>
                   <div class="mt-2">
                     Exit Loops:
                     <span v-for="exit in road.exits" :key="exit" class="ml-2">{{exit}}</span>
+                    <span v-if="!road.exits">Unavailable</span>
                   </div>
                   <div class="mt-2">
                     Length:
-                    <span class="ml-2">{{road.length}}km</span>
+                    <span class="ml-2">{{road.length ? road.length : dummy.length}}km</span>
                   </div>
                   <div class="mt-2">
                     Category:
-                    <span class="ml-2">{{road.category}}</span>
+                    <span class="ml-2">{{road.category ? road.category : dummy.category}}</span>
                   </div>
                 </div>
               </div>
@@ -93,11 +93,13 @@
                 <div class="card-body" style="padding: 2rem; font-size: 1.3rem;">
                   <div>
                     Construction Cost:
-                    <span class="ml-2">{{road.cost}} cr.</span>
+                    <span class="ml-2">{{road.cost ? road.cost : dummy.cost}} cr.</span>
                   </div>
                   <div class="mt-2">
                     Construction Completed:
-                    <span class="ml-2">{{road.completed}}</span>
+                    <span
+                      class="ml-2"
+                    >{{road.completed ? road.completed : dummy.date}}</span>
                   </div>
                 </div>
               </div>
@@ -159,7 +161,6 @@
             <tr>
               <th scope="col">Complaint ID</th>
               <th scope="col">Location</th>
-              <th scope="col">Road ID</th>
               <th scope="col">District</th>
               <th scope="col">Defect Type</th>
               <th scope="col">Reported On</th>
@@ -167,14 +168,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="complaint in road.complaints" :key="complaint.id">
+            <tr
+              v-for="complaint in road.complaints ? road.complaints : dummy.complaints"
+              :key="complaint.id"
+            >
               <router-link
                 tag="td"
                 :to="{name: 'complaint', params: {id: complaint.id}}"
                 style="cursor: pointer; text-decoration: underline;"
               >{{ complaint.id }}</router-link>
               <td>{{complaint.location}}</td>
-              <td>{{complaint.roadid}}</td>
               <td>{{complaint.district}}</td>
               <td>{{complaint.type}}</td>
               <td>{{complaint.reported}}</td>
@@ -188,28 +191,26 @@
         <table class="table table-bordered" style="border: 1px solid gray;">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">Complaint ID</th>
-              <th scope="col">Location</th>
-              <th scope="col">Road ID</th>
-              <th scope="col">District</th>
-              <th scope="col">Defect Type</th>
-              <th scope="col">Reported On</th>
-              <th scope="col">Status</th>
+              <th scope="col">Tender ID</th>
+              <th scope="col">Expected Cost</th>
+              <th scope="col">Actual Cost</th>
+              <th scope="col">Started On</th>
+              <th scope="col">Completed On</th>
+              <th scope="col">Task</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="complaint in road.complaints" :key="complaint.id">
+            <tr v-for="tender in road.tenders ? road.tenders : dummy.tenders" :key="tender.id">
               <router-link
                 tag="td"
-                :to="{name: 'complaint', params: {id: complaint.id}}"
+                :to="{name: 'tender', params: {id: tender.id}}"
                 style="cursor: pointer; text-decoration: underline;"
-              >{{ complaint.id }}</router-link>
-              <td>{{complaint.location}}</td>
-              <td>{{complaint.roadid}}</td>
-              <td>{{complaint.district}}</td>
-              <td>{{complaint.type}}</td>
-              <td>{{complaint.reported}}</td>
-              <td>{{complaint.status}}</td>
+              >{{ tender.id }}</router-link>
+              <td>{{tender.expectedCost}}</td>
+              <td>{{tender.actualCost}}</td>
+              <td>{{tender.startedOn}}</td>
+              <td>{{tender.completedOn}}</td>
+              <td>{{tender.task}}</td>
             </tr>
           </tbody>
         </table>
@@ -219,60 +220,63 @@
 </template>
 
 <script>
+// import roads from "./roads";
+
 export default {
   name: "road",
   components: {},
+  computed: {},
   data() {
     return {
       loaded: false,
       roadid: "",
-      road: {
-        id: "NE-1",
-        name: "Ahmadabad - Vadodara Expressway",
-        start: "Hatkeshwar, Ahmedabad",
-        end: "Vemali, Vadodara",
-        exits: ["Nadiad", "Anand"],
-        length: 93.1,
-        category: "National Expressway",
-        cost: 345,
-        completed: "23/06/2020",
-        complaints: [
-          {
-            id: "GJVD355",
-            roadid: "NE1",
-            location: "Raja Mandir, MG Road",
-            district: "Vadodara",
-            type: "Pothole",
-            reported: "23/3/2020",
-            status: "Not Verified",
-          },
-          {
-            id: "GJVD356",
-            roadid: "NE1",
-            location: "Raja Mandir, MG Road",
-            district: "Vadodara",
-            type: "Pothole",
-            reported: "23/3/2020",
-            status: "Not Verified",
-          },
-          {
-            id: "GJVD359",
-            roadid: "NE1",
-            location: "Raja Mandir, MG Road",
-            district: "Vadodara",
-            type: "Pothole",
-            reported: "23/3/2020",
-            status: "Not Verified",
-          },
-        ],
+      road: {},
+      dummy: {
+        mapUrl:
+          "https://www.google.com/maps/d/u/0/embed?mid=12cBAhgQUhwfqIuE3mBGX-7mMcpWz8UFt",
+        id: this.$faker().random.uuid().substring(0, 5),
+        name: this.$faker().address.streetName(),
+        category: "State Highway",
+        cost: Math.round(Math.random() * 100),
+        date: this.$faker().date.past(),
+        start: this.$faker().address.city(),
+        end: this.$faker().address.city(),
+        length: Math.round(Math.random() * 100),
+        complaints: [],
+        tenders: [],
       },
     };
   },
   mounted() {
     setTimeout(() => {
-      this.roadid = this.$route.params.id;
+      // this.road = roads.find((road) => road.id == this.$route.params.id);
       this.loaded = true;
-    }, 800);
+    }, 100);
+
+    for (let i = 0; i < 3 + Math.ceil(Math.random() * 10); i++) {
+      this.dummy.tenders.push({
+        id: this.$faker().random.uuid().substring(0, 5),
+        expectedCost: Math.ceil(Math.random() * 100000),
+        actualCost: Math.ceil(Math.random() * 100000),
+        startedOn: this.$faker().date.past(),
+        completedOn: this.$faker().date.past(),
+        remarks: this.$faker().lorem.sentence(),
+        task: this.$faker().lorem.sentence(),
+      });
+    }
+
+    for (let i = 0; i < 3 + Math.ceil(Math.random() * 5); i++) {
+      this.dummy.complaints.push({
+        id: this.$faker().random.uuid().substring(0, 5),
+        roadid: this.$faker().random.uuid().substring(0, 5),
+        location: this.$faker().address.streetAddress(),
+        district: this.$faker().address.city(),
+        type: "Pothole",
+        reported: this.$faker().date.past(),
+        status: "Not Verified",
+      });
+    }
+
   },
 };
 </script>
