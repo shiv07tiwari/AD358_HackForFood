@@ -43,8 +43,16 @@
         </thead>
         <tbody>
           <tr v-for="complaint in active" :key="complaint.complaint_id">
-            <td>{{ complaint.complaint_id }}</td>
-            <td>{{ complaint.road_id }}</td>
+            <router-link
+              tag="td"
+              :to="{name: 'complaint', params: {id: complaint.complaint_id}}"
+              style="cursor: pointer; text-decoration: underline;"
+            >{{ complaint.complaint_id }}</router-link>
+            <router-link
+              tag="td"
+              :to="{name: 'road', params: {id: complaint.road_id}}"
+              style="cursor: pointer; text-decoration: underline;"
+            >{{ complaint.road_id }}</router-link>
             <td>{{ districts[complaint.district] }}</td>
             <td>{{ complaint.defect_type }}</td>
             <td>{{ complaint.reported_month }}/{{ complaint.reported_year }}</td>
@@ -80,7 +88,6 @@ export default {
     this.axios
       .post("complaint", { op: "all_join_kp" })
       .then(({ data }) => {
-        console.log(data);
         this.complaints = data;
         this.active = data;
       })
