@@ -8,41 +8,52 @@
           <div class="form-row">
             <div class="form-group col-md-3">
               <label>Road Code</label>
-              <input type="text" class="form-control" />
+              <input  type="text" class="form-control" v-model="details.id" />
             </div>
             <div class="form-group col-md-9">
               <label>Road Name</label>
-              <input type="text" class="form-control" id="inputPassword4" />
+              <input v-model="details.name" type="text" class="form-control" id="inputPassword4" />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Start Location</label>
-              <input type="text" class="form-control" />
+              <input v-model="details.start" type="text" class="form-control" />
             </div>
             <div class="form-group col-md-6">
               <label>End Location</label>
-              <input type="text" class="form-control" id="inputPassword4" />
+              <input v-model="details.end" type="text" class="form-control" id="inputPassword4" />
             </div>
           </div>
-
-          <div class="form-group">
-            <label for="inputAddress">Road Name</label>
-            <input type="text" class="form-control" id="inputAddress" />
-          </div>
           <div class="form-row">
-            <div class="form-group col-md-3">
-              <label for="inputCity">District</label>
-              <input type="text" class="form-control" id="inputCity" />
+            <div class="form-group col-md-4">
+              <label for="inputState">District</label>
+              <select v-model="details.district" id="inputState" class="form-control">
+                <option
+                  v-for="district in districts"
+                  :value="district[0]"
+                  :key="district[0].toString()"
+                >{{ district[1] }}</option>
+              </select>
             </div>
             <div class="form-group col-md-4">
               <label for="inputState">Road Category</label>
-              <select id="inputState" class="form-control">
+              <select v-model="details.category" id="inputState" class="form-control">
                 <option
                   v-for="category in categories"
                   :value="category[0]"
                   :key="category[0].toString()"
                 >{{ category[1] }}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">Zone</label>
+              <select v-model="details.zone" id="inputState" class="form-control">
+                <option
+                  v-for="zone in zones"
+                  :value="zone[0]"
+                  :key="zone[0].toString()"
+                >{{ zone[1] }}</option>
               </select>
             </div>
           </div>
@@ -54,39 +65,45 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>Road Length (km)</label>
-              <input type="text" class="form-control" />
+              <input v-model="details.length" type="text" class="form-control" />
             </div>
             <div class="form-group col-md-4">
-              <label>Road Material</label>
-              <input type="text" class="form-control" />
+              <label for="inputState">Material Type</label>
+              <select v-model="details.material" id="inputState" class="form-control">
+                <option
+                  v-for="material in materials"
+                  :value="material[0]"
+                  :key="material[0].toString()"
+                >{{ material[1] }}</option>
+              </select>
             </div>
             <div class="form-group col-md-4">
               <label>Road Depth</label>
-              <input type="text" class="form-control" />
+              <input v-model="details.depth" type="text" class="form-control" />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>Light Vehicle Density</label>
-              <input type="text" class="form-control" />
+              <input v-model="details.lvd" type="text" class="form-control" />
             </div>
             <div class="form-group col-md-4">
               <label>Medium Vehicle Density</label>
-              <input type="text" class="form-control" />
+              <input v-model="details.mvd" type="text" class="form-control" />
             </div>
             <div class="form-group col-md-4">
               <label>Heavy Vehicle Density</label>
-              <input type="text" class="form-control" />
+              <input v-model="details.hvd" type="text" class="form-control" />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-3">
               <label>Active from (month)</label>
-              <input type="text" class="form-control" />
+              <input v-model="details.activeMonth" type="number" min="1" max="12" class="form-control" />
             </div>
             <div class="form-group col-md-3">
               <label>Active from (year)</label>
-              <input type="text" class="form-control" id="inputPassword4" />
+              <input v-model="details.activeYear" type="number" min="1970" max="2020" class="form-control" id="inputPassword4" />
             </div>
           </div>
         </form>
@@ -97,17 +114,17 @@
           <div class="form-row">
             <div class="form-group col-md-12">
               <label>Exit Points (split via space)</label>
-              <input type="text" class="form-control" />
+              <input v-model="details.exitPoints" type="text" class="form-control" />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-12">
               <label>Remarks</label>
-              <textarea type="text" class="form-control" />
+              <textarea v-model="details.remarks" type="text" class="form-control" />
             </div>
           </div>
         </form>
-        <button class="mt-3 btn btn-success">Continue</button>
+        <button class="mt-3 btn btn-success" @click="submitRoad">Continue</button>
       </div>
     </div>
     <div class="random" style="background-color: #172B4D; flex: 1;"></div>
@@ -115,7 +132,7 @@
 </template>
 
 <script>
-import { categories } from "./enums";
+import { categories, zones, district, materials } from "./enums";
 
 export default {
   name: "AddRoad",
@@ -123,7 +140,36 @@ export default {
   data() {
     return {
       categories: Object.entries(categories),
+      zones: Object.entries(zones),
+      districts: Object.entries(district),
+      materials: Object.entries(materials),
+      details: {
+          id: "",
+          name: "",
+          start: "",
+          end: "",
+          district: "",
+          category: "",
+          zone: "",
+          length: 0,
+          material: "",
+          depth: "",
+          lvd: "",
+          mvd: "",
+          hvd: "",
+          activeMonth: 1,
+          activeYear: 2020,
+          exitPoints: "",
+          remarks: ""
+      }
     };
+  },
+  methods: {
+
+      submitRoad() {
+          console.log(this.details);
+      }
+
   },
   mounted() {},
 };
@@ -131,6 +177,5 @@ export default {
 
 <style lang="scss">
 .app-add-road {
-  
 }
 </style>
