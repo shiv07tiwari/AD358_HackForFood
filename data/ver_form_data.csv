@@ -18,3 +18,5 @@ sub_id,com_id,road_name,inspection_codes,road_grades,radio_protocol_signs,descri
 17,110,"MG Road, Indore",Fillslope faliures,Grade-A,No,Description,7,No,Install or repair,Medium,Local Road Name,Yes,Yes,No,Yes,Maintainance,Ditching,Yes,Minor Safety/Environment Hazard,Hanging Outlet,Medium
 18,25,"MG Road, Indore",Damage from cattle,Grade-A,Yes,Description,7,No,License inspections required as per plan,High,Local Road Name,No,Yes,Yes,Yes,Maintainance,Subgrade,No,Minor Safety/Environment Hazard,Less than 20%,High
 19,32,"MG Road, Indore",Cutslope failures,Grade-A,No,Description,7,Yes,Install or repair,Low,Local Road Name,No,No,Yes,No,Construction,Bridge,Yes,Moderate Safety/Environment Hazard,Less than 20%,Medium
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
