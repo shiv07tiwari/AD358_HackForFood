@@ -429,9 +429,8 @@ def db_comp():
 
     # by id
     if(body['op'] == 'byid_kp'):
-        
-        row = comp_data[comp_data['complaint_id'] == body['args']].reset_index(drop = True).to_dict('index').values()
-        data = json.dumps(tuple(row), default=json_util.default)
+        ver_data = pd.read_csv("../data/ver_form_data.csv")
+        data = json.dumps(tuple(comp_data[comp_data['complaint_id'] == body['args']].join(ver_data.set_index('complaint_id'), on = 'complaint_id').reset_index(drop = True).to_dict('index').values()), default=json_util.default)
         return data
 
     if(body['op'] == 'byid'):
@@ -605,9 +604,10 @@ def cost_pred():
     
     data = comp_data.join(road_data.set_index('road_id'), on = 'road_id')
 
-    time = get_repair_time(data,road_life_model,road_life_scaler)
+    time = get_repair_time(data,road_life_model,road_life_scaler, True)
     data = get_repair_cost(data,road_cost_model,road_cost_scaler_X, road_cost_scaler_y, road_life_model,road_life_scaler)
     return json.dumps({"cost" : data, "time": time})
+    
     # get road repair priority 
     
 
