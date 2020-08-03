@@ -202,7 +202,7 @@ public class ActivityVerificationForm extends AppCompatActivity {
                 int randomNum = ThreadLocalRandom.current().nextInt(30, 70 + 1);
                 VerificationData.put("sub_id", Integer.toString(randomNum));
                 randomNum = ThreadLocalRandom.current().nextInt(1, 200);
-                VerificationData.put("com_id", Integer.toString(randomNum));
+                VerificationData.put("complaint_id", Integer.toString(randomNum));
 
                 Log.e("log", "Count: "+VerificationData.size());
                 // 22
