@@ -160,6 +160,16 @@
           </div>
         </div>
       </div>
+      <div class="prediction">
+        <h3
+          style="font-weight: 300; margin-bottom: 2rem; margin-top:3rem;"
+        >Predicted upcoming repair date</h3>
+        <div style="width: 40%;">
+          <div class="alert alert-success" role="alert">
+            Upcoming Repair Date: {{ upcoming }} Months
+          </div>
+        </div>
+      </div>
       <div class="complaints">
         <h3 style="font-weight: 300; margin-bottom: 2rem;">Active Complaints</h3>
         <table class="table table-bordered" style="border: 1px solid gray;">
@@ -173,19 +183,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="complaint in complaints"
-              :key="complaint.id"
-            >
+            <tr v-for="complaint in complaints" :key="complaint.id">
               <router-link
-              tag="td"
-              :to="{name: 'complaint', params: {id: complaint.complaint_id}}"
-              style="cursor: pointer; text-decoration: underline;"
-            >{{ complaint.complaint_id }}</router-link>
-            <td>{{ complaint.defect_type }}</td>
-            <td>{{ complaint.reported_month }}/{{ complaint.reported_year }}</td>
-            <td>{{ complaint.remark }}</td>
-            <td>{{ complaint.is_verified ? "Verified" : "Pending Verification" }}</td>
+                tag="td"
+                :to="{name: 'complaint', params: {id: complaint.complaint_id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.complaint_id }}</router-link>
+              <td>{{ complaint.defect_type }}</td>
+              <td>{{ complaint.reported_month }}/{{ complaint.reported_year }}</td>
+              <td>{{ complaint.remark }}</td>
+              <td>{{ complaint.is_verified ? "Verified" : "Pending Verification" }}</td>
             </tr>
           </tbody>
         </table>
@@ -207,7 +214,13 @@
             <tr v-for="tender in tenders" :key="tender.id">
               <td>{{tender.tender_id}}</td>
               <td>₹{{tender.est_cost}}</td>
-              <td>₹{{tender.act_cost}} <span class="text-danger ml-3" v-if="tender.act_cost > tender.est_cost">+{{tender.act_cost - tender.est_cost}}</span></td>
+              <td>
+                ₹{{tender.act_cost}}
+                <span
+                  class="text-danger ml-3"
+                  v-if="tender.act_cost > tender.est_cost"
+                >+{{tender.act_cost - tender.est_cost}}</span>
+              </td>
               <td>{{tender.cons_month}}/{{tender.cons_year}}</td>
               <td>{{tender.comp_month + 1}}/{{tender.comp_year}}</td>
               <td>{{tender.tender_remarks}}</td>
@@ -234,6 +247,7 @@ export default {
       categories: categories,
       road: {},
       complaints: [],
+      upcoming: 0,
       tenders: [],
       dummy: {
         mapUrl:
@@ -269,6 +283,12 @@ export default {
             this.tenders = data;
           });
 
+        this.axios.get("cost_pred").then(({data}) => {
+          this.upcoming = data.time[parseInt(this.$route.params.id)];
+        }).catch(err => {
+          console.error(err);
+        })
+
         this.axios
           .post("complaint", {
             op: "roads_kp",
@@ -277,7 +297,6 @@ export default {
           .then(({ data }) => {
             this.complaints = data;
           });
-
       })
       .catch((err) => {
         console.error(err);
