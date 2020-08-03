@@ -18,7 +18,7 @@ def get_prioritized(data):
     return data
 
 
-def get_repair_time(data, model, sc_road_life):
+def get_repair_time(data, model, sc_road_life, as_str = False):
     features = data[['activeYear', 'single_axle_load', 'crack', 'potholes', 'rut', 'long_crack']]
     id = list(data['road_id'].values)
 
@@ -33,13 +33,17 @@ def get_repair_time(data, model, sc_road_life):
     a = 7.99
     b = 0.0072
     pred = (1 / b) * np.log(a / iri) - age
-    pred = scale(pred, 0.0834, 10)  # in years
+    pred = scale(pred, 0.0834, 3)  # in years
 
     order = np.argsort(pred)
 
     ret_data = {}
     for idx in order:
-        ret_data[id[idx]] = round(pred[idx] * 12)
+
+        if as_str :
+            ret_data[str(id[idx])] = round(pred[idx] * 12)
+        else :
+            ret_data[id[idx]] = round(pred[idx] * 12)
 
     return ret_data
 
