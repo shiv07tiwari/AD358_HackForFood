@@ -462,7 +462,7 @@ def db_comp():
         return json.dumps("success")
 
     if(body['op'] == 'officer_get'):
-        rows = tuple(comp_data[comp_data['assigned_insp_id'] == body['args']].values.tolist())
+        rows = tuple(comp_data[comp_data['assigned_insp_id'] == body['args']].reset_index(drop = True).to_dict('index').values())
         a = int(len(rows)/5)
         slice_object = slice(a)
         return json.dumps(rows[slice_object])
