@@ -1,6 +1,6 @@
 <template>
   <div class="app-road-archive">
-    <h1 style="font-weight: 300; margin-bottom: 2rem;">Road Database Portal</h1>
+    <h1 style="font-weight: 300; margin-bottom: 2rem;">Road Database</h1>
 
     <iframe
       src="https://www.google.com/maps/d/embed?mid=1rd6B6h9ZcbZo2Q8kwcYqaAt-ROuy1UP3"
@@ -32,7 +32,6 @@
               :value="category[0]"
             >{{ category[1] }}</option>
           </select>
-          <button type="submit" class="btn btn-primary ml-2">Filter Roads</button>
         </form>
       </div>
       <table class="table table-bordered header-fixed" style="border: 1px solid gray;">
@@ -66,9 +65,6 @@
     </div>
     <div class="analytics">
       <!-- <h3 style="font-weight: 300; margin-bottom: 3rem;">Analytics</h3> -->
-    </div>
-    <div>
-      <router-link :to="{name: 'add-road'}" tag="button" class="btn btn-success">Add Road</router-link>
     </div>
   </div>
 </template>

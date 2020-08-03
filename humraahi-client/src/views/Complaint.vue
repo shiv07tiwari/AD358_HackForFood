@@ -53,7 +53,7 @@
                   <div class="row">
                     <div class="col col-md-4 mb-3" v-for="key in report_keys" :key="key">
                       <h5 style="text-transform: capitalize;">{{key.split('_').join(' ')}}</h5>
-                      <p>{{ report[key] }}</p>
+                      <p>{{ complaint[key] }}</p>
                     </div>
                   </div>
                 </div>
