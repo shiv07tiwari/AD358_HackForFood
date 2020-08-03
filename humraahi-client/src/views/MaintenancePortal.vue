@@ -88,6 +88,53 @@
           </div>
         </div>
       </div>
+
+      <div v-show="!analysed">
+        <div
+          style="display: flex; width: 100%; justify-content: center; align-items: center; flex-direction: column; height: 40vh;"
+        >
+          <div class="spinner-border text-warning mb-3" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <h3 style="font-weight: 300;">Analysing Complaints</h3>
+        </div>
+      </div>
+      <div v-show="analysed" class="complaints-table mt-5">
+        <h3 style="font-weight: 300; margin-top:3rem;">Smart Priority Table</h3>
+        <h5 style="font-weight: 300;" class="text-muted mt-2 mb-3">Prioritizes on the basis of various road factors, road age and other factors.</h5>
+        <table class="table table-bordered header-fixed" style="border: 1px solid gray;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" style="background-color: #FFCC00; color: black;">Priority</th>
+              <th scope="col">Complaint ID</th>
+              <th scope="col">Road ID</th>
+              <th scope="col">District</th>
+              <th scope="col">Defect Type</th>
+              <th scope="col">Reported On</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="complaint in smart_complaints" :key="complaint.complaint_id">
+              <td>{{ complaint.priority }}</td>
+              <router-link
+                tag="td"
+                :to="{name: 'complaint', params: {id: complaint.complaint_id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.complaint_id }}</router-link>
+              <router-link
+                tag="td"
+                :to="{name: 'road', params: {id: complaint.road_id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.road_id }}</router-link>
+              <td>{{ districts[complaint.district] }}</td>
+              <td>{{ complaint.defect_type }}</td>
+              <td>{{ complaint.reported_month }}/{{ complaint.reported_year }}</td>
+              <td>{{ complaint.is_verified ? "Verified" : "Pending Verification" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -245,6 +292,17 @@ export default {
       this.defectsPie();
       this.defectsByMonthBar();
     },
+    fetchSmartComplaints() {
+      this.axios
+        .get("up_sched")
+        .then(({ data }) => {
+          this.analysed = true;
+          this.smart_complaints = data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
   },
   mounted() {
     this.axios
@@ -257,6 +315,10 @@ export default {
         setTimeout(() => {
           this.redrawCharts();
         }, 700);
+
+        setTimeout(() => {
+          this.fetchSmartComplaints();
+        }, 1500);
       })
       .catch((err) => {
         console.error(err);
@@ -268,6 +330,8 @@ export default {
       active: [],
       loaded: false,
       districts: district,
+      analysed: false,
+      smart_complaints: [],
       districts_l: Object.entries(district),
     };
   },
