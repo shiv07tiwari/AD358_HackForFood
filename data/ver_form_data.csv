@@ -20,3 +20,4 @@ sub_id,com_id,road_name,inspection_codes,road_grades,radio_protocol_signs,descri
 19,32,"MG Road, Indore",Cutslope failures,Grade-A,No,Description,7,Yes,Install or repair,Low,Local Road Name,No,No,Yes,No,Construction,Bridge,Yes,Moderate Safety/Environment Hazard,Less than 20%,Medium
 45,135,MG Road 22,Slides or mass land movements,Okay,Yes,,7,,Install or repair,low,Local Data,No,No hills,Yes,Yes,Construction,Grading,Yes,No Safety/Environment Hazard,Stream,high
 39,86,Test Name Road,Slides or mass land movements,6,No,Description Test,8,,Correct to specifications,high,Local,Yes,"Bind corners, Hill crests",No,No,Construction,Subgrade,Yes,No Safety/Environment Hazard,Hanging Outlet,low
+39,86,Demo_Testing,Damage from cattle,great,No,Demo description,7,,Certify structures,low,Local Hey Local,Yes,No hills,Yes,Yes,Construction,Grading,Yes,Minor Safety/Environment Hazard,Hanging Outlet,medium

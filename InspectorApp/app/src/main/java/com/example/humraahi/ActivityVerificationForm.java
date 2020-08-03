@@ -1,6 +1,8 @@
 package com.example.humraahi;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -26,8 +28,14 @@ import com.example.humraahi.DataModels.VerificationAdd;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+import org.json.JSONObject;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Timer;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -200,23 +208,54 @@ public class ActivityVerificationForm extends AppCompatActivity {
                 // 22
                 Log.e("Verify\n",VerificationData.toString());
 
-                NetworkService apiService =
-                        APIClient.getClient().create(NetworkService.class);
-                VerificationAdd a = new VerificationAdd("add", VerificationData);
-                Call<String> call = apiService.addComplaint(a);
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        Toast.makeText(getBaseContext(),"Verification Submitted!", Toast.LENGTH_LONG).show();
-                        finish();
-                    }
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-                    }
-                });
+                if (roadName.getText().toString().equals("Test_Offline")) {
+                    Log.e("log", "Not Connected");
+                    Toast.makeText(getBaseContext(),"Verification Submitted!", Toast.LENGTH_LONG).show();
+                    saveMap(VerificationData);
+                    finish();
+                } else {
+                    Log.e("log", "Connected");
+                    clearMap();
+                    NetworkService apiService =
+                            APIClient.getClient().create(NetworkService.class);
+                    VerificationAdd a = new VerificationAdd("add", VerificationData);
+                    Call<String> call = apiService.addComplaint(a);
+                    call.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            Toast.makeText(getBaseContext(),"Verification Submitted!", Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+                        }
+                    });
+                }
 
             }
         });
-
     }
+
+    private void saveMap(HashMap<String,String> inputMap){
+        SharedPreferences pSharedPref = getApplicationContext().getSharedPreferences("MyVariables", Context.MODE_PRIVATE);
+        if (pSharedPref != null){
+            JSONObject jsonObject = new JSONObject(inputMap);
+            String jsonString = jsonObject.toString();
+            SharedPreferences.Editor editor = pSharedPref.edit();
+            editor.remove("My_map").apply();
+            editor.putString("My_map", jsonString);
+            editor.commit();
+        }
+    }
+
+    private void clearMap() {
+        SharedPreferences pSharedPref = getApplicationContext().getSharedPreferences("MyVariables", Context.MODE_PRIVATE);
+        if (pSharedPref != null){
+            SharedPreferences.Editor editor = pSharedPref.edit();
+            editor.remove("My_map").apply();
+            editor.commit();
+        }
+    }
+
+
 }
