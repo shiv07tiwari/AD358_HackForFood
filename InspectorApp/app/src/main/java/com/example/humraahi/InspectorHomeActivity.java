@@ -138,6 +138,15 @@ public class InspectorHomeActivity extends AppCompatActivity {
             }
         });
 
+        Button _button_ = findViewById(R.id.noti_button);
+        _button_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(InspectorHomeActivity.this, NotiActivity.class);
+                startActivity(i);
+
+            }
+        });
 //        scheduleList = new ScheduleList();
 //        for (int i = 0; i < 6; i++) {
 //            scheduleList.addSchedule(new ScheduleDetails("Mahatma Gandhi Road, Delhi", "02-07-2020", "10-07-2020", "Inspection", i+31));
