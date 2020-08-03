@@ -12,10 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/humraahi"
+        app:titleTextColor="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="Humraahi"
-        app:navigationIcon="@drawable/logo">
+        app:navigationIcon="@drawable/logo_white2">
 
     </androidx.appcompat.widget.Toolbar>
     <LinearLayout

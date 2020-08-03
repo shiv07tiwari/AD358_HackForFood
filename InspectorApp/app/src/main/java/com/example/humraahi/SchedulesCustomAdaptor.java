@@ -21,6 +21,8 @@ public class SchedulesCustomAdaptor extends RecyclerView.Adapter<SchedulesCustom
 
     private ScheduleList scheduleList;
     private Context mContext;
+    boolean completed;
+
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -49,9 +51,10 @@ public class SchedulesCustomAdaptor extends RecyclerView.Adapter<SchedulesCustom
         }
     }
 
-    public SchedulesCustomAdaptor(ScheduleList scheduleList, Context context) {
+    public SchedulesCustomAdaptor(ScheduleList scheduleList, Context context, boolean completed) {
         this.mContext = context;
         this.scheduleList = scheduleList;
+        this.completed = completed;
     }
 
     @Override
@@ -79,6 +82,11 @@ public class SchedulesCustomAdaptor extends RecyclerView.Adapter<SchedulesCustom
         textViewDeadlineDateName.setText(scheduleList.get(listPosition).getDeadline());
         textViewTagName.setText(scheduleList.get(listPosition).getTag());
         textViewProjectIdName.setText(scheduleList.get(listPosition).getProjectId().toString());
+
+        if(this.completed){
+            startButtonName.setVisibility(View.INVISIBLE);
+        }
+
         startButtonName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
