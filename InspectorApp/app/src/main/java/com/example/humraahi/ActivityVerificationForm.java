@@ -115,7 +115,7 @@ public class ActivityVerificationForm extends AppCompatActivity {
                 else risk = "Not Added";
 
                 VerificationData.put("risk", risk);
-                VerificationData.put("Description", description.getText().toString());
+                VerificationData.put("description", description.getText().toString());
 
                 String streamCulvert = "None";
 
