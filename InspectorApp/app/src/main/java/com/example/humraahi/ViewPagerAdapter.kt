@@ -23,7 +23,17 @@ class ViewPagerAdapter : RecyclerView.Adapter<PagerVH>() {
 
     //binding the screen with view
     override fun onBindViewHolder(holder: PagerVH, position: Int) {
-        holder.bind("$position Hello", "World")
+        if (position == 0) {
+            holder.bind("Vehicle Density", "While calculation vehicle density, take several measurements, preferably 3 readings for 1 min each in 15 minute intervals.\n")
+        } else if (position == 1) {
+            holder.bind("Road Quality", "\"For road quality measurements, especially include turnings, uneven segments and take multiple readings at least 25 m of gap.\n")
+        } else if (position == 2) {
+            holder.bind("Additional Complaint", "In case you find additional damage which is not reported in the complaint, include that in remarks too, this would avoid double verification for the same area. However do inform the administrator regarding the same")
+        } else if (position == 3) {
+            holder.bind("Defect Codes", "The codes related to road defects, inspection level, and remedial methods are given in the help section on the admin portal and also in the manual, double check entries before submitting")
+        } else if (position == 4) {
+            holder.bind("Mechanical Tools", "For using road quality measuring tools, make sure the device is properly calibrated, battery is charged and the memory card is present to avoid losing any data. ")
+        }
     }
 
 //    override fun onBindViewHolder(holder: PagerVH, position: Int) = holder.itemView.run {

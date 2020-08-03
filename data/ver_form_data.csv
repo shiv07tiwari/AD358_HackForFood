@@ -22,4 +22,5 @@ sub_id,complaint_id,road_name,inspection_codes,road_grades,radio_protocol_signs,
 39,86.0,Test Name Road,Slides or mass land movements,6,No,Description Test,8,,Correct to specifications,high,Local,Yes,"Bind corners, Hill crests",No,No,Construction,Subgrade,Yes,No Safety/Environment Hazard,Hanging Outlet,low
 39,86.0,Demo_Testing,Damage from cattle,great,No,Demo description,7,,Certify structures,low,Local Hey Local,Yes,No hills,Yes,Yes,Construction,Grading,Yes,Minor Safety/Environment Hazard,Hanging Outlet,medium
 39,,AAAAA,Tension cracks visibly,gags,Yes,twte,6,,Install or repair,low,y,No,No hills,Yes,Yes,Construction,Bridge,Yes,Minor Safety/Environment Hazard,Hanging Outlet,low
-39,86,Ooo Bhayanakar,Tension cracks visibly,hs,Yes,nanajajja,8,,Install or repair,low,gahaha,No,No hills,Yes,Yes,Construction,Bridge,Yes,No Safety/Environment Hazard,Hanging Outlet,medium
+39,86.0,Ooo Bhayanakar,Tension cracks visibly,hs,Yes,nanajajja,8,,Install or repair,low,gahaha,No,No hills,Yes,Yes,Construction,Bridge,Yes,No Safety/Environment Hazard,Hanging Outlet,medium
+39,86,Shivansh_Testing,Potholes,hh,Yes,Hello,6,,Certify structures,low,Local Data 2.0,No,No hills,Yes,Yes,Construction,Beaver,Yes,Moderate Safety/Environment Hazard,Stream,medium
