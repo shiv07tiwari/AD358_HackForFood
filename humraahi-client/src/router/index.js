@@ -5,6 +5,7 @@ import RoadArchive from '@/views/RoadArchive.vue'
 import Road from '@/views/Road.vue'
 import AddRoad from '@/views/AddRoad.vue'
 import Complaint from '@/views/Complaint.vue'
+import Upload from '@/views/Upload.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/roads',
     name: 'roads',
     component: RoadArchive
+  },
+  {
+    path: '/upload',
+    name: 'upload',
+    component: Upload
   },
   {
     path: '/road/add',

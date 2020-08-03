@@ -1,169 +1,338 @@
 <template>
-  <div class="app-maintenance-portal">
-    <h1 style="font-weight: 300;">Maintenance Portal</h1>
-    <div class="complaints-table">
-      <h3 style="font-weight: 300; margin-bottom: 2rem;">Active Complaints</h3>
-      <div style="margin-bottom: 2rem;">
-        <form class="form-inline">
-          <label class="sr-only" for="inlineFormInputName2">Name</label>
-          <input
-            type="text"
-            class="form-control mr-sm-2"
-            id="inlineFormInputName2"
-            placeholder="Search By Complaint ID"
-          />
-          <label class="sr-only" for="inlineFormInputName2">Name</label>
-          <input
-            type="text"
-            class="form-control mr-sm-2"
-            id="inlineFormInputName2"
-            placeholder="Search By Road ID"
-          />
-          <select class="custom-select mr-2" id="inlineFormCustomSelectPref">
-            <option selected>District</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-
-          <button type="submit" class="btn btn-primary ml-2">Filter Complaints</button>
-        </form>
-      </div>
-      <table class="table table-bordered" style="border: 1px solid gray;">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Complaint ID</th>
-            <th scope="col">Location</th>
-            <th scope="col">Road ID</th>
-            <th scope="col">District</th>
-            <th scope="col">Defect Type</th>
-            <th scope="col">Reported On</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="complaint in complaints" :key="complaint.id">
-            <router-link
-              tag="td"
-              :to="{name: 'complaint', params: {id: complaint.id}}"
-              style="cursor: pointer; text-decoration: underline;"
-            >{{ complaint.id }}</router-link>
-            <td>{{complaint.location}}</td>
-            <td>{{complaint.roadid}}</td>
-            <td>{{complaint.district}}</td>
-            <td>{{complaint.type}}</td>
-            <td>{{complaint.reported}}</td>
-            <td>{{complaint.status}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="analytics">
-      <h3 style="font-weight: 300; margin-bottom: 3rem;">Analytics</h3>
-      <div style="width: 500px;">
-        <div style="display: flex;">
-          <canvas id="piechart" ref="piechart"></canvas>
-          <canvas id="barchart" ref="barchart"></canvas>
+  <div>
+    <div v-show="!loaded">
+      <div
+        style="display: flex; width: 100%; justify-content: center; align-items: center; flex-direction: column; height: 70vh;"
+      >
+        <div class="spinner-border text-info mb-3" role="status">
+          <span class="sr-only">Loading...</span>
         </div>
+        <h3 style="font-weight: 300;">Loading please wait.</h3>
+      </div>
+    </div>
+    <div v-show="loaded" class="app-maintenance-portal">
+      <h1 style="font-weight: 300;">Maintenance Portal</h1>
+      <div class="complaints-table">
+        <h3 style="font-weight: 300; margin-bottom: 2rem;">All Active Complaints</h3>
+        <div style="margin-bottom: 2rem;">
+          <form class="form-inline">
+            <label class="sr-only" for="inlineFormInputName2">Name</label>
+            <input
+              @change="(e) => {idChange(e)}"
+              type="text"
+              class="form-control mr-sm-2"
+              id="inlineFormInputName2"
+              placeholder="Search By Complaint ID"
+            />
+            <label class="sr-only" for="inlineFormInputName2">Name</label>
+            <input
+              @change="(e) => {roadChange(e)}"
+              type="text"
+              class="form-control mr-sm-2"
+              id="inlineFormInputName2"
+              placeholder="Search By Road ID"
+            />
+            <select
+              class="custom-select mr-2"
+              id="inlineFormCustomSelectPref"
+              @change="(e) => {distChange(e)}"
+            >
+              <option selected value="all">All</option>
+              <option
+                v-for="district in districts_l"
+                :key="district[0].toString()"
+                :value="district[0]"
+              >{{ district[1] }}</option>
+            </select>
+          </form>
+        </div>
+        <table class="table table-bordered header-fixed" style="border: 1px solid gray;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Complaint ID</th>
+              <th scope="col">Road ID</th>
+              <th scope="col">District</th>
+              <th scope="col">Defect Type</th>
+              <th scope="col">Reported On</th>
+              <th scope="col">Remark</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="complaint in active" :key="complaint.complaint_id">
+              <router-link
+                tag="td"
+                :to="{name: 'complaint', params: {id: complaint.complaint_id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.complaint_id }}</router-link>
+              <router-link
+                tag="td"
+                :to="{name: 'road', params: {id: complaint.road_id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.road_id }}</router-link>
+              <td>{{ districts[complaint.district] }}</td>
+              <td>{{ complaint.defect_type }}</td>
+              <td>{{ complaint.reported_month }}/{{ complaint.reported_year }}</td>
+              <td>{{ complaint.remark }}</td>
+              <td>{{ complaint.is_verified ? "Verified" : "Pending Verification" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="analytics">
+        <h3 style="font-weight: 300; margin-bottom: 3rem;">Analytics</h3>
+        <div style="width: 500px;">
+          <div style="display: flex;">
+            <canvas id="piechart" ref="piechart"></canvas>
+            <canvas id="barchart" ref="barchart" class="ml-5"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div v-show="!analysed">
+        <div
+          style="display: flex; width: 100%; justify-content: center; align-items: center; flex-direction: column; height: 40vh;"
+        >
+          <div class="spinner-border text-warning mb-3" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <h3 style="font-weight: 300;">Analysing Complaints</h3>
+        </div>
+      </div>
+      <div v-show="analysed" class="complaints-table mt-5">
+        <h3 style="font-weight: 300; margin-top:3rem;">Smart Priority Table</h3>
+        <h5 style="font-weight: 300;" class="text-muted mt-2 mb-3">Prioritizes on the basis of various road factors, road age and other factors.</h5>
+        <table class="table table-bordered header-fixed" style="border: 1px solid gray;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" style="background-color: #FFCC00; color: black;">Priority</th>
+              <th scope="col">Complaint ID</th>
+              <th scope="col">Road ID</th>
+              <th scope="col">District</th>
+              <th scope="col">Defect Type</th>
+              <th scope="col">Reported On</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="complaint in smart_complaints" :key="complaint.complaint_id">
+              <td>{{ complaint.priority }}</td>
+              <router-link
+                tag="td"
+                :to="{name: 'complaint', params: {id: complaint.complaint_id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.complaint_id }}</router-link>
+              <router-link
+                tag="td"
+                :to="{name: 'road', params: {id: complaint.road_id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.road_id }}</router-link>
+              <td>{{ districts[complaint.district] }}</td>
+              <td>{{ complaint.defect_type }}</td>
+              <td>{{ complaint.reported_month }}/{{ complaint.reported_year }}</td>
+              <td>{{ complaint.is_verified ? "Verified" : "Pending Verification" }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { district } from "./enums";
+
 import Chart from "chart.js";
 
 export default {
   name: "maintenance-portal",
   components: {},
-  methods: {},
-  mounted() {
-    new Chart(this.$refs.piechart, {
-      type: "pie",
-      data: {
-        labels: ["Pothole", "Sign Boards", "Light", "Other"],
-        datasets: [
-          {
-            label: "2018 Sales",
-            data: [23, 5, 12, 20],
-            backgroundColor: ["#003f5c", "#58508d", "#ff6361", "#ffa600"],
-          },
-        ],
-      },
-    });
+  methods: {
+    defectsPie() {
+      let counts = {
+        pothole: 0,
+        sign_board: 0,
+        lights: 0,
+        crack: 0,
+        others: 0,
+      };
 
-    new Chart(this.$refs.barchart, {
-      type: "bar",
-      data: {
-        labels: ["May", "June", "July", "August"],
-        datasets: [
-          {
-            label: "Defects by month",
-            data: [76, 90, 80, 5],
-            backgroundColor: ["#003f5c", "#58508d", "#ff6361", "#ffa600"],
+      this.active.forEach((complaint) => {
+        counts[complaint.defect_type] += 1;
+      });
+
+      new Chart(this.$refs.piechart, {
+        type: "pie",
+        data: {
+          labels: ["pothole", "sign_board", "lights", "crack", "others"],
+          datasets: [
+            {
+              label: "2018 Sales",
+              data: [
+                counts.pothole,
+                counts.sign_board,
+                counts.lights,
+                counts.crack,
+                counts.others,
+              ],
+              backgroundColor: [
+                "#003f5c",
+                "#58508d",
+                "#ff6361",
+                "#ffa600",
+                "#ffc000",
+              ],
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Distribution by Defect Type",
+            fontSize: 16,
           },
-        ],
-      },
-    });
+        },
+      });
+    },
+    defectsByMonthBar() {
+      let counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+      this.active.forEach((complaint) => {
+        counts[complaint.reported_month - 1] += 1;
+      });
+
+      console.log(counts);
+
+      new Chart(this.$refs.barchart, {
+        type: "bar",
+        data: {
+          labels: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+          datasets: [
+            {
+              data: counts,
+              backgroundColor: [
+                "#003f5c",
+                "#58508d",
+                "#ff6361",
+                "#ffa600",
+                "#ffc000",
+                "#003f5c",
+                "#58508d",
+                "#ff6361",
+                "#ffa600",
+                "#ffc000",
+                "#003f5c",
+                "#58508d",
+              ],
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Distribution by Months",
+            fontSize: 16,
+          },
+        },
+      });
+    },
+    distChange(e) {
+      if (e.target.value === "all" || e.target.value === "bvn") {
+        this.active = this.complaints;
+        this.redrawCharts();
+        return;
+      }
+
+      this.active = this.complaints.filter((complaint) => {
+        return complaint.district === e.target.value;
+      });
+
+      this.redrawCharts();
+    },
+    idChange(e) {
+      console.log(e.target);
+
+      if (e.target.value === "") {
+        this.active = this.complaints;
+        this.redrawCharts();
+        return;
+      }
+
+      this.active = this.complaints.filter((complaint) => {
+        return complaint.complaint_id == e.target.value;
+      });
+    },
+    roadChange(e) {
+      if (e.target.value === "") {
+        this.active = this.complaints;
+        this.redrawCharts();
+        return;
+      }
+
+      this.active = this.complaints.filter((complaint) => {
+        return complaint.road_id == e.target.value;
+      });
+
+      this.redrawCharts();
+    },
+    redrawCharts() {
+      this.defectsPie();
+      this.defectsByMonthBar();
+    },
+    fetchSmartComplaints() {
+      this.axios
+        .get("up_sched")
+        .then(({ data }) => {
+          this.analysed = true;
+          this.smart_complaints = data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+  },
+  mounted() {
+    this.axios
+      .post("complaint", { op: "all_join_kp" })
+      .then(({ data }) => {
+        this.loaded = true;
+        this.complaints = data.filter((complaint) => !complaint.is_resolved);
+        this.active = this.complaints;
+
+        setTimeout(() => {
+          this.redrawCharts();
+        }, 700);
+
+        setTimeout(() => {
+          this.fetchSmartComplaints();
+        }, 1500);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   },
   data() {
     return {
-      complaints: [
-        {
-          id: "GJVD355",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD356",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Light",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD357",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Signboards",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD358",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD359",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Divider",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-        {
-          id: "GJVD360",
-          roadid: "SK78",
-          location: "Raja Mandir, MG Road",
-          district: "Vadodara",
-          type: "Pothole",
-          reported: "23/3/2020",
-          status: "Not Verified",
-        },
-      ],
+      complaints: [],
+      active: [],
+      loaded: false,
+      districts: district,
+      analysed: false,
+      smart_complaints: [],
+      districts_l: Object.entries(district),
     };
   },
 };

@@ -12,8 +12,10 @@
     </template>
     <template v-else>
       <div class="header">
-        <h1 style="font-weight: 300; text-align:center;">Road ID: {{road.id ? road.id : dummy.id}}</h1>
-        <h3 style="font-weight: 300; text-align:center;">{{dummy.name}} Road</h3>
+        <h1
+          style="font-weight: 300; text-align:center;"
+        >Road ID: {{road.road_id ? road.road_id : dummy.id}}</h1>
+        <h3 style="font-weight: 300; text-align:center;">{{road.name ? road.name : dummy.name}}</h3>
       </div>
       <div class="details">
         <div class="mapphotos" style="flex: 35% 0 0">
@@ -57,8 +59,10 @@
                   </div>
                   <div class="mt-2">
                     Exit Loops:
-                    <span v-for="exit in road.exits" :key="exit" class="ml-2">{{exit}}</span>
-                    <span v-if="!road.exits">Unavailable</span>
+                    <span class="ml-2">{{road.exitPoints__001}}</span>,
+                    <span class="ml-1">{{road.exitPoints__002}}</span>,
+                    <span class="ml-1">{{road.exitPoints__003}}</span>,
+                    <span class="ml-1">{{road.exitPoints__004}}</span>
                   </div>
                   <div class="mt-2">
                     Length:
@@ -66,7 +70,9 @@
                   </div>
                   <div class="mt-2">
                     Category:
-                    <span class="ml-2">{{road.category ? road.category : dummy.category}}</span>
+                    <span
+                      class="ml-2"
+                    >{{road.category ? categories[road.category] : dummy.category}}</span>
                   </div>
                 </div>
               </div>
@@ -154,34 +160,39 @@
           </div>
         </div>
       </div>
+      <div class="prediction">
+        <h3
+          style="font-weight: 300; margin-bottom: 2rem; margin-top:3rem;"
+        >Predicted upcoming repair date</h3>
+        <div style="width: 40%;">
+          <div class="alert alert-success" role="alert">
+            Upcoming Repair Date: {{ upcoming }} Months
+          </div>
+        </div>
+      </div>
       <div class="complaints">
         <h3 style="font-weight: 300; margin-bottom: 2rem;">Active Complaints</h3>
         <table class="table table-bordered" style="border: 1px solid gray;">
           <thead class="thead-dark">
             <tr>
               <th scope="col">Complaint ID</th>
-              <th scope="col">Location</th>
-              <th scope="col">District</th>
               <th scope="col">Defect Type</th>
               <th scope="col">Reported On</th>
+              <th scope="col">Remark</th>
               <th scope="col">Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="complaint in road.complaints ? road.complaints : dummy.complaints"
-              :key="complaint.id"
-            >
+            <tr v-for="complaint in complaints" :key="complaint.id">
               <router-link
                 tag="td"
-                :to="{name: 'complaint', params: {id: complaint.id}}"
+                :to="{name: 'complaint', params: {id: complaint.complaint_id}}"
                 style="cursor: pointer; text-decoration: underline;"
-              >{{ complaint.id }}</router-link>
-              <td>{{complaint.location}}</td>
-              <td>{{complaint.district}}</td>
-              <td>{{complaint.type}}</td>
-              <td>{{complaint.reported}}</td>
-              <td>{{complaint.status}}</td>
+              >{{ complaint.complaint_id }}</router-link>
+              <td>{{ complaint.defect_type }}</td>
+              <td>{{ complaint.reported_month }}/{{ complaint.reported_year }}</td>
+              <td>{{ complaint.remark }}</td>
+              <td>{{ complaint.is_verified ? "Verified" : "Pending Verification" }}</td>
             </tr>
           </tbody>
         </table>
@@ -196,24 +207,32 @@
               <th scope="col">Actual Cost</th>
               <th scope="col">Started On</th>
               <th scope="col">Completed On</th>
-              <th scope="col">Task</th>
+              <th scope="col">Remarks</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="tender in road.tenders ? road.tenders : dummy.tenders" :key="tender.id">
-              <router-link
-                tag="td"
-                :to="{name: 'tender', params: {id: tender.id}}"
-                style="cursor: pointer; text-decoration: underline;"
-              >{{ tender.id }}</router-link>
-              <td>{{tender.expectedCost}}</td>
-              <td>{{tender.actualCost}}</td>
-              <td>{{tender.startedOn}}</td>
-              <td>{{tender.completedOn}}</td>
-              <td>{{tender.task}}</td>
+            <tr v-for="tender in tenders" :key="tender.id">
+              <td>{{tender.tender_id}}</td>
+              <td>₹{{tender.est_cost}}</td>
+              <td>
+                ₹{{tender.act_cost}}
+                <span
+                  class="text-danger ml-3"
+                  v-if="tender.act_cost > tender.est_cost"
+                >+{{tender.act_cost - tender.est_cost}}</span>
+              </td>
+              <td>{{tender.cons_month}}/{{tender.cons_year}}</td>
+              <td>{{tender.comp_month + 1}}/{{tender.comp_year}}</td>
+              <td>{{tender.tender_remarks}}</td>
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="graphs mt-4">
+        <h3 style="font-weight: 300; margin-bottom: 3rem;">Graphs</h3>
+        <div style="width: 700px;">
+        <canvas id="barchart" ref="barchart"></canvas>
+        </div>
       </div>
     </template>
   </div>
@@ -221,6 +240,8 @@
 
 <script>
 // import roads from "./roads";
+import { categories } from "./enums";
+import Chart from "chart.js";
 
 export default {
   name: "road",
@@ -230,7 +251,11 @@ export default {
     return {
       loaded: false,
       roadid: "",
+      categories: categories,
       road: {},
+      complaints: [],
+      upcoming: 0,
+      tenders: [],
       dummy: {
         mapUrl:
           "https://www.google.com/maps/d/u/0/embed?mid=12cBAhgQUhwfqIuE3mBGX-7mMcpWz8UFt",
@@ -248,10 +273,44 @@ export default {
     };
   },
   mounted() {
-    setTimeout(() => {
-      // this.road = roads.find((road) => road.id == this.$route.params.id);
-      this.loaded = true;
-    }, 300);
+    this.axios
+      .post("road", { op: "byid_kp", args: parseInt(this.$route.params.id) })
+      .then(({ data }) => {
+        console.log(data);
+        this.road = data[0];
+        this.loaded = true;
+        console.log(this.road);
+
+        
+
+        this.axios
+          .post("tender", {
+            op: "roads_kp",
+            args: parseInt(this.$route.params.id),
+          })
+          .then(({ data }) => {
+            this.tenders = data;
+            this.drawCostBar();
+          });
+
+        this.axios.get("cost_pred").then(({data}) => {
+          this.upcoming = data.time[parseInt(this.$route.params.id)];
+        }).catch(err => {
+          console.error(err);
+        })
+
+        this.axios
+          .post("complaint", {
+            op: "roads_kp",
+            args: parseInt(this.$route.params.id),
+          })
+          .then(({ data }) => {
+            this.complaints = data;
+          });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
 
     for (let i = 0; i < 3 + Math.ceil(Math.random() * 10); i++) {
       this.dummy.tenders.push({
@@ -276,8 +335,46 @@ export default {
         status: "Not Verified",
       });
     }
-
   },
+  methods: {
+    drawCostBar() {
+      let expected = [];
+      let actual = [];
+      let labels = [];
+
+      this.tenders.forEach((tender) => {
+        expected.push(tender.est_cost);
+        actual.push(tender.act_cost);
+        labels.push("Tender ID:"+tender.tender_id);
+      });
+
+      new Chart(this.$refs.barchart, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Expected Cost',
+              data: expected,
+              backgroundColor: 'blue'
+            },
+            {
+              label: 'Actual Cost',
+              data: actual,
+              backgroundColor: 'red'
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Expected vs Actual Cost Comparison",
+            fontSize: 16,
+          },
+        },
+      });
+    }
+  }
 };
 </script>
 

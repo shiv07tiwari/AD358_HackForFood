@@ -16,6 +16,11 @@ export default {
   components: {
     Navbar,
   },
+  mounted() {
+    
+    
+
+  },
 };
 </script>
 
@@ -82,4 +87,17 @@ export default {
     float: left;
   }
 }
+
+.complaints-table {
+  .header-fixed > thead > tr > th {
+    width: 14.2857142857%;
+    float: left;
+  }
+
+  .header-fixed > tbody > tr > td {
+    width: 14.27%;
+    float: left;
+  }
+}
+
 </style>
