@@ -7,6 +7,7 @@
         <form class="form-inline">
           <label class="sr-only" for="inlineFormInputName2">Name</label>
           <input
+            @change="(e) => {idChange(e)}"
             type="text"
             class="form-control mr-sm-2"
             id="inlineFormInputName2"
@@ -14,19 +15,24 @@
           />
           <label class="sr-only" for="inlineFormInputName2">Name</label>
           <input
+            @change="(e) => {roadChange(e)}"
             type="text"
             class="form-control mr-sm-2"
             id="inlineFormInputName2"
             placeholder="Search By Road ID"
           />
-          <select class="custom-select mr-2" id="inlineFormCustomSelectPref">
-            <option selected>District</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <select
+            class="custom-select mr-2"
+            id="inlineFormCustomSelectPref"
+            @change="(e) => {distChange(e)}"
+          >
+            <option selected value="all">All</option>
+            <option
+              v-for="district in districts_l"
+              :key="district[0].toString()"
+              :value="district[0]"
+            >{{ district[1] }}</option>
           </select>
-
-          <button type="submit" class="btn btn-primary ml-2">Filter Complaints</button>
         </form>
       </div>
       <table class="table table-bordered header-fixed" style="border: 1px solid gray;">
@@ -67,7 +73,7 @@
       <div style="width: 500px;">
         <div style="display: flex;">
           <canvas id="piechart" ref="piechart"></canvas>
-          <canvas id="barchart" ref="barchart"></canvas>
+          <canvas id="barchart" ref="barchart" class="ml-5"></canvas>
         </div>
       </div>
     </div>
@@ -75,59 +81,177 @@
 </template>
 
 <script>
-
-import {district} from './enums';
+import { district } from "./enums";
 
 import Chart from "chart.js";
 
 export default {
   name: "maintenance-portal",
   components: {},
-  methods: {},
+  methods: {
+    defectsPie() {
+      let counts = {
+        pothole: 0,
+        sign_board: 0,
+        lights: 0,
+        crack: 0,
+        others: 0,
+      };
+
+      this.active.forEach((complaint) => {
+        counts[complaint.defect_type] += 1;
+      });
+
+      new Chart(this.$refs.piechart, {
+        type: "pie",
+        data: {
+          labels: ["pothole", "sign_board", "lights", "crack", "others"],
+          datasets: [
+            {
+              label: "2018 Sales",
+              data: [
+                counts.pothole,
+                counts.sign_board,
+                counts.lights,
+                counts.crack,
+                counts.others,
+              ],
+              backgroundColor: [
+                "#003f5c",
+                "#58508d",
+                "#ff6361",
+                "#ffa600",
+                "#ffc000",
+              ],
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Distribution by Defect Type",
+            fontSize: 16,
+          },
+        },
+      });
+    },
+    defectsByMonthBar() {
+      let counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+      this.active.forEach((complaint) => {
+        counts[complaint.reported_month - 1] += 1;
+      });
+
+      console.log(counts);
+
+      new Chart(this.$refs.barchart, {
+        type: "bar",
+        data: {
+          labels: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+          datasets: [
+            {
+              data: counts,
+              backgroundColor: [
+                "#003f5c",
+                "#58508d",
+                "#ff6361",
+                "#ffa600",
+                "#ffc000",
+                "#003f5c",
+                "#58508d",
+                "#ff6361",
+                "#ffa600",
+                "#ffc000",
+                "#003f5c",
+                "#58508d",
+              ],
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Distribution by Months",
+            fontSize: 16,
+          },
+        },
+      });
+    },
+    distChange(e) {
+      if (e.target.value === "all" || e.target.value === "bvn") {
+        this.active = this.complaints;
+        this.redrawCharts();
+        return;
+      }
+
+      this.active = this.complaints.filter((complaint) => {
+        return complaint.district === e.target.value;
+      });
+
+      this.redrawCharts();
+    },
+    idChange(e) {
+      console.log(e.target);
+
+      if (e.target.value === "") {
+        this.active = this.complaints;
+        this.redrawCharts();
+        return;
+      }
+
+      this.active = this.complaints.filter((complaint) => {
+        return complaint.complaint_id == e.target.value;
+      });
+    },
+    roadChange(e) {
+      if (e.target.value === "") {
+        this.active = this.complaints;
+        this.redrawCharts();
+        return;
+      }
+
+      this.active = this.complaints.filter((complaint) => {
+        return complaint.road_id == e.target.value;
+      });
+
+      this.redrawCharts();
+    },
+    redrawCharts() {
+      this.defectsPie();
+      this.defectsByMonthBar();
+    },
+  },
   mounted() {
     this.axios
       .post("complaint", { op: "all_join_kp" })
       .then(({ data }) => {
-        this.complaints = data;
-        this.active = data;
+        this.complaints = data.filter((complaint) => !complaint.is_resolved);
+        this.active = this.complaints;
+        this.redrawCharts();
       })
       .catch((err) => {
         console.error(err);
       });
-
-    new Chart(this.$refs.piechart, {
-      type: "pie",
-      data: {
-        labels: ["Pothole", "Sign Boards", "Light", "Other"],
-        datasets: [
-          {
-            label: "2018 Sales",
-            data: [23, 5, 12, 20],
-            backgroundColor: ["#003f5c", "#58508d", "#ff6361", "#ffa600"],
-          },
-        ],
-      },
-    });
-
-    new Chart(this.$refs.barchart, {
-      type: "bar",
-      data: {
-        labels: ["May", "June", "July", "August"],
-        datasets: [
-          {
-            label: "Defects by month",
-            data: [76, 90, 80, 5],
-            backgroundColor: ["#003f5c", "#58508d", "#ff6361", "#ffa600"],
-          },
-        ],
-      },
-    });
   },
   data() {
     return {
       complaints: [],
       active: [],
-      districts: district
+      districts: district,
+      districts_l: Object.entries(district),
     };
   },
 };

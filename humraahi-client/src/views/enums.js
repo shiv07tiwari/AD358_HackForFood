@@ -28,5 +28,3 @@ export const materials = {
     "b": "Bituminous",
     "c": "Concrete"
 };
-
-
