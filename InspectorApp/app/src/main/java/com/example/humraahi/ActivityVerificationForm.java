@@ -92,6 +92,7 @@ public class ActivityVerificationForm extends AppCompatActivity {
         final CheckBox vehicleUsageM = findViewById(R.id.vu_med);
         final CheckBox vehicleUsageH = findViewById(R.id.vu_high);
         Button submitButton = findViewById(R.id.verification_submit);
+        String complaint_id;
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -99,6 +100,8 @@ public class ActivityVerificationForm extends AppCompatActivity {
             public void onClick(View v) {
                 Log.e("log", "HEREEEEE");
                 VerificationData = new HashMap<>();
+
+                String complaint_id = getIntent().getStringExtra("COMP_ID");
 
                 VerificationData.put("audit", audit.getSelectedItem().toString());
                 VerificationData.put("road_name", roadName.getText().toString());
@@ -202,7 +205,7 @@ public class ActivityVerificationForm extends AppCompatActivity {
                 int randomNum = ThreadLocalRandom.current().nextInt(30, 70 + 1);
                 VerificationData.put("sub_id", Integer.toString(randomNum));
                 randomNum = ThreadLocalRandom.current().nextInt(1, 200);
-                VerificationData.put("complaint_id", Integer.toString(randomNum));
+                VerificationData.put("complaint_id", complaint_id);
 
                 Log.e("log", "Count: "+VerificationData.size());
                 // 22

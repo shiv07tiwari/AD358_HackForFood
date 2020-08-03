@@ -73,7 +73,7 @@ public class SchedulesCustomAdaptor extends RecyclerView.Adapter<SchedulesCustom
         TextView textViewLocationName = holder.textViewLocation;
         TextView textViewAssignedDateName = holder.textViewAssignedDate;
         TextView textViewDeadlineDateName = holder.textViewDeadlineDate;
-        TextView textViewProjectIdName = holder.textViewProjectId;
+        final TextView textViewProjectIdName = holder.textViewProjectId;
         final TextView textViewTagName = holder.textViewTag;
         Button startButtonName = holder.startButton;
 
@@ -92,6 +92,7 @@ public class SchedulesCustomAdaptor extends RecyclerView.Adapter<SchedulesCustom
             public void onClick(View v) {
                 if(textViewTagName.getText().equals("Verification")) {
                     Intent i = new Intent(mContext, ActivityVerificationForm.class);
+                    i.putExtra("COMP_ID", textViewProjectIdName.getText().toString());
                     mContext.startActivity(i);
                 }else{
                     Intent i = new Intent(mContext, ActivityInspectionForm.class);

@@ -213,7 +213,7 @@ public class InspectorHomeActivity extends AppCompatActivity {
 
                     String tag = (s.is_verified())?"Inspection":"Verification";
                     ScheduleDetails sch_ = new ScheduleDetails(add, "02-07-2020", s.getDefect_type(),
-                            "10-10-2020", tag, s.getRoad_id());
+                            "10-10-2020", tag, s.getComplaint_id());
                     Log.e("Log", "STATUS: "+s.is_resolved());
                     if (s.is_resolved()) {
                         scheduleList2.addSchedule(sch_);
