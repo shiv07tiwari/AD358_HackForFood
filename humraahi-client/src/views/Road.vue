@@ -228,6 +228,12 @@
           </tbody>
         </table>
       </div>
+      <div class="graphs mt-4">
+        <h3 style="font-weight: 300; margin-bottom: 3rem;">Graphs</h3>
+        <div style="width: 700px;">
+        <canvas id="barchart" ref="barchart"></canvas>
+        </div>
+      </div>
     </template>
   </div>
 </template>
@@ -235,6 +241,7 @@
 <script>
 // import roads from "./roads";
 import { categories } from "./enums";
+import Chart from "chart.js";
 
 export default {
   name: "road",
@@ -274,6 +281,8 @@ export default {
         this.loaded = true;
         console.log(this.road);
 
+        
+
         this.axios
           .post("tender", {
             op: "roads_kp",
@@ -281,6 +290,7 @@ export default {
           })
           .then(({ data }) => {
             this.tenders = data;
+            this.drawCostBar();
           });
 
         this.axios.get("cost_pred").then(({data}) => {
@@ -326,6 +336,45 @@ export default {
       });
     }
   },
+  methods: {
+    drawCostBar() {
+      let expected = [];
+      let actual = [];
+      let labels = [];
+
+      this.tenders.forEach((tender) => {
+        expected.push(tender.est_cost);
+        actual.push(tender.act_cost);
+        labels.push("Tender ID:"+tender.tender_id);
+      });
+
+      new Chart(this.$refs.barchart, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Expected Cost',
+              data: expected,
+              backgroundColor: 'blue'
+            },
+            {
+              label: 'Actual Cost',
+              data: actual,
+              backgroundColor: 'red'
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Expected vs Actual Cost Comparison",
+            fontSize: 16,
+          },
+        },
+      });
+    }
+  }
 };
 </script>
 

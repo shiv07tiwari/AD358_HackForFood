@@ -25,12 +25,21 @@
           </div>
         </div>
         <div class="content" style="flex: 1">
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >View Inspection Report</button>
+          <div v-if="complaint.local_name && complaint.local_name.length">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >View Inspection Report</button>
+            <button type="button" class="btn btn-success ml-2" @click="resolve">Resolve</button>
+          </div>
+          <div v-else>
+            <div v-if="complaint.assigned_insp_id !== 3">
+              <button type="button" class="btn btn-success" @click="assign">Assign to Inspector</button>
+            </div>
+            <div v-else>Assigned. Pending Report.</div>
+          </div>
 
           <!-- Modal -->
           <div
@@ -58,8 +67,15 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-dismiss="modal">Verify</button>
-                  <button type="button" class="btn btn-danger">Reject</button>
+                  <div v-if="!complaint.is_verified">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    data-dismiss="modal"
+                    @click="verify"
+                  >Verify</button>
+                  </div>
+                  <button type="button" class="btn btn-danger" @click="resolve">Reject</button>
                 </div>
               </div>
             </div>
@@ -94,7 +110,10 @@
                   </div>
                   <div class="mt-2">
                     Type:
-                    <span class="ml-2" style="text-transform: capitalize;">{{complaint.defect_type}}</span>
+                    <span
+                      class="ml-2"
+                      style="text-transform: capitalize;"
+                    >{{complaint.defect_type}}</span>
                   </div>
                   <div class="mt-2">
                     Reported On:
@@ -193,7 +212,7 @@ export default {
       .then(({ data }) => {
         console.log(data);
         this.complaint = data[0];
-        
+
         this.report_keys = Object.keys(this.report);
 
         console.log(this.$refs);
@@ -227,6 +246,47 @@ export default {
           title: "Pothole",
         });
       });
+  },
+  methods: {
+    verify() {
+      this.axios
+        .post("complaint", {
+          op: "verify",
+          args: parseInt(this.$route.params.id),
+        })
+        .then(() => {
+          this.$router.go();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    assign() {
+      this.axios
+        .post("complaint", {
+          op: "assign",
+          args: parseInt(this.$route.params.id),
+        })
+        .then(() => {
+          this.$router.go();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    resolve() {
+      this.axios
+        .post("complaint", {
+          op: "resolve",
+          args: parseInt(this.$route.params.id),
+        })
+        .then(() => {
+          this.$router.go();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
   },
 };
 </script>

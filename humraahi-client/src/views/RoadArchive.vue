@@ -7,7 +7,17 @@
       width="1740"
       height="480"
     ></iframe>
-
+    <div v-show="!loaded">
+      <div
+        style="display: flex; width: 100%; justify-content: center; align-items: center; flex-direction: column; height: 20vh;"
+      >
+        <div class="spinner-border text-info mb-3" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <h3 style="font-weight: 300;">Loading please wait.</h3>
+      </div>
+    </div>
+    <template v-if="loaded">
     <div class="roads-table">
       <h3 style="font-weight: 300; margin-bottom: 2rem;">Roads</h3>
       <div style="margin-bottom: 2rem;">
@@ -64,14 +74,20 @@
       </table>
     </div>
     <div class="analytics">
-      <!-- <h3 style="font-weight: 300; margin-bottom: 3rem;">Analytics</h3> -->
+      <h3 style="font-weight: 300; margin-bottom: 3rem;">Predicted Budget for Upcoming Months</h3>
+      <div style="width: 700px;">
+          <div style="display: flex;">
+            <canvas id="barchart" ref="barchart"></canvas>
+          </div>
+        </div>
     </div>
+    </template>
   </div>
 </template>
 
 <script>
 import { district, categories } from "./enums";
-
+import Chart from "chart.js";
 export default {
   name: "road-archive",
   components: {},
@@ -83,6 +99,42 @@ export default {
       }
       this.active = this.roads.filter((complaint) => {
         return complaint.road_id == e.target.value;
+      });
+    },
+    defectsByMonthBar() {
+      new Chart(this.$refs.barchart, {
+        type: "line",
+        data: {
+          labels: [
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+          ],
+          datasets: [
+            {
+              data: this.costs,
+              borderColor: "#FFCC00",
+              backgroundColor: 'white',
+              label: "Cost (₹)"
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Distribution by Months",
+            fontSize: 16,
+          },
+        },
       });
     },
     distChange(e) {
@@ -101,6 +153,20 @@ export default {
       .then(({ data }) => {
         this.roads = data;
         this.active = data;
+        this.loaded = true;
+
+        this.axios
+          .get("cost_pred")
+          .then(({ data }) => {
+            for(let i = 1; i <= 12; i++) {
+              this.costs.push(data.cost[i]);
+            }
+            this.defectsByMonthBar();
+            console.log(this.costs);
+          })
+          .catch((err) => {
+            console.err(err);
+          });
       })
       .catch((err) => {
         console.err(err);
@@ -110,6 +176,8 @@ export default {
     return {
       roads: [],
       active: [],
+      costs: [],
+      loaded: false,
       districts: district,
       categories: categories,
       categories_l: Object.entries(categories),
