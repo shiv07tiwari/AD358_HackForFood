@@ -562,7 +562,7 @@ def up_sched():
     comp_data = pd.read_csv('../data/comp_data.csv')
     road_data = pd.read_csv('../data/final-road-data.csv')
     
-    data = comp_data[comp_data['is_verified'] == True].join(road_data.set_index('road_id'), on = 'road_id')
+    data = comp_data.join(road_data.set_index('road_id'), on = 'road_id')
     #print(data)
     data = get_prioritized(data)
     
@@ -574,11 +574,11 @@ def cost_pred():
     comp_data = pd.read_csv('../data/comp_data.csv')
     road_data = pd.read_csv('../data/final-road-data.csv')
     
-    data = comp_data[comp_data['is_verified'] == True].join(road_data.set_index('road_id'), on = 'road_id')
+    data = comp_data.join(road_data.set_index('road_id'), on = 'road_id')
 
     time = get_repair_time(data,road_life_model,road_life_scaler)
     data = get_repair_cost(data,road_cost_model,road_cost_scaler_X, road_cost_scaler_y, road_life_model,road_life_scaler)
-    return json.dumps({"cost" : data, "")
+    return json.dumps({"cost" : data, "time": time})
     # get road repair priority 
     
 
