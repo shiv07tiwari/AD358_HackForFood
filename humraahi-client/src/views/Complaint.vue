@@ -21,7 +21,7 @@
           <div id="map" ref="map" style="width: 100%;"></div>
           <div class="images mt-4">
             <h5 style="font-weight: 300; margin-bottom: 1rem;">Images:</h5>
-            <img src="@/assets/defect.jpg" style="width:100%;" />
+            <img src="@/assets/defect.jpg" style="width:80%;" />
           </div>
         </div>
         <div class="content" style="flex: 1">
@@ -49,7 +49,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body" style="padding: 4rem;">
+                <div class="modal-body" style="padding: 2rem 4rem;">
                   <div class="row">
                     <div class="col col-md-4 mb-3" v-for="key in report_keys" :key="key">
                       <h5 style="text-transform: capitalize;">{{key.split('_').join(' ')}}</h5>
@@ -94,7 +94,7 @@
                   </div>
                   <div class="mt-2">
                     Type:
-                    <span class="ml-2">Pothole</span>
+                    <span class="ml-2" style="text-transform: capitalize;">{{complaint.defect_type}}</span>
                   </div>
                   <div class="mt-2">
                     Reported On:
@@ -199,6 +199,7 @@ export default {
         console.log(this.$refs);
 
         this.map = new window.google.maps.Map(this.$refs["map"], {
+          streetViewControl: false,
           center: { lat: this.complaint.lat, lng: this.complaint.lng },
           zoom: 18,
           width: 100,

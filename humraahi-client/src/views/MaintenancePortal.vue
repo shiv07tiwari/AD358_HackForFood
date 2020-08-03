@@ -1,79 +1,91 @@
 <template>
-  <div class="app-maintenance-portal">
-    <h1 style="font-weight: 300;">Maintenance Portal</h1>
-    <div class="complaints-table">
-      <h3 style="font-weight: 300; margin-bottom: 2rem;">Active Complaints</h3>
-      <div style="margin-bottom: 2rem;">
-        <form class="form-inline">
-          <label class="sr-only" for="inlineFormInputName2">Name</label>
-          <input
-            @change="(e) => {idChange(e)}"
-            type="text"
-            class="form-control mr-sm-2"
-            id="inlineFormInputName2"
-            placeholder="Search By Complaint ID"
-          />
-          <label class="sr-only" for="inlineFormInputName2">Name</label>
-          <input
-            @change="(e) => {roadChange(e)}"
-            type="text"
-            class="form-control mr-sm-2"
-            id="inlineFormInputName2"
-            placeholder="Search By Road ID"
-          />
-          <select
-            class="custom-select mr-2"
-            id="inlineFormCustomSelectPref"
-            @change="(e) => {distChange(e)}"
-          >
-            <option selected value="all">All</option>
-            <option
-              v-for="district in districts_l"
-              :key="district[0].toString()"
-              :value="district[0]"
-            >{{ district[1] }}</option>
-          </select>
-        </form>
+  <div>
+    <div v-show="!loaded">
+      <div
+        style="display: flex; width: 100%; justify-content: center; align-items: center; flex-direction: column; height: 70vh;"
+      >
+        <div class="spinner-border text-info mb-3" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <h3 style="font-weight: 300;">Loading please wait.</h3>
       </div>
-      <table class="table table-bordered header-fixed" style="border: 1px solid gray;">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Complaint ID</th>
-            <th scope="col">Road ID</th>
-            <th scope="col">District</th>
-            <th scope="col">Defect Type</th>
-            <th scope="col">Reported On</th>
-            <th scope="col">Remark</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="complaint in active" :key="complaint.complaint_id">
-            <router-link
-              tag="td"
-              :to="{name: 'complaint', params: {id: complaint.complaint_id}}"
-              style="cursor: pointer; text-decoration: underline;"
-            >{{ complaint.complaint_id }}</router-link>
-            <router-link
-              tag="td"
-              :to="{name: 'road', params: {id: complaint.road_id}}"
-              style="cursor: pointer; text-decoration: underline;"
-            >{{ complaint.road_id }}</router-link>
-            <td>{{ districts[complaint.district] }}</td>
-            <td>{{ complaint.defect_type }}</td>
-            <td>{{ complaint.reported_month }}/{{ complaint.reported_year }}</td>
-            <td>{{ complaint.remark }}</td>
-            <td>{{ complaint.is_verified ? "Verified" : "Pending Verification" }}</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-    <div class="analytics">
-      <h3 style="font-weight: 300; margin-bottom: 3rem;">Analytics</h3>
-      <div style="width: 500px;">
-        <div style="display: flex;">
-          <canvas id="piechart" ref="piechart"></canvas>
-          <canvas id="barchart" ref="barchart" class="ml-5"></canvas>
+    <div v-show="loaded" class="app-maintenance-portal">
+      <h1 style="font-weight: 300;">Maintenance Portal</h1>
+      <div class="complaints-table">
+        <h3 style="font-weight: 300; margin-bottom: 2rem;">All Active Complaints</h3>
+        <div style="margin-bottom: 2rem;">
+          <form class="form-inline">
+            <label class="sr-only" for="inlineFormInputName2">Name</label>
+            <input
+              @change="(e) => {idChange(e)}"
+              type="text"
+              class="form-control mr-sm-2"
+              id="inlineFormInputName2"
+              placeholder="Search By Complaint ID"
+            />
+            <label class="sr-only" for="inlineFormInputName2">Name</label>
+            <input
+              @change="(e) => {roadChange(e)}"
+              type="text"
+              class="form-control mr-sm-2"
+              id="inlineFormInputName2"
+              placeholder="Search By Road ID"
+            />
+            <select
+              class="custom-select mr-2"
+              id="inlineFormCustomSelectPref"
+              @change="(e) => {distChange(e)}"
+            >
+              <option selected value="all">All</option>
+              <option
+                v-for="district in districts_l"
+                :key="district[0].toString()"
+                :value="district[0]"
+              >{{ district[1] }}</option>
+            </select>
+          </form>
+        </div>
+        <table class="table table-bordered header-fixed" style="border: 1px solid gray;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Complaint ID</th>
+              <th scope="col">Road ID</th>
+              <th scope="col">District</th>
+              <th scope="col">Defect Type</th>
+              <th scope="col">Reported On</th>
+              <th scope="col">Remark</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="complaint in active" :key="complaint.complaint_id">
+              <router-link
+                tag="td"
+                :to="{name: 'complaint', params: {id: complaint.complaint_id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.complaint_id }}</router-link>
+              <router-link
+                tag="td"
+                :to="{name: 'road', params: {id: complaint.road_id}}"
+                style="cursor: pointer; text-decoration: underline;"
+              >{{ complaint.road_id }}</router-link>
+              <td>{{ districts[complaint.district] }}</td>
+              <td>{{ complaint.defect_type }}</td>
+              <td>{{ complaint.reported_month }}/{{ complaint.reported_year }}</td>
+              <td>{{ complaint.remark }}</td>
+              <td>{{ complaint.is_verified ? "Verified" : "Pending Verification" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="analytics">
+        <h3 style="font-weight: 300; margin-bottom: 3rem;">Analytics</h3>
+        <div style="width: 500px;">
+          <div style="display: flex;">
+            <canvas id="piechart" ref="piechart"></canvas>
+            <canvas id="barchart" ref="barchart" class="ml-5"></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -238,9 +250,13 @@ export default {
     this.axios
       .post("complaint", { op: "all_join_kp" })
       .then(({ data }) => {
+        this.loaded = true;
         this.complaints = data.filter((complaint) => !complaint.is_resolved);
         this.active = this.complaints;
-        this.redrawCharts();
+
+        setTimeout(() => {
+          this.redrawCharts();
+        }, 700);
       })
       .catch((err) => {
         console.error(err);
@@ -250,6 +266,7 @@ export default {
     return {
       complaints: [],
       active: [],
+      loaded: false,
       districts: district,
       districts_l: Object.entries(district),
     };

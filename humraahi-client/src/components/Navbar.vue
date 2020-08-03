@@ -18,6 +18,8 @@
       <div class="navbar-nav">
         <router-link tag="a" :to="{name: 'maintenance'}" class="nav-item nav-link" active-class="active">Maintenance Portal</router-link>
         <router-link tag="a" :to="{name: 'roads'}" class="nav-item nav-link" active-class="active">Road Library Portal</router-link>
+        <router-link tag="a" :to="{name: 'upload'}" class="nav-item nav-link" active-class="active">Upload Data</router-link>
+      
       </div>
     </div>
   </nav>
