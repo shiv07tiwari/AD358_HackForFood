@@ -10,6 +10,8 @@ import numpy as np
 from flask_cors import CORS, cross_origin
 from spothole import isPotHole
 import pandas as pd
+import pickle
+from utils import *
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -542,15 +544,36 @@ def db_road():
         road_data.to_csv('../data/final-road-data.csv', index = False)
         return json.dumps("success")
 
-@app.route('/analyze', methods = ['POST'])
-def analyze():
-    body = request.get_json()
-    
+@app.route('/up_sched', methods = ['GET'])
+def up_sched():
     comp_data = pd.read_csv('../data/comp_data.csv')
     road_data = pd.read_csv('../data/final-road-data.csv')
+    
+    data = comp_data[comp_data['is_verified'] == True].join(road_data.set_index('road_id'), on = 'road_id')
+    #print(data)
+    data = get_prioritized(data)
+    
+    return json.dumps(tuple(data.reset_index(drop = True).to_dict('index').values()))
+    # get road repair priority 
 
+@app.route('/cost_pred', methods = ['GET'])
+def cost_pred():
+    comp_data = pd.read_csv('../data/comp_data.csv')
+    road_data = pd.read_csv('../data/final-road-data.csv')
+    
+    data = comp_data[comp_data['is_verified'] == True].join(road_data.set_index('road_id'), on = 'road_id')
+
+    time = get_repair_time(data,road_life_model,road_life_scaler)
+    data = get_repair_cost(data,road_cost_model,road_cost_scaler_X, road_cost_scaler_y, road_life_model,road_life_scaler)
+    return json.dumps(tuple(data.reset_index(drop = True).to_dict('index').values()))
     # get road repair priority 
     
 
 if __name__ == "__main__":
+        # Load models and scalers
+    road_life_model = pickle.load(open('./road_life_prediction_model.sav', 'rb'))
+    road_cost_model = pickle.load(open('./road_cost_prediction.sav', 'rb'))
+    road_life_scaler = pickle.load(open('./road_life_scaler.pkl', 'rb'))
+    road_cost_scaler_X = pickle.load(open('./road_cost_scaler_X.pkl', 'rb'))
+    road_cost_scaler_y = pickle.load(open('./road_cost_scaler_y.pkl', 'rb'))
     app.run(debug=True, port=5000)

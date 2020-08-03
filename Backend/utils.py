@@ -14,13 +14,13 @@ def scale(arr, min, max):
 
 
 def get_prioritized(data):
-    data.sort_values(by='priority', ascending=False)
+    data = data.sort_values(by='priority', ascending=False)
     return data
 
 
 def get_repair_time(data, model, sc_road_life):
     features = data[['activeYear', 'single_axle_load', 'crack', 'potholes', 'rut', 'long_crack']]
-    id = list(data['id'].values)
+    id = list(data['road_id'].values)
 
     features['activeYear'] = features['activeYear'].apply(get_age)  # age
     features = features.to_numpy()
@@ -45,7 +45,7 @@ def get_repair_time(data, model, sc_road_life):
 
 
 def get_repair_cost(data, cost_model, sc_X, sc_y, time_model, sc):
-    ids = list(data['id'].values)
+    ids = list(data['road_id'].values)
     repair_times = get_repair_time(data, time_model, sc)
 
     features = data[['hvd', 'lvd', 'activeYear', 'average_temperature', 'average_temperature',
