@@ -118,6 +118,13 @@
                     android:scrollbars="horizontal">
                 </androidx.recyclerview.widget.RecyclerView>
             </RelativeLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:background="#26974D"
+                android:id="@+id/tutorial_button"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Inspection and Workflow Tutorial"/>
         </LinearLayout>
     </RelativeLayout>
     </ScrollView>

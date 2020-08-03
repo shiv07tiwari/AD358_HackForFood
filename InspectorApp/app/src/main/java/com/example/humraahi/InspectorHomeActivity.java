@@ -1,7 +1,10 @@
 package com.example.humraahi;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -39,7 +42,6 @@ public class InspectorHomeActivity extends AppCompatActivity {
 
         scheduleList = new ScheduleList();
         for (int i = 0; i < 6; i++) {
-
             scheduleList.addSchedule(new ScheduleDetails("Mahatma Gandhi Road, Delhi", "02-07-2020", "10-07-2020", "Inspection", i+31));
         }
 
@@ -50,21 +52,22 @@ public class InspectorHomeActivity extends AppCompatActivity {
             scheduleList.addSchedule(new ScheduleDetails("Civil Lines, Delhi", "02-07-2020", "10-07-2020", "Inspection", i+20));
         }
         setTasks(recyclerViewCompletedTasks, scheduleList);
+
+        Button tut = findViewById(R.id.tutorial_button);
+        tut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(InspectorHomeActivity.this, TutorialActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     protected void setTasks(RecyclerView recyclerView, ScheduleList schedules){
-
-
-
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
         recyclerView.setLayoutManager(layoutManager);
-
-
         adapter = new SchedulesCustomAdaptor(schedules, this);
         recyclerView.setAdapter(adapter);
-
-
     }
 
 }

@@ -9,16 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+        <activity android:name=".TutorialActivity">
+        </activity>
         <activity android:name=".LoginActivity">
+
+        </activity>
+        <activity android:name=".InspectorHomeActivity" />
+        <activity android:name=".ActivityVerificationForm" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InspectorHomeActivity"></activity>
-        <activity android:name=".ActivityVerificationForm"></activity>
-        <activity android:name=".ActivityInspectionForm"></activity>
+        <activity android:name=".ActivityInspectionForm" >
+
+        </activity>
     </application>
 
 </manifest>
