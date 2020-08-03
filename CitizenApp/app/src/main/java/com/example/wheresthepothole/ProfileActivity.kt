@@ -55,6 +55,11 @@ class ProfileActivity : AppCompatActivity(){
                     startActivity(i)
 
                 }
+                R.id.report_id -> {
+                    val i = Intent(this,CompActivity::class.java)
+                    startActivity(i)
+
+                }
                 R.id.invite_id -> {
                 }
                 R.id.logout_id -> {

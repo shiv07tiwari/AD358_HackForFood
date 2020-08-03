@@ -944,6 +944,10 @@
         "source": "/home/shivansh_tiwari/.gradle/caches/transforms-2/files-2.1/966705fa1586529d1007328cb45c977f/appcompat-1.0.2/res/drawable-hdpi-v4/abc_scrubber_track_mtrl_alpha.9.png"
     },
     {
+        "merged": "/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/build/intermediates/res/merged/debug/layout_activity_comp.xml.flat",
+        "source": "/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/src/main/res/layout/activity_comp.xml"
+    },
+    {
         "merged": "/home/shivansh_tiwari/Desktop/AD358_HackForFood_BML_MUNJAL_UNIVERSITY/CitizenApp/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_osm_ic_follow_me.png.flat",
         "source": "/home/shivansh_tiwari/.gradle/caches/transforms-2/files-2.1/a9bad88a2a98456a2bddf9a6455a3a1f/osmdroid-android-6.1.1/res/drawable-xhdpi-v4/osm_ic_follow_me.png"
     },

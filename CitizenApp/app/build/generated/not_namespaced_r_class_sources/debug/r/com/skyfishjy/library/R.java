@@ -34,8 +34,8 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int fillRipple = 0x7f080058;
-        public static final int strokeRipple = 0x7f0800cb;
+        public static final int fillRipple = 0x7f08005a;
+        public static final int strokeRipple = 0x7f0800ce;
     }
     public static final class styleable {
         private styleable() {}
