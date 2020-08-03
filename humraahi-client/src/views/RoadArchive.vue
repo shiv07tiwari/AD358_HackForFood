@@ -14,18 +14,24 @@
         <form class="form-inline">
           <label class="sr-only" for="inlineFormInputName2">Name</label>
           <input
+            @change="(e) => {roadChange(e)}"
             type="text"
             class="form-control mr-sm-2"
             id="inlineFormInputName2"
             placeholder="Search By Road ID"
           />
-          <select class="custom-select mr-2" id="inlineFormCustomSelectPref">
-            <option selected>District</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <select
+            class="custom-select mr-2"
+            id="inlineFormCustomSelectPref"
+            @change="(e) => {distChange(e)}"
+          >
+            <option selected value="all">All</option>
+            <option
+              v-for="category in categories_l"
+              :key="category[0].toString()"
+              :value="category[0]"
+            >{{ category[1] }}</option>
           </select>
-
           <button type="submit" class="btn btn-primary ml-2">Filter Roads</button>
         </form>
       </div>
@@ -68,18 +74,36 @@
 </template>
 
 <script>
-
-import { district, categories } from './enums';
+import { district, categories } from "./enums";
 
 export default {
   name: "road-archive",
   components: {},
-  methods: {},
+  methods: {
+    roadChange(e) {
+      if (e.target.value === "") {
+        this.active = this.roads;
+        return;
+      }
+      this.active = this.roads.filter((complaint) => {
+        return complaint.road_id == e.target.value;
+      });
+    },
+    distChange(e) {
+      if (e.target.value === "all") {
+        this.active = this.roads;
+        return;
+      }
+      this.active = this.roads.filter((road) => {
+        return road.category == e.target.value;
+      });
+    },
+  },
   mounted() {
     this.axios
       .post("road", { op: "all_kp" })
-      .then(({data}) => {
-        this.roads = data; 
+      .then(({ data }) => {
+        this.roads = data;
         this.active = data;
       })
       .catch((err) => {
@@ -91,7 +115,8 @@ export default {
       roads: [],
       active: [],
       districts: district,
-      categories: categories
+      categories: categories,
+      categories_l: Object.entries(categories),
     };
   },
 };

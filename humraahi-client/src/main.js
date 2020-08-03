@@ -9,7 +9,7 @@ import VueAxios from 'vue-axios'
 
 Vue.use(VueAxios, axios)
 
-axios.defaults.baseURL = "https://99ee7a96ba1b.ngrok.io/";
+axios.defaults.baseURL = "https://da933c435f15.ngrok.io/";
 
 axios.defaults.headers["Content-Type"] = "application/json;charset=UTF-8";
 
