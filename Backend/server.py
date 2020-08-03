@@ -430,7 +430,12 @@ def db_comp():
     # by id
     if(body['op'] == 'byid_kp'):
         ver_data = pd.read_csv("../data/ver_form_data.csv")
-        data = json.dumps(tuple(comp_data[comp_data['complaint_id'] == body['args']].join(ver_data.set_index('complaint_id'), on = 'complaint_id').reset_index(drop = True).to_dict('index').values()), default=json_util.default)
+        if(len(ver_data[ver_data['complaint_id'] == body['args']]) >= 1):
+            data = json.dumps(tuple(comp_data[comp_data['complaint_id'] == body['args']].join(ver_data.set_index('complaint_id'), 
+            on = 'complaint_id').reset_index(drop = True).to_dict('index').values()), default=json_util.default)
+        else:
+            data = json.dumps(tuple(comp_data[comp_data['complaint_id'] == body['args']].reset_index(drop = True).to_dict('index').values()), default=json_util.default)
+
         return data
 
     if(body['op'] == 'byid'):
@@ -486,6 +491,17 @@ def verification():
             ver_data.loc[ver_data.index.max() + 1] = body['args']
             ver_data.to_csv('../data/ver_form_data.csv', index = False)
             return json.dumps('success')
+        return json.dumps('false')
+
+@app.route('/noti', methods = ['POST'])
+def notification():
+        comp_data = pd.read_csv('../data/notif-data.csv')
+        body = request.get_json()
+        print(body['args'])
+        ver_data = pd.read_csv('../data/notif-data.csv')
+        if(body['op'] == 'get'):
+            rows = tuple(comp_data[comp_data['insp_id'] == body['args']].reset_index(drop = True).to_dict('index').values())
+            return json.dumps(rows)
         return json.dumps('false')
 
 
