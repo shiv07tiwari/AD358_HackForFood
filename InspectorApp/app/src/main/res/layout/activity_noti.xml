@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NotiActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/humraahi"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Humraahi"
+        app:navigationIcon="@drawable/logo">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/noti4"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:text="You will receive the latest notification related to your task"
+        android:textSize="14sp"
+        android:layout_marginTop="15sp"
+        android:textColor="@color/green"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/noti_content"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="TEXT FOR NOTIFICATION"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

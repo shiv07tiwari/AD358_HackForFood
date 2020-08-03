@@ -460,6 +460,35 @@ def db_comp():
         comp_data.to_csv('../data/comp_data.csv', index = False)
         return json.dumps("success")
 
+    if(body['op'] == 'officer_get'):
+        rows = tuple(comp_data[comp_data['assigned_insp_id'] == body['args']].reset_index(drop = True).to_dict('index').values())
+        a = int(len(rows)/5)
+        slice_object = slice(a)
+        return json.dumps(rows[slice_object])
+
+
+# {'road_name': '', 'road_grades': '', 'radio_protocol_signs': 'None', 'Description': '',
+#  'anticipated_turnout_constructed': '', 'sub_id': '55',
+#   'com_id': '144', 'overhead_power_lines': 'None',
+#    'remedial_codes': 'Install or repair', 'priority': 'Not Added', 'local_name': '',
+#     'kilometre_marker_boards': 'None', 'hill': 'None', 'stop_sign': 'None',
+#      'narrow_road_sections': 'None', 'audit': 'Construction', 'activities': 'Bridge',
+#       'inspection_codes': 'Tension cracks visibly', 'rail_crossing_present': 'None',
+#        'risk': 'Not Added', 'stream_culvert': 'None', 'vehicle_usage': 'None'}
+
+
+@app.route('/verification', methods = ['POST'])
+def verification():
+        body = request.get_json()
+        print(body['args'])
+        ver_data = pd.read_csv('../data/ver_form_data.csv')
+        if(body['op'] == 'add'):
+            ver_data.loc[ver_data.index.max() + 1] = body['args']
+            ver_data.to_csv('../data/ver_form_data.csv', index = False)
+            return json.dumps('success')
+        return json.dumps('false')
+
+
 @app.route('/tender', methods = ['POST'])
 def db_tender():
     body = request.get_json()

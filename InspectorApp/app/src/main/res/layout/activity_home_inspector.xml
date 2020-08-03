@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/white_smoke">
 
     <androidx.appcompat.widget.Toolbar
@@ -19,7 +19,16 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/progress_circular"
+        android:layout_gravity="center" />
+
+
     <ScrollView android:layout_height="match_parent"
+        android:id="@+id/scroll_view"
+        android:visibility="gone"
         android:layout_width="match_parent">
 
     <RelativeLayout
@@ -50,7 +59,6 @@
                 android:padding="5dp"
                 android:layout_margin="5dp"/>
         </LinearLayout>
-
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -118,6 +126,34 @@
                     android:scrollbars="horizontal">
                 </androidx.recyclerview.widget.RecyclerView>
             </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:background="#26974D"
+                    android:id="@+id/tutorial_button"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Inspection and Workflow Tutorial"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:background="#26974D"
+                    android:layout_margin="5dp"
+                    android:id="@+id/noti_button"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Schedule Notification"/>
+            </LinearLayout>
+
+
         </LinearLayout>
     </RelativeLayout>
     </ScrollView>

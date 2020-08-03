@@ -1,10 +1,12 @@
 package com.example.humraahi;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -18,10 +20,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.humraahi.DataModels.AllReq;
+import com.example.humraahi.DataModels.SchServer;
+import com.example.humraahi.DataModels.VerificationAdd;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.concurrent.ThreadLocalRandom;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ActivityVerificationForm extends AppCompatActivity {
 
@@ -35,49 +47,49 @@ public class ActivityVerificationForm extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
+        final Spinner audit = findViewById(R.id.audit);
+        final EditText roadName = findViewById(R.id.roadName);
+        final Spinner inspectionCodes = findViewById(R.id.inspectionCodes);
+        final Spinner remedialCodes = findViewById(R.id.remedialCodes);
+        final Spinner activities = findViewById(R.id.activities);
+        final EditText localName = findViewById(R.id.localName);
+        final CheckBox priority_low = findViewById(R.id.priority_low);
+        final CheckBox priority_med = findViewById(R.id.priority_med);
+        final CheckBox priority_high = findViewById(R.id.priority_high);
+        final CheckBox risk1 = findViewById(R.id.risk1);
+        final CheckBox risk2 = findViewById(R.id.risk2);
+        final CheckBox risk3 = findViewById(R.id.risk3);
+        final CheckBox risk4 = findViewById(R.id.risk4);
+        final EditText description = findViewById(R.id.description);
+        final CheckBox stream = findViewById(R.id.stream);
+        final CheckBox hangingOutlet = findViewById(R.id.handingOutlet);
+        final CheckBox otherStream = findViewById(R.id.otherStream);
+        final CheckBox stopSignYes = findViewById(R.id.stopSignYes);
+        final CheckBox stopSignNo = findViewById(R.id.stopSignNo);
+        final CheckBox KMYes = findViewById(R.id.KMYes);
+        final CheckBox KMNo = findViewById(R.id.KMNo);
+        final CheckBox RPYes = findViewById(R.id.RPYes);
+        final CheckBox RPNo = findViewById(R.id.RPNo);
+        final EditText anticipatedTurnout = findViewById(R.id.ant_turnout);
+        final CheckBox railYes = findViewById(R.id.railYes);
+        final CheckBox railNo = findViewById(R.id.railNo);
+        final CheckBox hillYes = findViewById(R.id.hillYes);
+        final CheckBox hillNo = findViewById(R.id.hillNo);
+        final CheckBox nryes = findViewById(R.id.narror_roadYes);
+        final CheckBox nrno = findViewById(R.id.narror_roadNo);
+        final CheckBox plyes = findViewById(R.id.PL_Yes);
+        final CheckBox plno = findViewById(R.id.Pl_No);
+        final EditText roadGrades = findViewById(R.id.roadGrades);
+        final CheckBox vehicleUsageL = findViewById(R.id.vu_low);
+        final CheckBox vehicleUsageM = findViewById(R.id.vu_med);
+        final CheckBox vehicleUsageH = findViewById(R.id.vu_high);
         Button submitButton = findViewById(R.id.verification_submit);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                Spinner audit = findViewById(R.id.audit);
-                EditText roadName = findViewById(R.id.roadName);
-                Spinner inspectionCodes = findViewById(R.id.inspectionCodes);
-                Spinner remedialCodes = findViewById(R.id.remedialCodes);
-                Spinner activities = findViewById(R.id.activities);
-                EditText localName = findViewById(R.id.localName);
-                CheckBox priority_low = findViewById(R.id.priority_low);
-                CheckBox priority_med = findViewById(R.id.priority_med);
-                CheckBox priority_high = findViewById(R.id.priority_high);
-                CheckBox risk1 = findViewById(R.id.risk1);
-                CheckBox risk2 = findViewById(R.id.risk2);
-                CheckBox risk3 = findViewById(R.id.risk3);
-                CheckBox risk4 = findViewById(R.id.risk4);
-                EditText description = findViewById(R.id.description);
-                CheckBox stream = findViewById(R.id.stream);
-                CheckBox hangingOutlet = findViewById(R.id.handingOutlet);
-                CheckBox otherStream = findViewById(R.id.otherStream);
-                CheckBox stopSignYes = findViewById(R.id.stopSignYes);
-                CheckBox stopSignNo = findViewById(R.id.stopSignNo);
-                CheckBox KMYes = findViewById(R.id.KMYes);
-                CheckBox KMNo = findViewById(R.id.KMNo);
-                CheckBox RPYes = findViewById(R.id.RPYes);
-                CheckBox RPNo = findViewById(R.id.RPNo);
-                EditText anticipatedTurnout = findViewById(R.id.ant_turnout);
-                CheckBox railYes = findViewById(R.id.railYes);
-                CheckBox railNo = findViewById(R.id.railNo);
-                CheckBox hillYes = findViewById(R.id.hillYes);
-                CheckBox hillNo = findViewById(R.id.hillNo);
-                CheckBox nryes = findViewById(R.id.narror_roadYes);
-                CheckBox nrno = findViewById(R.id.narror_roadNo);
-                CheckBox plyes = findViewById(R.id.PL_Yes);
-                CheckBox plno = findViewById(R.id.Pl_No);
-                EditText roadGrades = findViewById(R.id.roadGrades);
-                CheckBox vehicleUsageL = findViewById(R.id.vu_low);
-                CheckBox vehicleUsageM = findViewById(R.id.vu_med);
-                CheckBox vehicleUsageH = findViewById(R.id.vu_high);
-
+                Log.e("log", "HEREEEEE");
                 VerificationData = new HashMap<>();
 
                 VerificationData.put("audit", audit.getSelectedItem().toString());
@@ -103,7 +115,7 @@ public class ActivityVerificationForm extends AppCompatActivity {
                 else risk = "Not Added";
 
                 VerificationData.put("risk", risk);
-                VerificationData.put("Description", description.getText().toString());
+                VerificationData.put("description", description.getText().toString());
 
                 String streamCulvert = "None";
 
@@ -179,10 +191,30 @@ public class ActivityVerificationForm extends AppCompatActivity {
                 else if(vehicleUsageH.isChecked()) vu_use="high";
 
                 VerificationData.put("vehicle_usage", vu_use);
+                int randomNum = ThreadLocalRandom.current().nextInt(30, 70 + 1);
+                VerificationData.put("sub_id", Integer.toString(randomNum));
+                randomNum = ThreadLocalRandom.current().nextInt(1, 200);
+                VerificationData.put("com_id", Integer.toString(randomNum));
 
-                Log.d("Verify",VerificationData.toString());
+                Log.e("log", "Count: "+VerificationData.size());
+                // 22
+                Log.e("Verify\n",VerificationData.toString());
 
-                finish();
+                NetworkService apiService =
+                        APIClient.getClient().create(NetworkService.class);
+                VerificationAdd a = new VerificationAdd("add", VerificationData);
+                Call<String> call = apiService.addComplaint(a);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        Toast.makeText(getBaseContext(),"Verification Submitted!", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                    }
+                });
+
             }
         });
 
