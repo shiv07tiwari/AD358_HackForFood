@@ -10,6 +10,8 @@ import numpy as np
 from flask_cors import CORS, cross_origin
 from spothole import isPotHole
 import pandas as pd
+import pickle
+from utils import *
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -395,6 +397,18 @@ def db_comp():
     comp_data = pd.read_csv('../data/comp_data.csv')
     # get all
     
+    if(body['op'] == 'resolve'):
+        comp_data.loc[comp_data['complaint_id'] == body['args']]['is_resolved'] =  True
+        comp_data.loc[comp_data['complaint_id'] == body['args']]['resolved_month'] = 8
+        comp_data.loc[comp_data['complaint_id'] == body['args']]['resolved_year'] = 2020
+        comp_data.to_csv('../data/comp_data.csv', index = False)
+        return json.dumps("Success")
+
+    if(body['op'] == 'verify'):
+        comp_data.loc[comp_data['complaint_id'] == body['args']]['is_verified'] =  True
+        comp_data.to_csv('../data/comp_data.csv', index = False)
+        return json.dumps("Success")        
+
     if(body['op'] == 'all_kp'):
         data = json.dumps(tuple(comp_data.reset_index(drop = True).to_dict('index').values()))
         return data
@@ -410,7 +424,7 @@ def db_comp():
     
     if(body['op'] == 'all_join_kp'):
         road_data = pd.read_csv('../data/final-road-data.csv')
-        data = json.dumps(tuple(comp_data.join(road_data.set_index('road_id'), on = 'road_id').reset_index(drop = True).to_dict('index')), default=json_util.default)
+        data = json.dumps(tuple(comp_data.join(road_data.set_index('road_id'), on = 'road_id').reset_index(drop = True).to_dict('index').values()), default=json_util.default)
         return data
 
     # by id
@@ -439,6 +453,11 @@ def db_comp():
     # add complaint
     if(body['op'] == 'add'):
         comp_data.loc[comp_data.index.max() + 1] = body['args']
+        comp_data.to_csv('../data/comp_data.csv', index = False)
+        return json.dumps("success")
+    
+    if(body['op'] == 'add_kp'):
+        comp_data = comp_data.append(body['args'][0], ignore_index = True)
         comp_data.to_csv('../data/comp_data.csv', index = False)
         return json.dumps("success")
 
@@ -485,6 +504,11 @@ def db_tender():
         tend_data.loc[tend_data.index.max() + 1] = body['args']
         tend_data.to_csv('../data/rt_data.csv', index = False)
         return json.dumps("success")
+    
+    if(body['op'] == 'add_kp'):
+        tend_data = tend_data.append(body['args'][0], ignore_index = True)
+        tend_data.to_csv('../data/rt_data.csv', index = False)
+        return json.dumps("success")
 
 @app.route('/road', methods = ['POST'])
 def db_road():
@@ -520,6 +544,11 @@ def db_road():
         road_data.to_csv('../data/final-road-data.csv', index = False)
         return json.dumps("success")
     
+    if(body['op'] == 'add_kp'):
+        road_data = road_data.append(body['args'][0], ignore_index = True)
+        road_data.to_csv('../data/final-road-data.csv', index = False)
+        return json.dumps("success")
+    
     # edit road
     if(body['op'] == 'edit'):
         print(body['args'])
@@ -527,15 +556,37 @@ def db_road():
         road_data.to_csv('../data/final-road-data.csv', index = False)
         return json.dumps("success")
 
-@app.route('/analyze', methods = ['POST'])
-def analyze():
-    body = request.get_json()
-    
+
+@app.route('/up_sched', methods = ['GET'])
+def up_sched():
     comp_data = pd.read_csv('../data/comp_data.csv')
     road_data = pd.read_csv('../data/final-road-data.csv')
+    
+    data = comp_data.join(road_data.set_index('road_id'), on = 'road_id')
+    #print(data)
+    data = get_prioritized(data)
+    
+    return json.dumps(tuple(data.reset_index(drop = True).to_dict('index').values()))
+    # get road repair priority 
 
+@app.route('/cost_pred', methods = ['GET'])
+def cost_pred():
+    comp_data = pd.read_csv('../data/comp_data.csv')
+    road_data = pd.read_csv('../data/final-road-data.csv')
+    
+    data = comp_data.join(road_data.set_index('road_id'), on = 'road_id')
+
+    time = get_repair_time(data,road_life_model,road_life_scaler)
+    data = get_repair_cost(data,road_cost_model,road_cost_scaler_X, road_cost_scaler_y, road_life_model,road_life_scaler)
+    return json.dumps({"cost" : data, "time": time})
     # get road repair priority 
     
 
 if __name__ == "__main__":
+        # Load models and scalers
+    road_life_model = pickle.load(open('./road_life_prediction_model.sav', 'rb'))
+    road_cost_model = pickle.load(open('./road_cost_prediction.sav', 'rb'))
+    road_life_scaler = pickle.load(open('./road_life_scaler.pkl', 'rb'))
+    road_cost_scaler_X = pickle.load(open('./road_cost_scaler_X.pkl', 'rb'))
+    road_cost_scaler_y = pickle.load(open('./road_cost_scaler_y.pkl', 'rb'))
     app.run(debug=True, port=5000)

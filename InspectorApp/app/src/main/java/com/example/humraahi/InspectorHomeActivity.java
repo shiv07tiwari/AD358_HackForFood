@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.humraahi.DataModels.ScheduleDetails;
 import com.example.humraahi.DataModels.ScheduleList;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +31,21 @@ public class InspectorHomeActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        Button btn = findViewById(R.id.start_task);
+        final TextView tag = findViewById(R.id.tag);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tag.getText().equals("Verification")) {
+                    Intent i = new Intent(InspectorHomeActivity.this, ActivityVerificationForm.class);
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(InspectorHomeActivity.this, ActivityInspectionForm.class);
+                    startActivity(i);
+                }
+            }
+        });
         RecyclerView recyclerViewPendingTasks;
         RecyclerView recyclerViewCompletedTasks;
 
