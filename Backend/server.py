@@ -461,6 +461,22 @@ def db_comp():
         comp_data.to_csv('../data/comp_data.csv', index = False)
         return json.dumps("success")
 
+    if(body['op'] == 'officer_get'):
+        rows = tuple(comp_data[comp_data['assigned_insp_id'] == body['args']].values.tolist())
+        a = int(len(rows)/5)
+        slice_object = slice(a)
+        return json.dumps(rows[slice_object])
+
+@app.route('/verification', methods = ['POST'])
+def verification():
+        body = request.get_json()
+        ver_data = pd.read_csv('../data/verification_data_gen.py')
+        if(body['op'] == 'add'):
+            ver_data.loc[ver_data.index.max() + 1] = body['args']
+            ver_data.to_csv('../data/verification_data_gen.py', index = False)
+            return json.dumps('success')
+
+
 @app.route('/tender', methods = ['POST'])
 def db_tender():
     body = request.get_json()
