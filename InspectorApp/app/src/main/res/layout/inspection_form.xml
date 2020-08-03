@@ -68,6 +68,7 @@
                     android:padding="2dp"
                     android:background="@color/white_smoke"
                     android:layout_margin="2dp"
+                    android:id="@+id/project_id"
                     android:lines="2">
 
                 </EditText>
@@ -97,6 +98,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/contract_id"
                         android:lines="2">
 
                     </EditText>
@@ -125,6 +127,7 @@
                     android:padding="2dp"
                     android:background="@color/white_smoke"
                     android:layout_margin="2dp"
+                    android:id="@+id/section"
                     android:lines="2">
                 </EditText>
             </LinearLayout>
@@ -152,6 +155,7 @@
                     android:padding="2dp"
                     android:background="@color/white_smoke"
                     android:layout_margin="2dp"
+                    android:id="@+id/section_length"
                     android:lines="2">
                 </EditText>
             </LinearLayout>
@@ -189,6 +193,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/center_lines"
                         android:lines="2">
 
                     </EditText>
@@ -214,6 +219,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/grade_peg"
                         android:lines="2">
 
                     </EditText>
@@ -253,6 +259,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/removal_of_organic"
                         android:lines="2">
 
                     </EditText>
@@ -292,6 +299,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/excavation_line"
                         android:lines="2">
 
                     </EditText>
@@ -317,6 +325,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/setu_compaction"
                         android:lines="2">
 
                     </EditText>
@@ -342,6 +351,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/ct_ref"
                         android:lines="2">
 
                     </EditText>
@@ -367,6 +377,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/cbr_ref"
                         android:lines="2">
 
                     </EditText>
@@ -392,6 +403,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/ga_insetu"
                         android:lines="2">
 
                     </EditText>
@@ -440,6 +452,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/lower_layer_p"
                         android:lines="2">
 
                     </EditText>
@@ -465,6 +478,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/lower_level_c"
                         android:lines="2">
 
                     </EditText>
@@ -490,6 +504,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/lower_level_c_ref"
                         android:lines="2">
 
                     </EditText>
@@ -515,6 +530,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/lower_level_cbr"
                         android:lines="2">
 
                     </EditText>
@@ -540,6 +556,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/lower_level_ga"
                         android:lines="2">
 
                     </EditText>
@@ -573,6 +590,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/upper_level_p"
                         android:lines="2">
 
                     </EditText>
@@ -598,6 +616,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/upper_level_c"
                         android:lines="2">
 
                     </EditText>
@@ -623,6 +642,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/upper_level_c_ref"
                         android:lines="2">
 
                     </EditText>
@@ -648,6 +668,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/upper_level_cbr"
                         android:lines="2">
 
                     </EditText>
@@ -673,6 +694,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/upper_level_ga"
                         android:lines="2">
 
                     </EditText>
@@ -706,6 +728,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/imp_gravel_p"
                         android:lines="2">
 
                     </EditText>
@@ -731,6 +754,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/imp_gravel_c"
                         android:lines="2">
 
                     </EditText>
@@ -756,6 +780,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/imp_gravel_cbr"
                         android:lines="2">
 
                     </EditText>
@@ -781,6 +806,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/imp_gravel_ga"
                         android:lines="2">
 
                     </EditText>
@@ -814,6 +840,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/imp_gravel2_p"
                         android:lines="2">
 
                     </EditText>
@@ -839,6 +866,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/imp_gravel2_c"
                         android:lines="2">
 
                     </EditText>
@@ -864,6 +892,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/imp_gravel2_cbr"
                         android:lines="2">
 
                     </EditText>
@@ -889,6 +918,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/imp_gravel2_ga"
                         android:lines="2">
 
                     </EditText>
@@ -928,6 +958,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/crusher_run_p"
                         android:lines="2">
 
                     </EditText>
@@ -953,6 +984,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/crusher_run_c"
                         android:lines="2">
 
                     </EditText>
@@ -978,6 +1010,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/crusher_run_c_ref"
                         android:lines="2">
 
                     </EditText>
@@ -1003,6 +1036,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/slashing"
                         android:lines="2">
 
                     </EditText>
@@ -1028,6 +1062,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/crusher_run_ga"
                         android:lines="2">
 
                     </EditText>
@@ -1068,6 +1103,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/final_grading"
                         android:lines="2">
 
                     </EditText>
@@ -1093,6 +1129,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/level_slopes"
                         android:lines="2">
 
                     </EditText>
@@ -1132,6 +1169,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/comp_pre_p"
                         android:lines="2">
 
                     </EditText>
@@ -1157,6 +1195,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/comp_p"
                         android:lines="2">
 
                     </EditText>
@@ -1182,6 +1221,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/ga"
                         android:lines="2">
 
                     </EditText>
@@ -1221,6 +1261,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/truck_calib"
                         android:lines="2">
 
                     </EditText>
@@ -1246,6 +1287,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/torp_primer"
                         android:lines="2">
 
                     </EditText>
@@ -1271,6 +1313,7 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/spread_rate"
                         android:lines="2">
 
                     </EditText>
@@ -1296,10 +1339,81 @@
                         android:padding="2dp"
                         android:background="@color/white_smoke"
                         android:layout_margin="2dp"
+                        android:id="@+id/final_ga"
                         android:lines="2">
                     </EditText>
                 </LinearLayout>
             </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/dark_gray"
+                android:padding="3dp"
+                android:text="Status"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Completed Road Length">
+                </TextView>
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:hint="Add Here"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"
+                    android:padding="2dp"
+                    android:background="@color/white_smoke"
+                    android:layout_margin="2dp"
+                    android:id="@+id/comp_road_len"
+                    android:lines="2">
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="Construction Status">
+                </TextView>
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:text="Completed"
+                    android:id="@+id/status_comp"
+                    android:layout_height="wrap_content"/>
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:text="In Progress"
+                    android:id="@+id/status_prog"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:id="@+id/inspection_submit"
+                android:background="@color/humraahi"
+                android:textColor="@color/white"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

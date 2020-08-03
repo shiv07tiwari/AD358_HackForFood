@@ -62,9 +62,9 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner1"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:id="@+id/audit"
             android:entries="@array/audit_options">
         </Spinner>
         </LinearLayout>
@@ -92,6 +92,7 @@
             android:padding="2dp"
             android:background="@color/white_smoke"
             android:layout_margin="2dp"
+            android:id="@+id/roadName"
             android:lines="2">
 
         </EditText>
@@ -115,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:id="@+id/inspectionCodes"
                 android:entries="@array/inspection_codes">
             </Spinner>
         </LinearLayout>
@@ -139,6 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:id="@+id/remedialCodes"
                 android:entries="@array/remidial_codes">
             </Spinner>
         </LinearLayout>
@@ -163,6 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:id="@+id/activities"
                 android:entries="@array/activites">
             </Spinner>
         </LinearLayout>
@@ -184,6 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:id="@+id/localName"
             android:hint="Enter Here"
             android:textColor="@color/gray"
             android:textSize="16sp"
@@ -206,28 +211,28 @@
                 android:padding="3dp"
                 android:text="Priority">
             </TextView>
-            <com.google.android.material.chip.ChipGroup
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:id="@+id/priority">
-
-                <com.google.android.material.chip.Chip
+                android:orientation="horizontal">
+               <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                   android:id="@+id/priority_low"
                     android:text="Low"/>
 
-                <com.google.android.material.chip.Chip
+                <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/priority_med"
                     android:text="Middle"/>
-                <com.google.android.material.chip.Chip
+                <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/priority_high"
                     android:text="High"/>
 
-            </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -243,32 +248,29 @@
                 android:padding="3dp"
                 android:text="Risk">
             </TextView>
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:id="@+id/risk">
 
-                <com.google.android.material.chip.Chip
+                <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/risk1"
                     android:text="No Safety/Environment Hazard"/>
 
-                <com.google.android.material.chip.Chip
+                <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/risk2"
                     android:text="Minor Safety/Environment Hazard"/>
-                <com.google.android.material.chip.Chip
+                <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/risk3"
                     android:text="Moderate Safety/Environment Hazard"/>
-                <com.google.android.material.chip.Chip
+                <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/risk4"
                     android:text="High Safety/Environment Hazard"/>
 
-            </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -287,6 +289,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/description"
             android:hint="Add Description Here"
             android:textColor="@color/gray"
             android:textSize="16sp"
@@ -315,18 +318,21 @@
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/stream"
                 android:text="Stream">
 
             </CheckBox>
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/handingOutlet"
                 android:text="Hanging Outlet">
 
             </CheckBox>
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/otherStream"
                 android:text="Less than 20%">
             </CheckBox>
         </LinearLayout>
@@ -359,11 +365,13 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/stopSignYes"
                     android:text="Yes">
                 </CheckBox>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/stopSignNo"
                     android:text="No">
                 </CheckBox>
             </LinearLayout>
@@ -381,11 +389,13 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/KMYes"
                     android:text="Yes">
                 </CheckBox>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/KMNo"
                     android:text="No">
                 </CheckBox>
             </LinearLayout>
@@ -403,11 +413,13 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/RPYes"
                     android:text="Yes">
                 </CheckBox>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/RPNo"
                     android:text="No">
                 </CheckBox>
             </LinearLayout>
@@ -447,6 +459,7 @@
                     android:padding="2dp"
                     android:background="@color/white_smoke"
                     android:layout_margin="2dp"
+                    android:id="@+id/ant_turnout"
                     android:lines="2">
 
                 </EditText>
@@ -465,11 +478,13 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/railYes"
                     android:text="Yes">
                 </CheckBox>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/railNo"
                     android:text="No">
                 </CheckBox>
             </LinearLayout>
@@ -487,11 +502,13 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/hillYes"
                     android:text="Yes">
                 </CheckBox>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/hillNo"
                     android:text="No">
                 </CheckBox>
             </LinearLayout>
@@ -509,11 +526,13 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/narror_roadYes"
                     android:text="Yes">
                 </CheckBox>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/narror_roadNo"
                     android:text="No">
                 </CheckBox>
             </LinearLayout>
@@ -531,11 +550,13 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/PL_Yes"
                     android:text="Yes">
                 </CheckBox>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/Pl_No"
                     android:text="No">
                 </CheckBox>
             </LinearLayout>
@@ -560,6 +581,7 @@
                     android:padding="2dp"
                     android:background="@color/white_smoke"
                     android:layout_margin="2dp"
+                    android:id="@+id/roadGrades"
                     android:lines="2">
 
                 </EditText>
@@ -576,30 +598,38 @@
                     android:textColor="@color/dark_gray"
                     android:text="Anticipated Vehicle Usage ">
                 </TextView>
-                <com.google.android.material.chip.ChipGroup
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Vehicle_usage">
-
-                    <com.google.android.material.chip.Chip
+                    android:orientation="horizontal">
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/vu_low"
                         android:text="Low"/>
 
-                    <com.google.android.material.chip.Chip
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/vu_med"
                         android:text="Middle"/>
-                    <com.google.android.material.chip.Chip
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/vu_high"
                         android:text="High"/>
 
-                </com.google.android.material.chip.ChipGroup>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/verification_submit"
+            android:background="@color/humraahi"
+            android:textColor="@color/white"/>
     </LinearLayout>
 </ScrollView>
 </LinearLayout>
