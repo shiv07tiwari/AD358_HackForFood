@@ -430,7 +430,12 @@ def db_comp():
     # by id
     if(body['op'] == 'byid_kp'):
         ver_data = pd.read_csv("../data/ver_form_data.csv")
-        data = json.dumps(tuple(comp_data[comp_data['complaint_id'] == body['args']].join(ver_data.set_index('complaint_id'), on = 'complaint_id').reset_index(drop = True).to_dict('index').values()), default=json_util.default)
+        if(len(ver_data[ver_data['complaint_id'] == body['args']]) >= 1):
+            data = json.dumps(tuple(comp_data[comp_data['complaint_id'] == body['args']].join(ver_data.set_index('complaint_id'), 
+            on = 'complaint_id').reset_index(drop = True).to_dict('index').values()), default=json_util.default)
+        else:
+            data = json.dumps(tuple(comp_data[comp_data['complaint_id'] == body['args']].reset_index(drop = True).to_dict('index').values()), default=json_util.default)
+
         return data
 
     if(body['op'] == 'byid'):

@@ -80,25 +80,44 @@ def get_repair_cost(data, cost_model, sc_X, sc_y, time_model, sc):
     pred = cost_model.predict(X)
     pred = sc_y.inverse_transform(pred).reshape(-1, )
 
-    ret_data = {'2_months': 0,
-                '4_months': 0,
-                '6_months': 0,
-                '8_months': 0,
-                '12_months': 0,
+    ret_data = {'1': 0,
+                '2': 0,
+                '3': 0,
+                '4': 0,
+                '5': 0,
+                '6': 0,
+                '7': 0,
+                '8': 0,
+                '9': 0,
+                '10': 0,
+                '11': 0,
+                '12': 0,
                 'more_than_an_year': 0}
 
     for id, time in repair_times.items():
         idx = ids.index(id)
-        if 0 <= time < 2:
-            ret_data['2_months'] += pred[idx]
-        elif 2 <= time < 4:
-            ret_data['4_months'] += pred[idx]
-        elif 4 <= time < 6:
-            ret_data['8_months'] += pred[idx]
-        elif 6 <= time < 8:
-            ret_data['8_months'] += pred[idx]
-        elif 8 <= time < 12:
-            ret_data['12_months'] += pred[idx]
+        if 0 <= time < 1:
+            ret_data['1'] += pred[idx]
+        elif 1 <= time < 2:
+            ret_data['2'] += pred[idx]
+        elif 2 <= time < 3:
+            ret_data['3'] += pred[idx]
+        elif 3 <= time < 4:
+            ret_data['4'] += pred[idx]
+        elif 4 <= time < 5:
+            ret_data['5'] += pred[idx]
+        elif 5 <= time < 6:
+            ret_data['6'] += pred[idx]
+        elif 7 <= time < 8:
+            ret_data['8'] += pred[idx]
+        elif 8 <= time < 9:
+            ret_data['9'] += pred[idx]
+        elif 9 <= time < 10:
+            ret_data['10'] += pred[idx]
+        elif 10 <= time < 11:
+            ret_data['11'] += pred[idx]
+        elif 11 <= time < 12:
+            ret_data['12'] += pred[idx]
         else:
             ret_data['more_than_an_year'] += pred[idx]
 
