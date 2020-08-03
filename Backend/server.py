@@ -397,6 +397,18 @@ def db_comp():
     comp_data = pd.read_csv('../data/comp_data.csv')
     # get all
     
+    if(body['op'] == 'resolve'):
+        comp_data.loc[comp_data['complaint_id'] == body['args']]['is_resolved'] =  True
+        comp_data.loc[comp_data['complaint_id'] == body['args']]['resolved_month'] = 8
+        comp_data.loc[comp_data['complaint_id'] == body['args']]['resolved_year'] = 2020
+        comp_data.to_csv('../data/comp_data.csv', index = False)
+        return json.dumps("Success")
+
+    if(body['op'] == 'verify'):
+        comp_data.loc[comp_data['complaint_id'] == body['args']]['is_verified'] =  True
+        comp_data.to_csv('../data/comp_data.csv', index = False)
+        return json.dumps("Success")        
+
     if(body['op'] == 'all_kp'):
         data = json.dumps(tuple(comp_data.reset_index(drop = True).to_dict('index').values()))
         return data
@@ -544,6 +556,7 @@ def db_road():
         road_data.to_csv('../data/final-road-data.csv', index = False)
         return json.dumps("success")
 
+
 @app.route('/up_sched', methods = ['GET'])
 def up_sched():
     comp_data = pd.read_csv('../data/comp_data.csv')
@@ -565,7 +578,7 @@ def cost_pred():
 
     time = get_repair_time(data,road_life_model,road_life_scaler)
     data = get_repair_cost(data,road_cost_model,road_cost_scaler_X, road_cost_scaler_y, road_life_model,road_life_scaler)
-    return json.dumps(tuple(data.reset_index(drop = True).to_dict('index').values()))
+    return json.dumps({"cost" : data, "")
     # get road repair priority 
     
 
