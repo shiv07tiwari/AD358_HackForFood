@@ -116,8 +116,8 @@ public class InspectorHomeActivity extends AppCompatActivity {
                 }
                 Log.e("log", "List1: "+scheduleList.getSize());
                 Log.e("log", "List12: "+scheduleList2.getSize());
-                setTasks(recyclerViewPendingTasks, scheduleList);
-                setTasks(recyclerViewCompletedTasks, scheduleList2);
+                setTasks(recyclerViewPendingTasks, scheduleList, false);
+                setTasks(recyclerViewCompletedTasks, scheduleList2, true);
                 _scroll.setVisibility(View.VISIBLE);
                 _pro.setVisibility(View.GONE);
             }
@@ -170,10 +170,10 @@ public class InspectorHomeActivity extends AppCompatActivity {
 //        });
     }
 
-    protected void setTasks(RecyclerView recyclerView, ScheduleList schedules){
+    protected void setTasks(RecyclerView recyclerView, ScheduleList schedules, boolean completed){
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new SchedulesCustomAdaptor(schedules, this);
+        adapter = new SchedulesCustomAdaptor(schedules, this, completed);
         recyclerView.setAdapter(adapter);
     }
 
