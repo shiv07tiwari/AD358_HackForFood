@@ -470,11 +470,14 @@ def db_comp():
 @app.route('/verification', methods = ['POST'])
 def verification():
         body = request.get_json()
-        ver_data = pd.read_csv('../data/ver_form_data.csv')
-        if(body['op'] == 'add'):
-            ver_data.loc[ver_data.index.max() + 1] = body['args']
-            ver_data.to_csv('../data/ver_form_data.csv', index = False)
-        return json.dumps('success')
+        print(body['args'])
+        #print("fewvuiavwubvdawolbdhjdwbvkjivdfj")
+        # ver_data = pd.read_csv('../data/ver_form_data.csv')
+        # if(body['op'] == 'add'):
+        #     ver_data.append(body['args'][0], ignore_index = True)
+        #     ver_data.to_csv('../data/ver_form_data.csv', index = False)
+        #     return json.dumps('success')
+        return json.dumps('false')
 
 
 @app.route('/tender', methods = ['POST'])
