@@ -488,6 +488,17 @@ def verification():
             return json.dumps('success')
         return json.dumps('false')
 
+@app.route('/noti', methods = ['POST'])
+def notification():
+        comp_data = pd.read_csv('../data/notif-data.csv')
+        body = request.get_json()
+        print(body['args'])
+        ver_data = pd.read_csv('../data/notif-data.csv')
+        if(body['op'] == 'get'):
+            rows = tuple(comp_data[comp_data['insp_id'] == body['args']].reset_index(drop = True).to_dict('index').values())
+            return json.dumps(rows)
+        return json.dumps('false')
+
 
 @app.route('/tender', methods = ['POST'])
 def db_tender():
